@@ -1,4 +1,4 @@
-#🌈 MotJa-Project-FrontEnd
+🌈 #MotJa-Project-FrontEnd
 
 ##✅Cover-page✨
 - 6/13 - Idea구상은 끝~! (오늘 오후 -> 배치 + 아이템 + 색상 + 애니메이션 ~> 수정)
