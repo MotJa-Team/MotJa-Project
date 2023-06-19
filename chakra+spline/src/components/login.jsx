@@ -1,5 +1,5 @@
 import { Button, useToast, ChakraProvider } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CheckCircleIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 import LoginD from '../pages/LoginD';
@@ -7,9 +7,32 @@ import LoginD from '../pages/LoginD';
 const Login = () => {
   const [account, setAccount] = useState('');
   const toast = useToast();
+  const [isInstalled, setIsInstalled] = useState(false);
+
+  useEffect(() => {
+    // Check if MetaMask is installed
+    if (window.ethereum) {
+      setIsInstalled(true);
+    } else {
+      setIsInstalled(false);
+    }
+  }, []);
 
   const onClickMetaMask = async () => {
     try {
+      // Check if MetaMask is installed
+      if (!window.ethereum) {
+        toast({
+          title: 'MetaMask not installed',
+          // description: '추가 정보를 입력해 주세요',
+
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        });
+        return;
+      }
+
       const accounts = await window.ethereum.request({
         method: 'eth_requestAccounts',
       });
@@ -30,6 +53,7 @@ const Login = () => {
   return (
     <ChakraProvider>
       {/*버전1-로그인버튼 account로 대체+지갑로그인 기능만 */}
+
       {account ? (
         <Button
           leftIcon={<CheckCircleIcon />}
@@ -46,6 +70,7 @@ const Login = () => {
           onClick={onClickMetaMask}
           colorScheme="messenger"
           variant="outline"
+          disabled={!isInstalled}
         >
           Sign Up
         </Button>
