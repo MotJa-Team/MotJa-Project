@@ -28,7 +28,8 @@ const Cover = () => {
             style={{
               position: 'fixed',
             }}
-            scene="https://prod.spline.design/qCPaS-tSWhgbx637/scene.splinecode"
+            // scene="https://prod.spline.design/qCPaS-tSWhgbx637/scene.splinecode"
+            scene="https://prod.spline.design/sl1oSdrbF4r2puz6/scene.splinecode"
           />
         </Link>
       </Flex>
