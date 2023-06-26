@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { firestore } from '../firebase';
 import {
   ChakraProvider,
   Input,
@@ -17,23 +18,47 @@ import MainCard from '../components/mainCard';
 const LoginD = ({ bgColor }) => {
   const [account, setAccount] = useState('');
   const [metamaskAddress, setMetamaskAddress] = useState('');
+  const [name, setName] = useState('');
+  const [birth, setBirth] = useState('');
+  const [num, setNum] = useState('');
+  const P_MOTZA = firestore.collection('P_MOTZA');
+  //TEST용//////////////////////
 
-  // useEffect(() => {
-  //   const fetchMetamaskAddress = async () => {
-  //     try {
-  //       const accounts = await window.ethereum.request({
-  //         method: 'eth_requestAccounts',
-  //       });
-  //       setMetamaskAddress(accounts[0]);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
+  useEffect(() => {
+    // bucket이라는 변수로 firestore의 collection인 bucket에 접근
 
-  //   fetchMetamaskAddress();
-  // }, []);
+    // collection의 document인 "bucket_item"을 가져온다.
+    P_MOTZA.doc('0xd7ed3d7bb6d9c86f05de9d2762219f52552b4f75')
+      .get()
+      .then(doc => {
+        // document의 데이터를 가져옴
+        console.log(doc.data());
+        // document의 id를 가져옴
+        // console.log(doc.id);
+      });
+  }, []);
 
-  const handleSignUp = async () => {
+  ////////////////////////////
+
+  const clickSave = () => {
+    firestore
+      .collection('P_MOTZA')
+      .doc(metamaskAddress)
+      .set({
+        name: name,
+        birth: birth,
+        num: num,
+        addr: metamaskAddress,
+      })
+      .then(() => {
+        console.log('Data saved successfully');
+      })
+      .catch(error => {
+        console.error('Error saving data:', error);
+      });
+  };
+
+  const clickAddrConnect = async () => {
     try {
       const accounts = await window.ethereum.request({
         method: 'eth_requestAccounts',
@@ -53,7 +78,7 @@ const LoginD = ({ bgColor }) => {
         flexDirection="column"
       >
         <Box p="2" maxW="7xl" w="100%">
-          <Header bgColor={bgColor} />
+          <Header bgColor={bgColor} showButtons={false} />
         </Box>
         <Box minH="100vh" maxW="7xl" w="100%">
           <Spline scene="https://prod.spline.design/FY3RUQYLbuAsJ8KJ/scene.splinecode" />
@@ -72,6 +97,8 @@ const LoginD = ({ bgColor }) => {
                 placeholder="이름을 적어주세요"
                 focusBorderColor="#00ff8c"
                 _placeholder={{ opacity: 1, color: 'gray.500' }}
+                value={name}
+                onChange={e => setName(e.target.value)}
               />
             </Box>
             <Box>
@@ -80,22 +107,30 @@ const LoginD = ({ bgColor }) => {
                 focusBorderColor="#00ff8c"
                 placeholder="생년월일 6글자를 적어주세요"
                 size="md"
+                value={birth}
+                onChange={e => setBirth(e.target.value)}
               />
             </Box>
             <Box>
               전화번호
-              <Input focusBorderColor="#00ff8c" placeholder="010-0000-0000" />
+              <Input
+                focusBorderColor="#00ff8c"
+                placeholder="010-0000-0000"
+                value={num}
+                onChange={e => setNum(e.target.value)}
+              />
             </Box>
             <Box>
               메타마스크 주소
               <InputGroup>
                 <Input
                   focusBorderColor="#00ff8c"
-                  placeholder={metamaskAddress}
+                  value={metamaskAddress}
+                  onChange={e => setMetamaskAddress(e.target.value)}
                 />
                 <InputRightElement width="fit-content">
                   <Button
-                    onClick={handleSignUp}
+                    onClick={clickAddrConnect}
                     colorScheme="teal"
                     variant="ghost"
                   >
@@ -104,6 +139,7 @@ const LoginD = ({ bgColor }) => {
                 </InputRightElement>
               </InputGroup>
             </Box>
+            <Button onClick={clickSave}>save</Button>
           </Box>
         </Box>
       </Flex>

@@ -12,7 +12,7 @@ const Main = ({ account, setAccount, bgColor }) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Box minH="100vh" maxW="7xl" w="100%">
+        <Box minH="100vh" maxW="8xl" w="100%">
           {/* 헤더 붙이기 */}
           <Box>
             <Link to="/main">
@@ -20,6 +20,7 @@ const Main = ({ account, setAccount, bgColor }) => {
                 account={account}
                 setAccount={setAccount}
                 bgColor={'black'}
+                showButtons={true}
               />
             </Link>
           </Box>
