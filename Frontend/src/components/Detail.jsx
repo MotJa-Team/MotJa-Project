@@ -1,37 +1,180 @@
+import {
+  ChakraProvider,
+  Flex,
+  Box,
+  Button,
+  Heading,
+  Text,
+} from '@chakra-ui/react';
+import {
+  Step,
+  StepDescription,
+  StepIcon,
+  StepIndicator,
+  StepNumber,
+  StepSeparator,
+  StepStatus,
+  StepTitle,
+  Stepper,
+  useSteps,
+} from '@chakra-ui/react';
+// import { CONTRACT_ADDRESS } from '../web3.config';
+// import React, { useRef } from 'react';
+
+// const copyLinkRef = useRef();
+
+// const handleCopyClipBoard = (text: string) => {
+//   try {
+//     navigator.clipboard.writeText(text);
+//     alert('클립보드에 복사되었습니다.');
+//   } catch (error) {
+//     alert('클립보드 복사에 실패하였습니다.');
+//   }
+// };
+
+// function copyTextUrl() {
+//   copyLinkRef.current.focus();
+//   copyLinkRef.current.select();
+
+//   navigator.clipboard.writeText(copyLinkRef.current.value).then(() => {
+//     alert('링크를 복사했습니다.');
+//   });
+// }
+
+const steps = [
+  { title: 'First', description: 'Contact Info' },
+  { title: 'Second', description: 'Date & Time' },
+  { title: 'Third', description: 'Select Rooms' },
+];
+
 const Detail = () => {
+  const { activeStep, setActiveStep } = useSteps({
+    index: 1,
+    count: steps.length,
+  });
+
+  const activeStepText = steps[activeStep].description;
+
   return (
-    <div className="bg-red-200 max-h-full">
-      <div className=" bg-red-400 flex px-32 h-1/2 items-center">
-        <img
-          className=" w-80 h-80 bg-gray-50 rounded-full text-center my-20 mx-20"
-          alt="프로필 이미지"
-          src="../../public/images/profile.png"
-        />
-        <div className=" flex flex-col h-80 w-2/3 justify-between items-center">
-          <h3 className="bg-gray-50 flex justify-between px-20 py-12">
-            !!!!내 정보 입력 (백엔드에서 정보 받아와야함) & 정보수정 버튼 만들기
-            !!!! Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
-            quisquam aliquid quis vero exercitationem eos, veritatis, nesciunt
-            non dolor facere soluta, incidunt voluptate aut ratione voluptas ad
-            quidem quam aspernatur.
-          </h3>
-          <div className="flex">
-            <button className="bg-blue-300 mx-10 p-4 rounded-xl text-lg">
-              공유하기
-            </button>
-            <button className="bg-blue-300 mx-10 p-4 rounded-xl text-lg">
-              충전하기
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-between items-center px-96 py-20">
-        <img className="bg-gray-500 w-2/3 py-10" alt="진행상황 상태바" />
-        <button className="bg-blue-300 text-lg py-10 px-14 rounded-xl">
-          민팅버튼
-        </button>
-      </div>
-    </div>
+    <ChakraProvider>
+      <Flex bgColor="yellow.100" direction={'column'} p={10}>
+        <Box bgColor="blue.200" gap={4}>
+          <Flex direction="column" mx="auto" m="40px">
+            <Flex>
+              <Box pos="relative" width="500px" height="500px">
+                <Box
+                  pos="absolute"
+                  bgColor="purple.100"
+                  width="500px"
+                  height="500px"
+                  borderRadius="full"
+                >
+                  {/* 사용할 예정 */}
+                  {/* <img src={imgSrc} alt="NFT" /> */}
+                </Box>
+                <Box
+                  top={0}
+                  bgColor="purple.200"
+                  width="500px"
+                  height="500px"
+                  borderRadius="full"
+                >
+                  Loading ..
+                </Box>
+              </Box>
+
+              {/* 여기는 오른쪽 부분  */}
+              <Box
+                borderRadius="sm"
+                ml="10"
+                flex="1"
+                background="#38383d"
+                boxShadow="xs"
+                _hover={{ background: '#42414d' }}
+              >
+                <Box p={5}>
+                  <Heading
+                    pb={2}
+                    color="#00DDFF"
+                    fontSize="2xl"
+                    fontWeight="bold"
+                  >
+                    Name
+                  </Heading>
+
+                  <Flex
+                    direction="column"
+                    mt="50"
+                    color="#00DDFF"
+                    fontSize="xl"
+                    fontWeight="bold"
+                  >
+                    <Box>가격</Box>
+                    <Box>또 무슨 정보를 넣을까...</Box>
+                  </Flex>
+
+                  <Flex justifyContent="flex-end" alignItems="flex-end">
+                    <Button
+                      mt="30"
+                      color="black"
+                      bg="#00DDFF"
+                      borderRadius="none"
+                      mr="10"
+                      // ref={copyTextUrl}
+                    >
+                      공유하기
+                    </Button>
+                    <Button
+                      mr="10"
+                      mt="5"
+                      color="black"
+                      bg="#00DDFF"
+                      borderRadius="none"
+                    >
+                      충전하기{' '}
+                    </Button>
+                  </Flex>
+                </Box>
+              </Box>
+            </Flex>
+          </Flex>
+        </Box>
+        <Flex direction="column" bgColor="pink.100" mt="10" p="10">
+          {/* 상태바 구현 - 어떻게 수정하지...? */}
+          <Stepper
+            size="sm"
+            index={activeStep}
+            gap="0"
+            p={10}
+            // bgColor="#38383d"
+          >
+            {steps.map((step, index) => (
+              <Step key={index} gap="0">
+                <StepIndicator>
+                  <StepStatus complete={<StepIcon />} />
+                </StepIndicator>
+                <StepSeparator _horizontal={{ ml: '0' }} />
+              </Step>
+            ))}
+          </Stepper>
+          <Text>
+            Step {activeStep + 1}: <b>{activeStepText}</b>
+          </Text>
+          <Flex justifyContent="flex-end">
+            <Button
+              mr="10"
+              mt="5"
+              color="black"
+              bg="#00DDFF"
+              borderRadius="none"
+              p="5"
+            >
+              민팅하기{' '}
+            </Button>
+          </Flex>
+        </Flex>
+      </Flex>
+    </ChakraProvider>
   );
 };
 
