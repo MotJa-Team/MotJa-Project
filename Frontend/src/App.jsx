@@ -7,6 +7,7 @@ import Header from './components/header';
 import MyPage from './pages/myPage';
 import { Box } from '@chakra-ui/react';
 import { useState } from 'react';
+import Present_Detail from './pages/present_detail';
 function App() {
   const [account, setAccount] = useState('');
   return (
@@ -25,6 +26,7 @@ function App() {
           path="/mypage"
           element={<MyPage account={account} setAccount={setAccount} />}
         />
+        <Route path="/detail" element={<Present_Detail />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -8,7 +8,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import React from 'react';
-import GiftCard from '../components/giftCard.';
+import GiftCard from '../components/giftCard';
 import Intro from '../components/intro';
 
 /*web3 연결하는 부분 == web3.config.js */
