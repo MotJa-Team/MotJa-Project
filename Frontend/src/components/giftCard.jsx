@@ -12,6 +12,8 @@ import {
   ButtonGroup,
   CardFooter,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import Header from './header';
 
 const GiftCard = () => {
   return (
@@ -34,12 +36,11 @@ const GiftCard = () => {
         <Divider />
         <CardFooter>
           <ButtonGroup spacing="2">
-            <Button variant="solid" colorScheme="blue">
-              Buy now
-            </Button>
-            <Button variant="ghost" colorScheme="blue">
-              Add to cart
-            </Button>
+            <Link to="/detail">
+              <Button variant="solid" colorScheme="blue">
+                Buy now
+              </Button>
+            </Link>
           </ButtonGroup>
         </CardFooter>
       </Card>
