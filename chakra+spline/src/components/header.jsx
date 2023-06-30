@@ -19,13 +19,21 @@ import {
   Input,
 } from '@chakra-ui/react';
 import Login from './login';
-import LoginD from '../pages/LoginD';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 
+////////웹쓰리 연결
+import Web3 from 'web3';
+import { CONTRACT_ABI, CONTRACT_ADDRESS } from '../web3.config';
+const web3 = new Web3(window.ethereum);
+const contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
+console.log(contract); //내가 만든 함수들이 보여야 함
+
+////////
 const Header = ({ account, setAccount, bgColor, showButtons }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [price, setPrice] = useState('');
 
   //
   const [inputValue, setInputValue] = useState('');
@@ -86,9 +94,9 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
                     }}
                   >
                     {' 여기에 이미지가 뜨도록 하고 싶은데/..'}
-                    <Helmet>
+                    {/* <Helmet>
                       <meta property="og:image" content="{inputValue}" />
-                    </Helmet>
+                    </Helmet> */}
                     <img src={inputValue} alt="gift-image" />
                   </Box>
                   <ModalCloseButton />
@@ -108,12 +116,25 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
                     </FormControl>
                     <FormControl mt={4}>
                       <FormLabel>금액</FormLabel>
-                      <Input placeholder="10000" />
+                      <Input
+                        placeholder="10000"
+                        value={price}
+                        onChange={e => setPrice(e.target.value)}
+                      />
                     </FormControl>
                   </ModalBody>
 
                   <ModalFooter>
-                    <Button colorScheme="blue" mr={3}>
+                    <Button
+                      colorScheme="blue"
+                      mr={3}
+                      // onClick={async () => {
+                      //   const presentOwner = await web3.eth.getAccounts();
+                      //   await contract.methods
+                      //     .setPresent(_num, { price: price })
+                      //     .send({ from: presentOwner[0] });
+                      // }}
+                    >
                       내마음속에저장
                     </Button>
                     <Button onClick={onClose}>Cancel</Button>

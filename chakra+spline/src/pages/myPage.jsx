@@ -5,22 +5,38 @@ import {
   Flex,
   Box,
   Button,
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
   useDisclosure,
-  Input,
 } from '@chakra-ui/react';
 import React from 'react';
-import NFTCard from '../components/NFTCard';
+import GiftCard from '../components/giftCard.';
+import Intro from '../components/intro';
 
-const MyPage = () => {
+/*web3 연결하는 부분 == web3.config.js */
+// import Web3 from 'web3';
+// import { CONTRACT_ABI, CONTRACT_ADDRESS } from '../web3.config';
+// const web3 = new Web3(window.ethereum);
+// const contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
+// console.log(contract); //내가 만든 함수들이 보여야 함
+/* */
+
+const MyPage = ({ account, setAccount }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+
+  /* 함수 연결할 경우 사용할 부분 
+
+  const get(컨트렉트에 저장한 함수명) = async () => {
+    try {
+      const (컨트렉트에 저장한 함수명 )  
+
+    } catch (error){
+      console.log(error);
+    }
+  }
+
+
+
+*/
 
   return (
     <ChakraProvider>
@@ -39,18 +55,12 @@ const MyPage = () => {
         minH="100vh"
         display="flex"
         flexDirection="row"
-        gap={5}
+        gap={10}
         p="10"
       >
+        {/* 왼쪽 메뉴바 구성 */}
         <Flex bgColor="red.100" w="15%">
-          <Box
-            minH="100vh"
-            w="90%"
-            mx="auto"
-            mt="20px"
-            mb="20px"
-            bgColor="gray.100"
-          >
+          <Box minH="100vh" w="90%" mx="auto" m="20px" bgColor="gray.100">
             <Box bgColor="green.200" h="80px" mb="20px">
               프로필 넣는 부분
             </Box>
@@ -59,22 +69,19 @@ const MyPage = () => {
             </Box>
           </Box>
         </Flex>
-        <Flex bgColor="blue.100" w="85%">
-          <Box
-            minH="100vh"
-            w="96%"
-            mx="auto"
-            mt="20px"
-            mb="20px"
-            bgColor="gray.100"
-          >
-            <Flex bgColor="red.100" gap={4} direction="col">
-              <Flex bgColor="green.500" direction="col">
-                내가 등록한{' '}
-              </Flex>
-              <Flex>
-                <NFTCard /> <NFTCard /> <NFTCard />{' '}
-              </Flex>
+
+        {/* 오른쪽 컴포넌트 만들기 시작 */}
+        <Flex w="85%" minH="100vh" direction={'column'} gap={10}>
+          {/* 프로필을 담아줄것이다*/}
+          <Intro />
+
+          {/* 마지막에 ㄱㄱ */}
+          <Box bgColor="blue.300" h="100%">
+            <Flex m="40px" bgColor="purple.200" gap={20}>
+              <GiftCard />
+              <GiftCard />
+              <GiftCard />
+              <Button px="30px">더보기</Button>
             </Flex>
           </Box>
         </Flex>
@@ -84,33 +91,3 @@ const MyPage = () => {
 };
 
 export default MyPage;
-
-// /* 서랍형을 이용할 경우
-//           <Box pt={10}>
-//             <Button ref={btnRef} onClick={onOpen}>
-//               {' '}
-//               ← MENU
-//             </Button>
-//             <Drawer
-//               isOpen={isOpen}
-//               placement="left"
-//               onClose={onClose}
-//               finalFocusRef={btnRef}
-//             >
-//               <DrawerOverlay />
-//               <DrawerContent>
-//                 <DrawerCloseButton />
-//                 <DrawerHeader>Create your account</DrawerHeader>
-
-//                 <DrawerBody>
-//                   <Input placeholder="Type here..." />
-//                 </DrawerBody>
-
-//                 <DrawerFooter>
-//                   <Button variant="outline" mr={3} onClick={onClose}>
-//                     창 닫기
-//                   </Button>
-//                 </DrawerFooter>
-//               </DrawerContent>
-//             </Drawer>
-//           </Box> */
