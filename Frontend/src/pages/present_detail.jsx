@@ -1,10 +1,14 @@
-import Detail from "../components/Detail";
+import Detail from '../components/Detail';
+import Header from '../components/header';
 
 const Present_Detail = () => {
   return (
-    <main>
-      <Detail></Detail>
-    </main>
+    <>
+      <Header />
+      <main>
+        <Detail></Detail>
+      </main>
+    </>
   );
 };
 
