@@ -21,7 +21,6 @@ import {
 import Login from './login';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
 
 ////////웹쓰리 연결
 import Web3 from 'web3';
