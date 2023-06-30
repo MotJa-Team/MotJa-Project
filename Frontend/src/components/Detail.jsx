@@ -18,27 +18,33 @@ import {
   Stepper,
   useSteps,
 } from '@chakra-ui/react';
-// import { CONTRACT_ADDRESS } from '../web3.config';
-// import React, { useRef } from 'react';
+import '../ts/CopyLink';
+import { useLocation } from 'react-router-dom';
 
-// const copyLinkRef = useRef();
+const location = useLocation();
 
-// const handleCopyClipBoard = (text: string) => {
-//   try {
-//     navigator.clipboard.writeText(text);
-//     alert('클립보드에 복사되었습니다.');
-//   } catch (error) {
-//     alert('클립보드 복사에 실패하였습니다.');
-//   }
+console.log(location);
+
+// 이게 ts로는 있는데,,, js로는 없어....왜없어...?
+// const handleCopyClipBoard = async (text: string) => {
+// 	try {
+// 		await navigator.clipboard.writeText(text);
+// 		alert("클립보드에 링크가 복사되었어요.");
+// 	} catch (err) {
+// 		console.log(err);
+// 	}
 // };
 
-// function copyTextUrl() {
-//   copyLinkRef.current.focus();
-//   copyLinkRef.current.select();
-
-//   navigator.clipboard.writeText(copyLinkRef.current.value).then(() => {
-//     alert('링크를 복사했습니다.');
-//   });
+// function clip() {
+//   var url = '';
+//   var textarea = document.createElement('textarea');
+//   document.body.appendChild(textarea);
+//   url = 'window.location.href';
+//   textarea.value = url;
+//   textarea.select();
+//   document.execCommand('copy');
+//   document.body.removeChild(textarea);
+//   alert('링크가 복사되었습니다. 필요하신 곳에 붙여넣기 하세요!');
 // }
 
 const steps = [
@@ -121,6 +127,7 @@ const Detail = () => {
                       borderRadius="none"
                       mr="10"
                       // ref={copyTextUrl}
+                      onclick="clip()"
                     >
                       공유하기
                     </Button>
