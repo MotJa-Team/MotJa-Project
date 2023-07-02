@@ -18,35 +18,12 @@ import {
   Stepper,
   useSteps,
 } from '@chakra-ui/react';
-import '../ts/CopyLink';
+import '../ts/CopyLink.js';
 import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-const location = useLocation();
-
-console.log(location);
-
-// 이게 ts로는 있는데,,, js로는 없어....왜없어...?
-// const handleCopyClipBoard = async (text: string) => {
-// 	try {
-// 		await navigator.clipboard.writeText(text);
-// 		alert("클립보드에 링크가 복사되었어요.");
-// 	} catch (err) {
-// 		console.log(err);
-// 	}
-// };
-
-// function clip() {
-//   var url = '';
-//   var textarea = document.createElement('textarea');
-//   document.body.appendChild(textarea);
-//   url = 'window.location.href';
-//   textarea.value = url;
-//   textarea.select();
-//   document.execCommand('copy');
-//   document.body.removeChild(textarea);
-//   alert('링크가 복사되었습니다. 필요하신 곳에 붙여넣기 하세요!');
-// }
-
+// 상태바
 const steps = [
   { title: 'First', description: 'Contact Info' },
   { title: 'Second', description: 'Date & Time' },
@@ -60,6 +37,21 @@ const Detail = () => {
   });
 
   const activeStepText = steps[activeStep].description;
+
+  // 버튼 클릭 시 페이지링크 복사 기능 구현
+  // 배포 후 실행 가능!!! / 배포 후 시도해봐야함!!
+  // const handleCopy = () => {
+  //   const currentURL = window.location.href;
+
+  //   navigator.clipboard
+  //     .writeText(currentURL)
+  //     .then(() => {
+  //       console.log('Link copied to clipboard:', currentURL);
+  //     })
+  //     .catch(error => {
+  //       console.error('Failed to copy link to clipboard:', error);
+  //     });
+  // };
 
   return (
     <ChakraProvider>
@@ -126,11 +118,14 @@ const Detail = () => {
                       bg="#00DDFF"
                       borderRadius="none"
                       mr="10"
-                      // ref={copyTextUrl}
-                      onclick="clip()"
+                      // onClick={handleCopy}
                     >
                       공유하기
                     </Button>
+                    {/* 복사기능구현
+                    <CopyToClipboard text={window.location.href}>
+                      <div>Your page content goes here...</div>
+                    </CopyToClipboard> */}
                     <Button
                       mr="10"
                       mt="5"
@@ -147,7 +142,7 @@ const Detail = () => {
           </Flex>
         </Box>
         <Flex direction="column" bgColor="pink.100" mt="10" p="10">
-          {/* 상태바 구현 - 어떻게 수정하지...? */}
+          {/* 상태바 구현 - 어떻게 수정하지...? 아몰랑*/}
           <Stepper
             size="sm"
             index={activeStep}
