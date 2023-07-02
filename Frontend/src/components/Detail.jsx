@@ -18,29 +18,12 @@ import {
   Stepper,
   useSteps,
 } from '@chakra-ui/react';
-// import { CONTRACT_ADDRESS } from '../web3.config';
-// import React, { useRef } from 'react';
+import '../ts/CopyLink.js';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-// const copyLinkRef = useRef();
-
-// const handleCopyClipBoard = (text: string) => {
-//   try {
-//     navigator.clipboard.writeText(text);
-//     alert('클립보드에 복사되었습니다.');
-//   } catch (error) {
-//     alert('클립보드 복사에 실패하였습니다.');
-//   }
-// };
-
-// function copyTextUrl() {
-//   copyLinkRef.current.focus();
-//   copyLinkRef.current.select();
-
-//   navigator.clipboard.writeText(copyLinkRef.current.value).then(() => {
-//     alert('링크를 복사했습니다.');
-//   });
-// }
-
+// 상태바
 const steps = [
   { title: 'First', description: 'Contact Info' },
   { title: 'Second', description: 'Date & Time' },
@@ -54,6 +37,21 @@ const Detail = () => {
   });
 
   const activeStepText = steps[activeStep].description;
+
+  // 버튼 클릭 시 페이지링크 복사 기능 구현
+  // 배포 후 실행 가능!!! / 배포 후 시도해봐야함!!
+  // const handleCopy = () => {
+  //   const currentURL = window.location.href;
+
+  //   navigator.clipboard
+  //     .writeText(currentURL)
+  //     .then(() => {
+  //       console.log('Link copied to clipboard:', currentURL);
+  //     })
+  //     .catch(error => {
+  //       console.error('Failed to copy link to clipboard:', error);
+  //     });
+  // };
 
   return (
     <ChakraProvider>
@@ -120,10 +118,14 @@ const Detail = () => {
                       bg="#00DDFF"
                       borderRadius="none"
                       mr="10"
-                      // ref={copyTextUrl}
+                      // onClick={handleCopy}
                     >
                       공유하기
                     </Button>
+                    {/* 복사기능구현
+                    <CopyToClipboard text={window.location.href}>
+                      <div>Your page content goes here...</div>
+                    </CopyToClipboard> */}
                     <Button
                       mr="10"
                       mt="5"
@@ -140,7 +142,7 @@ const Detail = () => {
           </Flex>
         </Box>
         <Flex direction="column" bgColor="pink.100" mt="10" p="10">
-          {/* 상태바 구현 - 어떻게 수정하지...? */}
+          {/* 상태바 구현 - 어떻게 수정하지...? 아몰랑*/}
           <Stepper
             size="sm"
             index={activeStep}
