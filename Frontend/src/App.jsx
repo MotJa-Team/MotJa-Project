@@ -8,6 +8,7 @@ import MyPage from './pages/myPage';
 import { Box } from '@chakra-ui/react';
 import { useState } from 'react';
 import Present_Detail from './pages/present_detail';
+import Modaltest from './pages/modaltest';
 function App() {
   const [account, setAccount] = useState('');
   return (
@@ -27,6 +28,7 @@ function App() {
           element={<MyPage account={account} setAccount={setAccount} />}
         />
         <Route path="/detail" element={<Present_Detail />}></Route>
+        <Route path="/modaltest" element={<Modaltest />}></Route>
       </Routes>
     </BrowserRouter>
   );
