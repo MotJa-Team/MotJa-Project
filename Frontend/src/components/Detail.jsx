@@ -18,7 +18,6 @@ import {
   Stepper,
   useSteps,
 } from '@chakra-ui/react';
-import '../ts/CopyLink.js';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -59,12 +58,12 @@ const Detail = () => {
         <Box bgColor="blue.200" gap={4}>
           <Flex direction="column" mx="auto" m="40px">
             <Flex>
-              <Box pos="relative" width="500px" height="500px">
+              <Box pos="relative" width="300px" height="300px">
                 <Box
                   pos="absolute"
                   bgColor="purple.100"
-                  width="500px"
-                  height="500px"
+                  width="300px"
+                  height="300px"
                   borderRadius="full"
                 >
                   {/* 사용할 예정 */}
@@ -73,8 +72,8 @@ const Detail = () => {
                 <Box
                   top={0}
                   bgColor="purple.200"
-                  width="500px"
-                  height="500px"
+                  width="300px"
+                  height="300px"
                   borderRadius="full"
                 >
                   Loading ..
