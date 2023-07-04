@@ -53,7 +53,7 @@ const M_Charge = () => {
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
         {overlay}
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>친구에게 선물하기</ModalHeader>
           <ModalCloseButton />
           <ModalBody px="10">
             <Image
@@ -63,18 +63,18 @@ const M_Charge = () => {
               p="10"
             />
             <InputGroup mt="5">
-              <InputLeftAddon width="20" p="auto" children="From" />
-              <Input type="tel" placeholder="Enter your name" />
+              <InputLeftAddon width="20" p="auto" children="이름" />
+              <Input type="tel" placeholder="이름을 입력하세요." />
             </InputGroup>
             <InputGroup mt="5">
-              <InputLeftAddon width="20" children="Price" />
-              <Input type="tel" placeholder="Enter the amount you want" />
+              <InputLeftAddon width="20" children="금액" />
+              <Input type="tel" placeholder="선물할 금액을 입력하세요." />
             </InputGroup>
           </ModalBody>
           <ModalFooter mb="5">
-            <Button onClick={onClose}>Close</Button>
+            <Button onClick={onClose}>닫기</Button>
             <Button ml="5" colorScheme="blue">
-              Charge
+              선물하기
             </Button>
           </ModalFooter>
         </ModalContent>
