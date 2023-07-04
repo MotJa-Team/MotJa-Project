@@ -14,13 +14,13 @@ const MyPage = () => {
     return (
         <>
             <Flex
-                bgColor={"black"}
+                // bgColor={"black"}
                 // minH="100vh"
                 justifyContent="center"
                 alignItems="center"
             >
                 <Box maxW="8xl" w="100%">
-                    <Header bgColor={"black"} />
+                    <Header /*bgColor={"black"}*/ />
                 </Box>
             </Flex>
             <Box

@@ -2,7 +2,6 @@
 import {
     ChakraProvider,
     Card,
-    CardHeader,
     Divider,
     Text,
     Heading,
@@ -14,7 +13,6 @@ import {
     CardFooter,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import Header from "./header";
 
 const GiftCard = () => {
     return (

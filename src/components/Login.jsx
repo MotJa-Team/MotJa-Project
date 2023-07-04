@@ -19,6 +19,7 @@ import {
     InputGroup,
 } from "@chakra-ui/react";
 import Spline from "@splinetool/react-spline";
+import "../styles/global.css";
 
 import { useState, useEffect } from "react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
@@ -57,10 +58,8 @@ const Login = ({ account, setAccount }) => {
                 .get()
                 .then((doc) => {
                     if (doc.exists) {
-                        console.log("안녕");
                         setExistAccount(true);
                     } else {
-                        console.log("모달창");
                         setExistAccount(false);
                         toast({
                             title: "회원정보가 존재하지 않아요!",
@@ -149,24 +148,46 @@ const Login = ({ account, setAccount }) => {
 
             {account ? (
                 existAccount ? (
-                    <Button
-                        leftIcon={<CheckCircleIcon />}
-                        colorScheme="whatsapp"
-                        variant="outline"
-                    >
-                        {account.substring(0, 4) +
-                            "-" +
-                            account.substring(account.length - 4)}
-                    </Button>
+                    // <Button
+                    //     leftIcon={<CheckCircleIcon />}
+                    //     colorScheme="whatsapp"
+                    //     variant="outline"
+                    // >
+                    //     {account.substring(0, 4) +
+                    //         "-" +
+                    //         account.substring(account.length - 4)}
+                    // </Button>
+                    <button class="login-button">
+                        <span class="text">
+                            {account.substring(0, 4) +
+                                "-" +
+                                account.substring(account.length - 4)}
+                        </span>
+                        <span class="blob"></span>
+                        <span class="blob"></span>
+                        <span class="blob"></span>
+                        <span class="blob"></span>
+                    </button>
                 ) : (
                     <>
-                        <Button
+                        <button class="login-button" onClick={onOpen}>
+                            <span class="text">Sign up</span>
+                            <span class="blob"></span>
+                            <span class="blob"></span>
+                            <span class="blob"></span>
+                            <span class="blob"></span>
+                        </button>
+
+                        {/* <Button
                             colorScheme="cyan"
                             variant="outline"
                             onClick={onOpen}
+                            colorScheme="messenger"
+                            variant="outline"
+                            borderRadius="9999px"
                         >
                             회원가입
-                        </Button>
+                        </Button> */}
                         <Modal size="2xl" isOpen={isOpen} onClose={onClose}>
                             <ModalOverlay />
                             <ModalContent>
@@ -253,14 +274,29 @@ const Login = ({ account, setAccount }) => {
                     </>
                 )
             ) : (
-                <Button
+                // <Button class="login-button">
+                //     onClick={onClickMetaMask}
+                //     disabled={!isInstalled}
+                //     <span class="text">Login</span>
+                //     <span class="blob"></span>
+                //     <span class="blob"></span>
+                //     <span class="blob"></span>
+                //     <span class="blob"></span>
+                // </Button>
+                <button
+                    class="login-button"
                     onClick={onClickMetaMask}
-                    colorScheme="messenger"
-                    variant="outline"
                     disabled={!isInstalled}
+                    // colorScheme="messenger"
+                    // variant="outline"
+                    // borderRadius="9999px"
                 >
-                    로그인
-                </Button>
+                    <span class="text">Login</span>
+                    <span class="blob"></span>
+                    <span class="blob"></span>
+                    <span class="blob"></span>
+                    <span class="blob"></span>
+                </button>
             )}
         </>
     );

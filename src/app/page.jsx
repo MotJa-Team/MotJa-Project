@@ -18,12 +18,12 @@ export default function Home() {
 
             <Flex flexWrap="wrap">
                 <Link href="/main">
-                    <Spline
+                    {/* <Spline
                         style={{
                             position: "fixed",
                         }}
                         scene="https://prod.spline.design/sl1oSdrbF4r2puz6/scene.splinecode"
-                    />
+                    /> */}
                 </Link>
             </Flex>
         </>

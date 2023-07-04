@@ -1,5 +1,4 @@
-"use client";
-
+//src/components/pre.jsx
 import React from "react";
 import Pre from "./pre";
 import og from "open-graph";

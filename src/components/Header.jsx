@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
-
+import "../styles/global.css";
+import { Navbar } from "@nextui-org/react";
 import {
     ChakraProvider,
     Flex,
@@ -24,7 +25,9 @@ import {
 import Login from "./login";
 import Link from "next/link";
 import { useState } from "react";
+import "../styles/global.css";
 
+import Preimage from "./preimage";
 ////////
 const Header = ({ account, setAccount, bgColor, showButtons }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,49 +38,71 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
     const handleChange = (event) => {
         setInputValue(event.target.value);
     };
+    //
 
     return (
-        <ChakraProvider>
+        <>
             <Flex
                 alignItems="center"
+                justifyContent="center"
+                mx="auto"
+                mt="20px"
                 gap="2"
-                maxW="8xl"
+                maxW="5xl"
                 w="100%"
-                bgColor={bgColor}
+                //
+                bg={bgColor || "#212121"}
+                boxShadow="0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15)"
+                padding="0.75rem"
+                borderRadius="99px"
             >
-                <Box p="2" w="20%">
+                <Box w="20%" my-auto>
                     <Link href="/main">
-                        <Heading size="md">
-                            <Image
-                                src="/images/logo.png"
-                                width={200}
-                                height={200}
-                                alt="main-logo"
-                            />
-                        </Heading>
+                        <Image
+                            src="/images/logo.png"
+                            width={200}
+                            height={200}
+                            alt="main-logo"
+                        />
                     </Link>
                 </Box>
                 <Spacer />
+
                 <ButtonGroup gap="3">
                     {showButtons ? (
                         <>
                             <Login account={account} setAccount={setAccount} />
                             <Link href="/mypage">
-                                <Button colorScheme="cyan" variant="outline">
+                                {/* <Button colorScheme="cyan" variant="outline">
                                     Get Started
-                                </Button>
+                                </Button> */}
+                                <button class="start-button">
+                                    <span class="text">Get Started</span>
+                                    <span class="blob"></span>
+                                    <span class="blob"></span>
+                                    <span class="blob"></span>
+                                    <span class="blob"></span>
+                                </button>
                             </Link>
                         </>
                     ) : (
                         <>
-                            <Button
+                            {/* <Button
                                 colorScheme="cyan"
                                 variant="outline"
                                 onClick={onOpen}
                             >
                                 선물등록하기
-                                {/* <RG /> */}
-                            </Button>
+                               
+                            </Button> */}
+
+                            <button class="gift-button" onClick={onOpen}>
+                                <span class="text">Add Gift</span>
+                                <span class="blob"></span>
+                                <span class="blob"></span>
+                                <span class="blob"></span>
+                                <span class="blob"></span>
+                            </button>
 
                             <Modal
                                 size="2xl"
@@ -99,11 +124,7 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
                                             boxShadow:
                                                 "30px 30px 60px #bebebe, -30px -30px 60px #ffffff",
                                         }}
-                                    >
-                                        {
-                                            " 여기에 이미지가 뜨도록 하고 싶은데/.."
-                                        }
-                                    </Box>
+                                    ></Box>
                                     <ModalCloseButton />
                                     <ModalBody pb={6}>
                                         <FormControl>
@@ -146,7 +167,7 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
                     {/* 지갑 로그인하는 버튼 생성 */}
                 </ButtonGroup>
             </Flex>
-        </ChakraProvider>
+        </>
     );
 };
 export default Header;

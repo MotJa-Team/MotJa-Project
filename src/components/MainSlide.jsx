@@ -9,10 +9,10 @@ const SlideBox = () => {
         <ChakraProvider>
             <Flex bgColor="orange.100" borderRadius="lg">
                 <Box borderRadius="full" w="100%">
-                    <Spline
+                    {/* <Spline
                         //왜 적용이 안되시는건지...? style={{ borderRadius: 'full' }}
                         scene="https://prod.spline.design/pWHUeuuxFRItopmZ/scene.splinecode"
-                    />
+                    /> */}
                 </Box>
             </Flex>
         </ChakraProvider>
