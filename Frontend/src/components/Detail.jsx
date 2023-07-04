@@ -21,6 +21,7 @@ import {
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import M_Charge from './M_Charge';
 
 // 상태바
 const steps = [
@@ -125,15 +126,8 @@ const Detail = () => {
                     <CopyToClipboard text={window.location.href}>
                       <div>Your page content goes here...</div>
                     </CopyToClipboard> */}
-                    <Button
-                      mr="10"
-                      mt="5"
-                      color="black"
-                      bg="#00DDFF"
-                      borderRadius="none"
-                    >
-                      충전하기{' '}
-                    </Button>
+
+                    <M_Charge />
                   </Flex>
                 </Box>
               </Box>

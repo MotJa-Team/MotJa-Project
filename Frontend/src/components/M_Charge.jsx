@@ -8,6 +8,9 @@ import {
   ModalCloseButton,
   ChakraProvider,
   Image,
+  Input,
+  InputGroup,
+  InputLeftAddon,
 } from '@chakra-ui/react';
 
 import { useDisclosure, Button, Text } from '@chakra-ui/react';
@@ -35,31 +38,44 @@ const M_Charge = () => {
   return (
     <ChakraProvider>
       <Button
+        mr="10"
+        mt="5"
+        color="black"
+        bg="#00DDFF"
+        borderRadius="none"
         onClick={() => {
           setOverlay(<OverlayOne />);
           onOpen();
         }}
       >
-        Use Overlay one
+        충전하기
       </Button>
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
         {overlay}
         <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
+          <ModalBody px="10">
             <Image
               src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
               alt="Green double couch with wooden legs"
               borderRadius="lg"
+              p="10"
             />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
-            eveniet reiciendis doloremque, sit vero ratione. Nulla dolore rem
-            corporis repudiandae eius a, ipsa quasi impedit minima cumque? Eos,
-            ad ipsa.
+            <InputGroup mt="5">
+              <InputLeftAddon width="20" p="auto" children="From" />
+              <Input type="tel" placeholder="Enter your name" />
+            </InputGroup>
+            <InputGroup mt="5">
+              <InputLeftAddon width="20" children="Price" />
+              <Input type="tel" placeholder="Enter the amount you want" />
+            </InputGroup>
           </ModalBody>
-          <ModalFooter>
+          <ModalFooter mb="5">
             <Button onClick={onClose}>Close</Button>
+            <Button ml="5" colorScheme="blue">
+              Charge
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
