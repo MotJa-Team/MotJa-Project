@@ -7,6 +7,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { CONTRACT_ADDRESS } from '../web3.config';
+import M_Charge from './M_Charge';
 
 //랜덤 프로필 만드는 방법 == 사용할 예정
 // const ranNum = Math.floor(Math.random() * 1000) + 1;
@@ -92,6 +93,8 @@ const Intro = () => {
                   >
                     프로필 공유하기{' '}
                   </Button>
+
+                  <M_Charge />
                 </Flex>
               </Box>
             </Box>

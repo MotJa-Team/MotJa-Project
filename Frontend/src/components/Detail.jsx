@@ -21,7 +21,7 @@ import {
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import M_Charge from './M_Charge';
+import M_Charge from './M_Gift';
 
 // 상태바
 const steps = [
