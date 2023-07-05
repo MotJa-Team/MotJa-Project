@@ -11,9 +11,12 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
+  Container,
 } from '@chakra-ui/react';
 
 import { useDisclosure, Button, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
+import { Divider } from '@chakra-ui/react';
 import { useState } from 'react';
 import React from 'react';
 
@@ -24,17 +27,9 @@ const M_Charge = () => {
       backdropFilter="blur(10px) hue-rotate(90deg)"
     />
   );
-  const OverlayTwo = () => (
-    <ModalOverlay
-      bg="none"
-      backdropFilter="auto"
-      backdropInvert="80%"
-      backdropBlur="2px"
-    />
-  );
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = useState(<OverlayOne />);
-  const sizes = ['xs', 'sm', 'md', 'lg', 'xl', 'full'];
   return (
     <ChakraProvider>
       <Button
@@ -48,34 +43,39 @@ const M_Charge = () => {
           onOpen();
         }}
       >
-        충전하기
+        잔액 충전하기
       </Button>
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
         {overlay}
         <ModalContent>
-          <ModalHeader>친구에게 선물하기</ModalHeader>
+          <ModalHeader>잔액 충전하기</ModalHeader>
           <ModalCloseButton />
           <ModalBody px="10">
-            <Image
-              src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-              alt="Green double couch with wooden legs"
-              borderRadius="lg"
-              p="10"
-            />
+            <Text mt="5">잔액 : </Text>
             <InputGroup mt="5">
-              <InputLeftAddon width="20" p="auto" children="이름" />
-              <Input type="tel" placeholder="이름을 입력하세요." />
+              <Input type="tel" placeholder="구매할 양을 입력하세요." />
+              <Button colorScheme="teal" variant="outline" ml="5" px="5">
+                토큰 구매하기
+              </Button>
             </InputGroup>
-            <InputGroup mt="5">
-              <InputLeftAddon width="20" children="금액" />
-              <Input type="tel" placeholder="선물할 금액을 입력하세요." />
-            </InputGroup>
+            <Divider mt="5" colorScheme="teal" />
+            <Flex direction="column">
+              <Flex alignItems="center" mt="5">
+                <Button colorScheme="teal" variant="outline" mr="5">
+                  토큰 조회하기
+                </Button>
+                <Text>???</Text>
+              </Flex>
+              <Flex alignItems="center" mt="5">
+                <Button colorScheme="teal" variant="outline" mr="5">
+                  환율 조회하기
+                </Button>
+                <Text>???</Text>
+              </Flex>
+            </Flex>
           </ModalBody>
           <ModalFooter mb="5">
             <Button onClick={onClose}>닫기</Button>
-            <Button ml="5" colorScheme="blue">
-              선물하기
-            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
