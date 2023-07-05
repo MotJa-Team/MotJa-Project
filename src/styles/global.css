@@ -280,3 +280,70 @@
 .gift-button:active {
     border: 2px solid white;
 }
+.flex-back {
+    background-color: rgba(33, 33, 33, 0.5);
+}
+
+.my-box {
+    border-radius: 50px;
+    background: #e0e0e0;
+    box-shadow: 11px 11px 22px #bebebe, -11px -11px 22px #ffffff;
+}
+
+.input-box {
+    color: white;
+    margin-top: 80px;
+    margin-right: 20px;
+    height: 50px;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 15px;
+    background: #e0e0e0;
+    box-shadow: inset 11px 11px 27px #aaaaaa, inset -11px -11px 27px #ffffff;
+}
+
+.max-width-wrapper {
+    max-width: 8xl;
+    overflow: hidden;
+}
+.text-container {
+    font-size: 150px;
+    color: #e6fafe;
+    font-weight: 700;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: slide-animation 8s linear infinite;
+}
+
+@keyframes slide-animation {
+    0% {
+        transform: translateX(100%);
+    }
+    50% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.tracking-in-contract {
+    font-size: 150px;
+    color: #e6fafe;
+    font-weight: 700;
+    animation: tracking-in-contract 1s linear both;
+}
+@keyframes tracking-in-contract {
+    0% {
+        letter-spacing: 0.6em;
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.6;
+    }
+    100% {
+        letter-spacing: normal;
+        opacity: 1;
+    }
+}

@@ -7,7 +7,7 @@ import {
     Heading,
     Text,
 } from "@chakra-ui/react";
-
+import "../styles/global.css";
 //랜덤 프로필 만드는 방법 == 사용할 예정
 // const ranNum = Math.floor(Math.random() * 1000) + 1;
 // console.log(ranNum);
@@ -17,29 +17,28 @@ import {
 const Intro = () => {
     return (
         <ChakraProvider>
-            <Box bgColor="blue.200" gap={4}>
+            <Box class="my-box" gap={4}>
                 <Flex direction="column" mx="auto" m="40px">
                     <Flex>
                         <Box pos="relative" width="300px" height="300px">
                             <Box
                                 pos="absolute"
-                                bgColor="purple.100"
                                 width="300px"
                                 height="300px"
-                                borderRadius="full"
+                                borderRadius="50%"
+                                background="#e0e0e0"
+                                boxShadow="12px 12px 27px #acacac, -12px -12px 27px #ffffff"
                             >
                                 {/* 사용할 예정 */}
                                 {/* <img src={imgSrc} alt="NFT" /> */}
                             </Box>
-                            <Box
+                            {/* <Box
                                 top={0}
-                                bgColor="purple.200"
+                                bgColor="purple.500"
                                 width="300px"
                                 height="300px"
                                 borderRadius="full"
-                            >
-                                Loading ..
-                            </Box>
+                            ></Box> */}
                         </Box>
 
                         {/* 여기는 오른쪽 부분  */}

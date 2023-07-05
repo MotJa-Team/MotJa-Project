@@ -1,21 +1,21 @@
 "use client";
 
-import { ChakraProvider, Flex, Box, Button } from "@chakra-ui/react";
+import { Flex, Box, Button } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import Spline from "@splinetool/react-spline";
 
 const SlideBox = () => {
     return (
-        <ChakraProvider>
-            <Flex bgColor="orange.100" borderRadius="lg">
-                <Box borderRadius="full" w="100%">
-                    {/* <Spline
-                        //왜 적용이 안되시는건지...? style={{ borderRadius: 'full' }}
-                        scene="https://prod.spline.design/pWHUeuuxFRItopmZ/scene.splinecode"
-                    /> */}
-                </Box>
+        <>
+            <Flex flexWrap="wrap">
+                <Spline
+                    style={{
+                        position: "fixed",
+                    }}
+                    scene="https://prod.spline.design/sl1oSdrbF4r2puz6/scene.splinecode"
+                />
             </Flex>
-        </ChakraProvider>
+        </>
     );
 
     /* 슬라이드로 할 경우에 사용 예정

@@ -5,6 +5,8 @@ import GiftCard from "@/components/GiftCard";
 import Intro from "@/components/Intro";
 import { AppContext } from "../layout";
 import React, { useContext, useEffect } from "react";
+import Image from "next/image";
+import "../../styles/global.css";
 
 const MyPage = () => {
     const { account, setAccount } = useContext(AppContext);
@@ -13,6 +15,21 @@ const MyPage = () => {
 
     return (
         <>
+            {/* <Image
+                src="/images/back.png"
+                width={5360}
+                height={7140}
+                alt="main-logo"
+                style={{
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    width: "100vw",
+                    height: "100vh",
+                    zIndex: -1,
+                }}
+            /> */}
+
             <Flex
                 // bgColor={"black"}
                 // minH="100vh"
@@ -24,38 +41,31 @@ const MyPage = () => {
                 </Box>
             </Flex>
             <Box
-                bgColor="yellow.100"
                 minH="100vh"
                 display="flex"
                 flexDirection="row"
                 gap={10}
                 p="10"
             >
-                {/* 왼쪽 메뉴바 구성 */}
-                <Flex bgColor="red.100" w="15%">
-                    <Box
-                        minH="100vh"
-                        w="90%"
-                        mx="auto"
-                        m="20px"
-                        bgColor="gray.100"
-                    >
-                        <Box bgColor="green.200" h="80px" mb="20px">
-                            프로필 넣는 부분
+                {/* <Flex class="my-box" w="15%">
+                    {/* 왼쪽 메뉴바 구성 
+                    <Box w="90%" mx="auto" m="20px">
+                        <Box class="input-box" h="200px" mb="10px">
+                            💡Detail
                         </Box>
-                        <Box bgColor="green.300" h="80px">
-                            자세한 설명/ 친구 목록
+                        <Box class="input-box" h="80px">
+                            ✨come with friend
                         </Box>
                     </Box>
-                </Flex>
+                </Flex> */}
 
                 {/* 오른쪽 컴포넌트 만들기 시작 */}
-                <Flex w="85%" minH="100vh" direction={"column"} gap={10}>
+                <Flex maxW="8xl" minH="100vh" direction={"column"} gap={10}>
                     {/* 프로필을 담아줄것이다*/}
                     <Intro />
 
                     {/* 마지막에 ㄱㄱ */}
-                    <Box bgColor="blue.300" h="100%">
+                    <Box class="my-box" h="100%">
                         <Flex m="40px" bgColor="purple.200" gap={20}>
                             <GiftCard />
                             <GiftCard />

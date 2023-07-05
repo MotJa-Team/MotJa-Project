@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import "../styles/global.css";
-import { Navbar } from "@nextui-org/react";
+
 import {
     ChakraProvider,
     Flex,
@@ -51,10 +51,12 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
                 maxW="5xl"
                 w="100%"
                 //
-                bg={bgColor || "#212121"}
+                backgroundColor="rgba(0, 0, 0, 0.7)"
                 boxShadow="0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15)"
                 padding="0.75rem"
                 borderRadius="99px"
+                position="relative"
+                zIndex={999}
             >
                 <Box w="20%" my-auto>
                     <Link href="/main">
