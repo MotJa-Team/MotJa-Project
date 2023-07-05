@@ -57,7 +57,10 @@ const MyPage = () => {
         mx="auto"
       >
         {/* <Box maxW="8xl" w="100%"> */}
-        <Header /*bgColor={"black"}*/ />
+        <Header
+          account={account}
+          setAccount={setAccount} /*bgColor={"black"}*/
+        />
         {/* </Box> */}
       </Flex>
       <Box

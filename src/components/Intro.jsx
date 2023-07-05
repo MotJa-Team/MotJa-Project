@@ -93,7 +93,6 @@ const Intro = () => {
                   >
                     프로필 공유하기{" "}
                   </Button>
-                  <M_Charge />
                 </Flex>
               </Box>
             </Box>

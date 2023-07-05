@@ -36,19 +36,20 @@ const M_Charge = () => {
   const [overlay, setOverlay] = useState(<OverlayOne />);
   return (
     <ChakraProvider>
-      <Button
-        mr="10"
-        mt="5"
-        color="black"
-        bg="#00DDFF"
-        borderRadius="none"
+      <button
+        class="start-button"
         onClick={() => {
           setOverlay(<OverlayOne />);
           onOpen();
         }}
       >
-        잔액 충전하기
-      </Button>
+        <span class="text">Get Started</span>
+        <span class="blob"></span>
+        <span class="blob"></span>
+        <span class="blob"></span>
+        <span class="blob"></span>
+      </button>
+
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
         {overlay}
         <ModalContent>

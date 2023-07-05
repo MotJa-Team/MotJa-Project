@@ -15,6 +15,7 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
+  Flex,
 } from "@chakra-ui/react";
 
 import { useDisclosure, Button, Text } from "@chakra-ui/react";
@@ -28,6 +29,11 @@ const M_Gift = () => {
       backdropFilter="blur(10px) hue-rotate(90deg)"
     />
   );
+  const [donationAmount, setDonationAmount] = useState(0);
+
+  const handleDonationAmount = (amount) => {
+    setDonationAmount((prevAmount) => prevAmount + amount);
+  };
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = useState(<OverlayOne />);
@@ -59,14 +65,24 @@ const M_Gift = () => {
               borderRadius="lg"
               p="10"
             />
-            <InputGroup mt="5">
+            {/* <InputGroup mt="5">
               <InputLeftAddon width="20" p="auto" children="이름" />
               <Input type="tel" placeholder="이름을 입력하세요." />
-            </InputGroup>
+            </InputGroup> */}
             <InputGroup mt="5">
               <InputLeftAddon width="20" children="금액" />
-              <Input type="tel" placeholder="선물할 금액을 입력하세요." />
+              <Input
+                type="tel"
+                value={donationAmount}
+                placeholder="선물할 금액을 입력하세요."
+              />
             </InputGroup>
+
+            <Button onClick={() => handleDonationAmount(5000)}>+ 5천원</Button>
+            <Button onClick={() => handleDonationAmount(10000)}>+ 1만원</Button>
+            <Button onClick={() => handleDonationAmount(30000)}>+ 3만원</Button>
+            <Button onClick={() => handleDonationAmount(50000)}>+ 5만원</Button>
+            <Button onClick={() => handleDonationAmount()}>직접입력</Button>
           </ModalBody>
           <ModalFooter mb="5">
             <Button onClick={onClose}>닫기</Button>
