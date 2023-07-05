@@ -1,49 +1,71 @@
 "use client";
-import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Button,
-    Image,
-    Stack,
-    Text,
-    Heading,
-    ButtonGroup,
-    Divider,
-} from "@chakra-ui/react";
+
+import Link from "next/link";
+
+import { Card, Col, Row, Button, Text } from "@nextui-org/react";
+
 const MainCard = () => {
     return (
-        <Card maxW="sm">
-            <CardBody>
-                <Image
-                    src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                    alt="Green double couch with wooden legs"
-                    borderRadius="lg"
-                />
-                <Stack mt="6" spacing="3">
-                    <Heading size="md">Living room Sofa</Heading>
-                    {/* <Text>
-              This sofa is perfect for modern tropical spaces, baroque inspired
-              spaces, earthy toned spaces and for people who love a chic design
-              with a sprinkle of vintage design.
-            </Text> */}
-                    <Text color="blue.600" fontSize="2xl">
-                        $450
+        <Card css={{ w: "100%", h: "400px" }}>
+            <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
+                <Col>
+                    <Text
+                        size={12}
+                        weight="bold"
+                        transform="uppercase"
+                        color="#ffffffAA"
+                    >
+                        New
                     </Text>
-                </Stack>
-            </CardBody>
-            <Divider />
-            <CardFooter>
-                <ButtonGroup spacing="2">
-                    <Button variant="solid" colorScheme="blue">
-                        Buy now
-                    </Button>
-                    <Button variant="ghost" colorScheme="blue">
-                        Add to cart
-                    </Button>
-                </ButtonGroup>
-            </CardFooter>
+                    <Text h3 color="black">
+                        Gift-
+                    </Text>
+                </Col>
+            </Card.Header>
+            <Card.Body css={{ p: 0 }}>
+                <Card.Image
+                    src="https://nextui.org/images/card-example-6.jpeg"
+                    width="100%"
+                    height="100%"
+                    objectFit="cover"
+                    alt="Card example background"
+                />
+            </Card.Body>
+            <Card.Footer
+                isBlurred
+                css={{
+                    position: "absolute",
+                    bgBlur: "#ffffff66",
+                    borderTop:
+                        "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
+                    bottom: 0,
+                    zIndex: 1,
+                }}
+            >
+                <Row>
+                    <Col>
+                        <Text color="#000" size={12}>
+                            Price -
+                        </Text>
+                    </Col>
+                    <Col>
+                        <Row justify="flex-end">
+                            <Link href="/giftdetail">
+                                <Button flat auto rounded color="secondary">
+                                    <Text
+                                        css={{ color: "inherit" }}
+                                        size={12}
+                                        weight="bold"
+                                        transform="uppercase"
+                                    >
+                                        Notify Me
+                                    </Text>
+                                </Button>
+                            </Link>
+                        </Row>
+                    </Col>
+                </Row>
+            </Card.Footer>
         </Card>
     );
 };

@@ -38,7 +38,7 @@ const Main = () => {
 
                 {/* 중간 슬라이드 or 이미지 부분  */}
                 <Flex flexWrap="wrap">
-                    <Spline
+                    {/* <Spline
                         style={{
                             position: "absolute",
                             top: 0, // Change this line
@@ -47,7 +47,7 @@ const Main = () => {
                             bottom: 0, // Change this line
                         }}
                         scene="https://prod.spline.design/pWHUeuuxFRItopmZ/scene.splinecode"
-                    />
+                    /> */}
                 </Flex>
 
                 <Box
@@ -89,6 +89,10 @@ const Main = () => {
                     mx="auto"
                 >
                     안녕 오랜만이야 ~ 여기다 뭘 많이 할거 같기는 해
+                    <Box>
+                        그리드 ㄱㄱ일단 일단 써야할 내용 적어넣기 01. NFT
+                        사용하기 02. 여러명이 돈을모아 등등
+                    </Box>
                 </Box>
 
                 {/* 포토 카드 + 설명 등등 ~> 아무래도 서비스에 관련된 설명을 넣는게 좋지 않을까?*/}

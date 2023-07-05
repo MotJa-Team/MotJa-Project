@@ -42,6 +42,7 @@ const Intro = () => {
                         </Box>
 
                         {/* 여기는 오른쪽 부분  */}
+                        <Box>안녕</Box>
                         <Box
                             borderRadius="sm"
                             ml="10"

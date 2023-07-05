@@ -285,9 +285,11 @@
 }
 
 .my-box {
-    border-radius: 50px;
+    position: relative;
+    z-index: 999;
+    border-radius: 38px;
     background: #e0e0e0;
-    box-shadow: 11px 11px 22px #bebebe, -11px -11px 22px #ffffff;
+    box-shadow: 5px 5px 0px #dedede, -5px -5px 0px #e2e2e2;
 }
 
 .input-box {
@@ -302,7 +304,7 @@
     box-shadow: inset 11px 11px 27px #aaaaaa, inset -11px -11px 27px #ffffff;
 }
 
-.max-width-wrapper {
+/* .max-width-wrapper {
     max-width: 8xl;
     overflow: hidden;
 }
@@ -346,4 +348,4 @@
         letter-spacing: normal;
         opacity: 1;
     }
-}
+} */

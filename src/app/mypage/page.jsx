@@ -7,6 +7,8 @@ import { AppContext } from "../layout";
 import React, { useContext, useEffect } from "react";
 import Image from "next/image";
 import "../../styles/global.css";
+import Spline from "@splinetool/react-spline";
+import MainCard from "@/components/MainCard";
 
 const MyPage = () => {
     const { account, setAccount } = useContext(AppContext);
@@ -15,6 +17,19 @@ const MyPage = () => {
 
     return (
         <>
+            {" "}
+            <Flex flexWrap="wrap">
+                {/* <Spline
+                    style={{
+                        position: "absolute",
+                        top: 0, // Change this line
+                        left: 0, // Change this line
+                        right: 0, // Change this line
+                        bottom: 0, // Change this line
+                    }}
+                    scene="https://prod.spline.design/e5vBTXMk17QpAHwa/scene.splinecode"
+                /> */}
+            </Flex>
             {/* <Image
                 src="/images/back.png"
                 width={5360}
@@ -29,26 +44,35 @@ const MyPage = () => {
                     zIndex: -1,
                 }}
             /> */}
-
             <Flex
                 // bgColor={"black"}
                 // minH="100vh"
                 justifyContent="center"
                 alignItems="center"
+                maxW="8xl"
+                position="relative"
+                zIndex={999}
+                mt="20px"
+                mx="auto"
             >
-                <Box maxW="8xl" w="100%">
-                    <Header /*bgColor={"black"}*/ />
-                </Box>
+                {/* <Box maxW="8xl" w="100%"> */}
+                <Header /*bgColor={"black"}*/ />
+                {/* </Box> */}
             </Flex>
             <Box
+                justifyContent="center"
+                alignItems="center"
                 minH="100vh"
                 display="flex"
                 flexDirection="row"
                 gap={10}
                 p="10"
+                // zIndex={999}
+                mt="20px"
+                mx="auto"
             >
                 {/* <Flex class="my-box" w="15%">
-                    {/* 왼쪽 메뉴바 구성 
+                     왼쪽 메뉴바 구성 
                     <Box w="90%" mx="auto" m="20px">
                         <Box class="input-box" h="200px" mb="10px">
                             💡Detail
@@ -66,10 +90,10 @@ const MyPage = () => {
 
                     {/* 마지막에 ㄱㄱ */}
                     <Box class="my-box" h="100%">
-                        <Flex m="40px" bgColor="purple.200" gap={20}>
-                            <GiftCard />
-                            <GiftCard />
-                            <GiftCard />
+                        <Flex m="40px" gap={10}>
+                            <MainCard />
+                            <MainCard />
+                            <MainCard />
                             <Button px="30px">더보기</Button>
                         </Flex>
                     </Box>
