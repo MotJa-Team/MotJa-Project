@@ -96,38 +96,50 @@ const Login = ({ account, setAccount }) => {
                 method: "eth_requestAccounts",
             });
             setAccount(accounts[0]);
-            //   console.log(accounts);
-
-            // toast({
-            //   title: 'Account success!',
-            //   // description: '추가 정보를 입력해 주세요',
-            //   status: 'success',
-            //   duration: 9000,
-            //   isClosable: true,
-            // });
         } catch (error) {
             console.error(error);
         }
     };
 
-    ////디비에 정보 푸쉬
+    ////디비에 정보 푸쉬 ~~~> 여기다 조건 와장창 ㄱㄱ
     const clickSave = () => {
-        firestore
-            .collection("P_MOTZA")
-            .doc(metamaskAddress)
-            .set({
-                name: name,
-                birth: birth,
-                num: num,
-                addr: metamaskAddress,
-            })
-            .then(() => {
-                console.log("Data saved successfully");
-                setExistAccount(true);
-            })
-            .catch((error) => {
-                console.error("Error saving data:", error);
+        if (birth.length !== 6 || /\D/.test(num)) {
+            return toast({
+                title: "생년월일를 확인해주세요!",
+                description:
+                    "01년01월01일이라면, 010101 와 같이 작성해주시면 됩니다.",
+                status: "error",
+                duration: 9000,
+                isClosable: true,
             });
+        }
+        if (num.length !== 11 || /\D/.test(num)) {
+            return toast({
+                title: "전화번호를 확인해주세요!",
+                description:
+                    "전화번호는 '-'문자 없이 11자리 숫자로 입력해야 합니다.",
+                status: "error",
+                duration: 9000,
+                isClosable: true,
+            });
+        } else {
+            firestore
+                .collection("P_MOTZA")
+                .doc(metamaskAddress)
+                .set({
+                    name: name,
+                    birth: birth,
+                    num: num,
+                    addr: metamaskAddress,
+                })
+                .then(() => {
+                    console.log("Data saved successfully");
+                    setExistAccount(true);
+                })
+                .catch((error) => {
+                    console.error("Error saving data:", error);
+                });
+        }
     };
 
     const clickAddrConnect = async () => {
@@ -148,15 +160,6 @@ const Login = ({ account, setAccount }) => {
 
             {account ? (
                 existAccount ? (
-                    // <Button
-                    //     leftIcon={<CheckCircleIcon />}
-                    //     colorScheme="whatsapp"
-                    //     variant="outline"
-                    // >
-                    //     {account.substring(0, 4) +
-                    //         "-" +
-                    //         account.substring(account.length - 4)}
-                    // </Button>
                     <button class="login-button">
                         <span class="text">
                             {account.substring(0, 4) +
@@ -178,16 +181,6 @@ const Login = ({ account, setAccount }) => {
                             <span class="blob"></span>
                         </button>
 
-                        {/* <Button
-                            colorScheme="cyan"
-                            variant="outline"
-                            onClick={onOpen}
-                            colorScheme="messenger"
-                            variant="outline"
-                            borderRadius="9999px"
-                        >
-                            회원가입
-                        </Button> */}
                         <Modal size="2xl" isOpen={isOpen} onClose={onClose}>
                             <ModalOverlay />
                             <ModalContent>
@@ -213,7 +206,7 @@ const Login = ({ account, setAccount }) => {
                                         <FormLabel>✨생년월일</FormLabel>
                                         <Input
                                             focusBorderColor="#00ff8c"
-                                            placeholder="생년월일 6글자를 적어주세요"
+                                            placeholder="생년월일 6자리를 적어주세요"
                                             value={birth}
                                             onChange={(e) =>
                                                 setBirth(e.target.value)
@@ -225,7 +218,7 @@ const Login = ({ account, setAccount }) => {
                                         <FormLabel>✨ 전화번호</FormLabel>
                                         <Input
                                             focusBorderColor="#00ff8c"
-                                            placeholder="010-0000-0000"
+                                            placeholder="문자'-'를 제외하고 전화번호를 입력해주세요 "
                                             value={num}
                                             onChange={(e) =>
                                                 setNum(e.target.value)

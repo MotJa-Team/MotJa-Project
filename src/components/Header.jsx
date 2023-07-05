@@ -38,8 +38,33 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
     const handleChange = (event) => {
         setInputValue(event.target.value);
     };
-    //
 
+    const ButtonClick = () => {
+        if (account) {
+            firestore
+                .collection("P_MOTZA")
+                .doc(account)
+                .get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        setExistAccount(true);
+                    } else {
+                        setExistAccount(false);
+                        toast({
+                            title: "회원정보가dfdsfs 존재하지 않아요!",
+                            description:
+                                "회원가입 버튼을 눌러 가입을 먼저 해주세요!",
+                            status: "error",
+                            duration: 9000,
+                            isClosable: true,
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error getting document:", error);
+                });
+        }
+    };
     return (
         <>
             <Flex
@@ -75,10 +100,10 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
                         <>
                             <Login account={account} setAccount={setAccount} />
                             <Link href="/mypage">
-                                {/* <Button colorScheme="cyan" variant="outline">
-                                    Get Started
-                                </Button> */}
-                                <button class="start-button">
+                                <button
+                                    class="start-button"
+                                    onClick={ButtonClick}
+                                >
                                     <span class="text">Get Started</span>
                                     <span class="blob"></span>
                                     <span class="blob"></span>

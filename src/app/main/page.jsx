@@ -9,6 +9,7 @@ import { AppContext } from "../layout";
 import Preimage from "@/components/preimage";
 import Spline from "@splinetool/react-spline";
 import { Text } from "@nextui-org/react";
+import FButton from "@/components/FButton";
 
 const Main = () => {
     const { account, setAccount } = useContext(AppContext);
@@ -93,6 +94,7 @@ const Main = () => {
                         그리드 ㄱㄱ일단 일단 써야할 내용 적어넣기 01. NFT
                         사용하기 02. 여러명이 돈을모아 등등
                     </Box>
+                    <FButton />
                 </Box>
 
                 {/* 포토 카드 + 설명 등등 ~> 아무래도 서비스에 관련된 설명을 넣는게 좋지 않을까?*/}
