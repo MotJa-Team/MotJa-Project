@@ -26,10 +26,10 @@ const GiftCard = () => {
             borderRadius="lg"
           />
           <Stack mt="6" spacing="3">
-            <Heading size="md">Living room Sofa</Heading>
+            <Heading size="md">이름</Heading>
 
             <Text color="blue.600" fontSize="2xl">
-              $450
+              금액
             </Text>
           </Stack>
         </CardBody>
