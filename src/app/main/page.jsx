@@ -10,6 +10,8 @@ import Preimage from "@/components/preimage";
 import Spline from "@splinetool/react-spline";
 import { Text } from "@nextui-org/react";
 import FButton from "@/components/FButton";
+import TestPreImg from "@/components/ProfileImg";
+import ProfileImg from "@/components/ProfileImg";
 
 const Main = () => {
     const { account, setAccount } = useContext(AppContext);
@@ -100,6 +102,7 @@ const Main = () => {
                 {/* 포토 카드 + 설명 등등 ~> 아무래도 서비스에 관련된 설명을 넣는게 좋지 않을까?*/}
             </Box>
             {/* <Preimage /> */}
+            <ProfileImg />
         </Flex>
     );
 };
