@@ -1,4 +1,5 @@
-import Detail from "@/components/Detail";
+import Detail from "../../../Detail";
+
 import Header from "@/components/Header";
 
 const GiftDetail = () => {

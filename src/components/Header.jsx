@@ -91,7 +91,10 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
                                
                             </Button> */}
 
-                            <M_AddGift />
+                            <M_AddGift
+                                account={account}
+                                setAccount={setAccount}
+                            />
                         </>
                     )}
                     {/* 지갑 로그인하는 버튼 생성 */}
