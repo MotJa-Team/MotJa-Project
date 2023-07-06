@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import "../styles/global.css";
 
 import {
     ChakraProvider,
@@ -25,11 +24,9 @@ import {
 import Login from "./login";
 import Link from "next/link";
 import { useState } from "react";
-import "../styles/global.css";
 
 import Preimage from "./preimage";
 import M_AddGift from "./M_AddGift";
-import M_Charge from "./M_Charge";
 ////////
 const Header = ({ account, setAccount, bgColor, showButtons }) => {
     //
@@ -91,10 +88,11 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
                                 선물등록하기
                                
                             </Button> */}
-                            <M_Charge />
 
-                            <Login account={account} setAccount={setAccount} />
-                            <M_AddGift />
+                            <M_AddGift
+                                account={account}
+                                setAccount={setAccount}
+                            />
                         </>
                     )}
                     {/* 지갑 로그인하는 버튼 생성 */}

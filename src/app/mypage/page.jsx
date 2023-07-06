@@ -6,21 +6,21 @@ import Intro from "@/components/Intro";
 import { AppContext } from "../layout";
 import React, { useContext, useEffect } from "react";
 import Image from "next/image";
-import "../../styles/global.css";
+
 import Spline from "@splinetool/react-spline";
 import MainCard from "@/components/MainCard";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
 const MyPage = () => {
-  const { account, setAccount } = useContext(AppContext);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
+    const { account, setAccount } = useContext(AppContext);
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const btnRef = React.useRef();
 
-  return (
-    <>
-      {" "}
-      <Flex flexWrap="wrap">
-        {/* <Spline
+    return (
+        <>
+            {" "}
+            <Flex flexWrap="wrap">
+                {/* <Spline
                     style={{
                         position: "absolute",
                         top: 0, // Change this line
@@ -30,8 +30,8 @@ const MyPage = () => {
                     }}
                     scene="https://prod.spline.design/e5vBTXMk17QpAHwa/scene.splinecode"
                 /> */}
-      </Flex>
-      {/* <Image
+            </Flex>
+            {/* <Image
                 src="/images/back.png"
                 width={5360}
                 height={7140}
@@ -45,37 +45,37 @@ const MyPage = () => {
                     zIndex: -1,
                 }}
             /> */}
-      <Flex
-        // bgColor={"black"}
-        // minH="100vh"
-        justifyContent="center"
-        alignItems="center"
-        maxW="8xl"
-        position="relative"
-        zIndex={999}
-        mt="20px"
-        mx="auto"
-      >
-        {/* <Box maxW="8xl" w="100%"> */}
-        <Header
-          account={account}
-          setAccount={setAccount} /*bgColor={"black"}*/
-        />
-        {/* </Box> */}
-      </Flex>
-      <Box
-        justifyContent="center"
-        alignItems="center"
-        minH="100vh"
-        display="flex"
-        flexDirection="row"
-        gap={10}
-        p="10"
-        // zIndex={999}
-        mt="20px"
-        mx="auto"
-      >
-        {/* <Flex class="my-box" w="15%">
+            <Flex
+                // bgColor={"black"}
+                // minH="100vh"
+                justifyContent="center"
+                alignItems="center"
+                maxW="8xl"
+                position="relative"
+                zIndex={999}
+                mt="20px"
+                mx="auto"
+            >
+                {/* <Box maxW="8xl" w="100%"> */}
+                <Header
+                    account={account}
+                    setAccount={setAccount} /*bgColor={"black"}*/
+                />
+                {/* </Box> */}
+            </Flex>
+            <Box
+                justifyContent="center"
+                alignItems="center"
+                minH="100vh"
+                display="flex"
+                flexDirection="row"
+                gap={10}
+                p="10"
+                // zIndex={999}
+                mt="20px"
+                mx="auto"
+            >
+                {/* <Flex class="my-box" w="15%">
                      왼쪽 메뉴바 구성 
                     <Box w="90%" mx="auto" m="20px">
                         <Box class="input-box" h="200px" mb="10px">
@@ -87,31 +87,31 @@ const MyPage = () => {
                     </Box>
                 </Flex> */}
 
-        {/* 오른쪽 컴포넌트 만들기 시작 */}
-        <Flex maxW="8xl" minH="100vh" direction={"column"} gap={10}>
-          {/* 프로필을 담아줄것이다*/}
-          <Intro />
+                {/* 오른쪽 컴포넌트 만들기 시작 */}
+                <Flex maxW="8xl" minH="100vh" direction={"column"} gap={10}>
+                    {/* 프로필을 담아줄것이다*/}
+                    <Intro />
 
-          {/* 마지막에 ㄱㄱ */}
-          <Box class="my-box" h="100%">
-            <Flex direction="column">
-              <Flex m="40px" gap={10}>
-                <MainCard />
-                <MainCard />
-                <MainCard />
-              </Flex>
-              <Button
-                justifyContent="center"
-                mx="auto"
-                mb="10"
-                leftIcon={<ChevronDownIcon />}
-              ></Button>
-            </Flex>
-          </Box>
-        </Flex>
-      </Box>
-    </>
-  );
+                    {/* 마지막에 ㄱㄱ */}
+                    <Box class="my-box" h="100%">
+                        <Flex direction="column">
+                            <Flex m="40px" gap={10}>
+                                <MainCard />
+                                <MainCard />
+                                <MainCard />
+                            </Flex>
+                            <Button
+                                justifyContent="center"
+                                mx="auto"
+                                mb="10"
+                                leftIcon={<ChevronDownIcon />}
+                            ></Button>
+                        </Flex>
+                    </Box>
+                </Flex>
+            </Box>
+        </>
+    );
 };
 
 export default MyPage;
