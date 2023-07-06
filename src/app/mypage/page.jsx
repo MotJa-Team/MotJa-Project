@@ -93,7 +93,7 @@ const MyPage = () => {
           <Intro />
 
           {/* 마지막에 ㄱㄱ */}
-          <Box flex class="my-box" h="100%">
+          <Box class="my-box" h="100%">
             <Flex direction="column">
               <Flex m="40px" gap={10}>
                 <MainCard />

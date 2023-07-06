@@ -92,6 +92,7 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
                                
                             </Button> */}
               <M_Charge />
+
               <Login account={account} setAccount={setAccount} />
               <M_AddGift />
             </>
