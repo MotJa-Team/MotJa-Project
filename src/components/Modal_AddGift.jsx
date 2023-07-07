@@ -14,34 +14,36 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  ChakraProvider,
   useDisclosure,
 } from "@chakra-ui/react";
 
 import { useState } from "react";
 
-const M_AddGift = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export const Modal_AddGift = () => {
   const [price, setPrice] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
-  };
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
-    <>
-      <button class="gift-button" onClick={onOpen}>
+    <ChakraProvider>
+      <button
+        class="gift-button"
+        onClick={() => {
+          onOpen();
+        }}
+      >
         <span class="text">Add Gift</span>
         <span class="blob"></span>
         <span class="blob"></span>
         <span class="blob"></span>
         <span class="blob"></span>
       </button>
-      <Modal
-        size="2xl"
-        // initialFocusRef={initialRef}
-        isOpen={isOpen}
-        onClose={onClose}
-      >
-        <ModalOverlay />
+      <Modal isCentered isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay
+          bg="blackAlpha.300"
+          backdropFilter="blur(10px) hue-rotate(90deg)"
+        />
         <ModalContent>
           <ModalHeader>👀선물을 등록👀</ModalHeader>
           <Box
@@ -60,7 +62,7 @@ const M_AddGift = () => {
               <FormLabel>선물 링크</FormLabel>
               <Input
                 value={inputValue}
-                onChange={handleChange}
+                onChange={(e) => setInputValue(e.target.value)}
                 placeholder="https://오늘 3시간동안 나는 무엇을 한 것인가~~~알아맞춰 볼 사람 ~"
               />
             </FormControl>
@@ -87,8 +89,6 @@ const M_AddGift = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>
+    </ChakraProvider>
   );
 };
-
-export default M_AddGift;

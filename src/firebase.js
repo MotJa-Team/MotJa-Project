@@ -1,15 +1,15 @@
 //firebase.js
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyC5p_ikKjc0pExlE_9nSckCl3IPLU1dWFM',
-  authDomain: 'test-9c3fc.firebaseapp.com',
-  projectId: 'test-9c3fc',
-  storageBucket: 'test-9c3fc.appspot.com',
-  messagingSenderId: '222112199484',
-  appId: '1:222112199484:web:b3f0bc1d5d522713ede439',
-  measurementId: 'G-PX96G8Y5RM',
+  apiKey: "AIzaSyC5p_ikKjc0pExlE_9nSckCl3IPLU1dWFM",
+  authDomain: "test-9c3fc.firebaseapp.com",
+  projectId: "test-9c3fc",
+  storageBucket: "test-9c3fc.appspot.com",
+  messagingSenderId: "222112199484",
+  appId: "1:222112199484:web:b3f0bc1d5d522713ede439",
+  measurementId: "G-PX96G8Y5RM",
 };
 
 // firebaseConfig 정보로 firebase 시작
