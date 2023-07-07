@@ -1,20 +1,15 @@
 "use client";
-import Header from "@/components/Header";
-import { Flex, Box, Button, useDisclosure } from "@chakra-ui/react";
-import GiftCard from "@/components/GiftCard";
-import Intro from "@/components/Intro";
-import { AppContext } from "../layout";
-import React, { useContext, useEffect } from "react";
-import Image from "next/image";
-import "../../styles/global.css";
-import Spline from "@splinetool/react-spline";
-import MainCard from "@/components/MainCard";
+
+import { Flex, Box, Button } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import "../../styles/global.css";
+import MainCard from "@/components/MainCard";
+import Intro from "@/components/Intro";
+import { useContext } from "react";
+import { AppContext } from "../layout";
 
 const MyPage = () => {
-  const { account, setAccount } = useContext(AppContext);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
+  const { account, setAccount, pathname } = useContext(AppContext);
 
   return (
     <>
@@ -56,11 +51,6 @@ const MyPage = () => {
         mt="20px"
         mx="auto"
       >
-        {/* <Box maxW="8xl" w="100%"> */}
-        <Header
-          account={account}
-          setAccount={setAccount} /*bgColor={"black"}*/
-        />
         {/* </Box> */}
       </Flex>
       <Box
@@ -96,7 +86,7 @@ const MyPage = () => {
           <Box flex class="my-box" h="100%">
             <Flex direction="column">
               <Flex m="40px" gap={10}>
-                <MainCard />
+                <MainCard account={account} />
                 <MainCard />
                 <MainCard />
               </Flex>

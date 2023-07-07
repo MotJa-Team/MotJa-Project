@@ -1,15 +1,19 @@
+"use client";
+
 import Detail from "@/components/Detail";
-import Header from "@/components/Header";
+import { useContext } from "react";
+import { AppContext } from "../layout";
 
 const GiftDetail = () => {
-    return (
-        <>
-            <Header />
-            <main>
-                <Detail></Detail>
-            </main>
-        </>
-    );
+  const { account, setAccount, pathname } = useContext(AppContext);
+  console.log(account);
+
+  return (
+    <>
+      {/* <Detail></Detail> */}
+      <div>Detail</div>
+    </>
+  );
 };
 
 export default GiftDetail;

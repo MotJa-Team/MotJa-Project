@@ -1,38 +1,19 @@
 "use client";
+
 import Image from "next/image";
 import "../styles/global.css";
 
-import {
-  ChakraProvider,
-  Flex,
-  Box,
-  Heading,
-  Spacer,
-  ButtonGroup,
-  Button,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
-  FormControl,
-  FormLabel,
-  Input,
-} from "@chakra-ui/react";
-import Login from "./login";
-import Link from "next/link";
-import { useState } from "react";
-import "../styles/global.css";
+import { Flex, Box, Spacer, ButtonGroup } from "@chakra-ui/react";
 
-import Preimage from "./preimage";
-import M_AddGift from "./M_AddGift";
+import Link from "next/link";
+import Login from "./Login";
 import M_Charge from "./M_Charge";
-////////
-const Header = ({ account, setAccount, bgColor, showButtons }) => {
-  //
+import { useContext } from "react";
+import { AppContext } from "@/app/layout";
+import M_AddGift from "./M_AddGift";
+
+const Header = (account, setAccount, pathname) => {
+  // const { account, setAccount, pathname } = useContext(AppContext);
 
   return (
     <>
@@ -55,6 +36,9 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
         <Box w="20%" my-auto>
           <Link href="/main">
             <Image
+              onClick={() => {
+                setButtonText("Get Started");
+              }}
               src="/images/logo.png"
               width={200}
               height={200}
@@ -65,13 +49,11 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
         <Spacer />
 
         <ButtonGroup gap="3">
-          {showButtons ? (
-            <>
-              <Login account={account} setAccount={setAccount} />
+          {account ? <M_Charge account={account} /> : <></>}
+          <Login account={account} setAccount={setAccount} />
+          {pathname === "/main" ||
+            (pathname === "/giftdetail" && (
               <Link href="/mypage">
-                {/* <Button colorScheme="cyan" variant="outline">
-                                    Get Started
-                                </Button> */}
                 <button class="start-button">
                   <span class="text">Get Started</span>
                   <span class="blob"></span>
@@ -80,26 +62,12 @@ const Header = ({ account, setAccount, bgColor, showButtons }) => {
                   <span class="blob"></span>
                 </button>
               </Link>
-            </>
-          ) : (
-            <>
-              {/* <Button
-                                colorScheme="cyan"
-                                variant="outline"
-                                onClick={onOpen}
-                            >
-                                선물등록하기
-                               
-                            </Button> */}
-              <M_Charge />
-              <Login account={account} setAccount={setAccount} />
-              <M_AddGift />
-            </>
-          )}
-          {/* 지갑 로그인하는 버튼 생성 */}
+            ))}
+          {pathname === "/mypage" && account && <M_AddGift />}
         </ButtonGroup>
       </Flex>
     </>
   );
 };
+
 export default Header;

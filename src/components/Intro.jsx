@@ -1,4 +1,5 @@
 "use client";
+
 import {
   ChakraProvider,
   Flex,
@@ -8,12 +9,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import "../styles/global.css";
-import M_Charge from "./M_Charge";
-//랜덤 프로필 만드는 방법 == 사용할 예정
-// const ranNum = Math.floor(Math.random() * 1000) + 1;
-// console.log(ranNum);
-
-// const imgSrc = `${process.env.REACT_APP_IMAGE_URL}/${ranNum}.png`;
 
 const Intro = () => {
   return (
@@ -29,10 +24,7 @@ const Intro = () => {
                 borderRadius="50%"
                 background="#e0e0e0"
                 boxShadow="12px 12px 27px #acacac, -12px -12px 27px #ffffff"
-              >
-                {/* 사용할 예정 */}
-                {/* <img src={imgSrc} alt="NFT" /> */}
-              </Box>
+              ></Box>
               {/* <Box
                                 top={0}
                                 bgColor="purple.500"

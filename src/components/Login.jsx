@@ -1,6 +1,5 @@
 "use client";
 import {
-  ChakraProvider,
   Box,
   Button,
   useDisclosure,
@@ -22,20 +21,16 @@ import Spline from "@splinetool/react-spline";
 import "../styles/global.css";
 
 import { useState, useEffect } from "react";
-import { CheckCircleIcon } from "@chakra-ui/icons";
 
 import { firestore } from "../firebase";
 
 const Login = ({ account, setAccount }) => {
-  // const [account, setAccount] = useState('');
   const toast = useToast();
   const [metamaskAddress, setMetamaskAddress] = useState("");
   const [name, setName] = useState("");
   const [birth, setBirth] = useState("");
   const [num, setNum] = useState("");
-  const P_MOTZA = firestore.collection("P_MOTZA");
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [inputValue, setInputValue] = useState("");
 
   // 메타마스크 설치 여부 상태체크
   const [isInstalled, setIsInstalled] = useState(false);
@@ -150,11 +145,8 @@ const Login = ({ account, setAccount }) => {
     }
   };
 
-  ////
   return (
     <>
-      {/*버전1-로그인버튼 account로 대체+지갑로그인 기능만 */}
-
       {account ? (
         existAccount ? (
           <button class="login-button">
@@ -248,22 +240,10 @@ const Login = ({ account, setAccount }) => {
           </>
         )
       ) : (
-        // <Button class="login-button">
-        //     onClick={onClickMetaMask}
-        //     disabled={!isInstalled}
-        //     <span class="text">Login</span>
-        //     <span class="blob"></span>
-        //     <span class="blob"></span>
-        //     <span class="blob"></span>
-        //     <span class="blob"></span>
-        // </Button>
         <button
           class="login-button"
           onClick={onClickMetaMask}
           disabled={!isInstalled}
-          // colorScheme="messenger"
-          // variant="outline"
-          // borderRadius="9999px"
         >
           <span class="text">Login</span>
           <span class="blob"></span>

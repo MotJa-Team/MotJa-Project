@@ -15,7 +15,6 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
-  Flex,
 } from "@chakra-ui/react";
 
 import { useDisclosure, Button, Text } from "@chakra-ui/react";
@@ -34,6 +33,8 @@ const M_Gift = () => {
   const handleDonationAmount = (amount) => {
     setDonationAmount((prevAmount) => prevAmount + amount);
   };
+
+  console.log(donationAmount);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = useState(<OverlayOne />);
@@ -85,7 +86,7 @@ const M_Gift = () => {
             <Button onClick={() => handleDonationAmount()}>직접입력</Button>
           </ModalBody>
           <ModalFooter mb="5">
-            <Button onClick={onClose}>닫기</Button>
+            <Button onClick={(onClose, setDonationAmount(0))}>닫기</Button>
             <Button ml="5" colorScheme="blue">
               선물하기
             </Button>
