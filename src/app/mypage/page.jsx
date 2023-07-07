@@ -96,10 +96,22 @@ const MyPage = () => {
                     <Box class="my-box" h="100%">
                         <Flex direction="column">
                             <Flex m="40px" gap={10}>
-                                <MainCard />
-                                <MainCard />
-                                <MainCard />
+                                <MainCard
+                                    account={account}
+                                    setAccount={setAccount}
+                                />
+                                <MainCard
+                                    account={account}
+                                    setAccount={setAccount}
+                                />
+                                <MainCard
+                                    account={account}
+                                    setAccount={setAccount}
+                                />
+
+                                {/* <GiftCard /> */}
                             </Flex>
+
                             <Button
                                 justifyContent="center"
                                 mx="auto"

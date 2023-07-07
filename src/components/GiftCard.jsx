@@ -19,7 +19,7 @@ import { collection, getDocs } from "firebase/firestore";
 const GiftCard = () => {
     const [users, setUsers] = useState([]);
     // db의 users 컬렉션을 가져옴
-    const usersCollectionRef = collection(firestore, "gift");
+    const usersCollectionRef = collection(firestore, "P_MOTZA");
     console.log({ users });
 
     // 시작될때 한번만 실행

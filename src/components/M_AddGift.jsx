@@ -45,7 +45,7 @@ const M_AddGift = () => {
         setInputValue(event.target.value);
     };
     const { account, setAccount } = useContext(AppContext);
-    console.log(account);
+    // console.log(account);
     const clickGiftSave = () => {
         if (/\D/.test(giftNum) /*|| giftNum == null*/) {
             return toast({
@@ -80,9 +80,7 @@ const M_AddGift = () => {
         // }
         else {
             firestore
-                .collection("P_MOTZA")
-                .doc(account)
-                .collection("gift")
+                .collection(account)
                 .doc(giftNum)
                 .set({
                     giftNum: giftNum,

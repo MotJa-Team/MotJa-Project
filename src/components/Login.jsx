@@ -50,12 +50,20 @@ const Login = ({ account, setAccount }) => {
     const [existAccount, setExistAccount] = useState(false);
     useEffect(() => {
         if (account) {
+            // firestore
+            //     .collection("P_MOTZA")
+            //     .doc(account)
+            //     .get()
+            // .then((doc) => {
+            //     if (doc.exists) {
+            //         setExistAccount(true);
+            //     }
             firestore
-                .collection("P_MOTZA")
-                .doc(account)
+                .collection(account)
+                .doc("sign-up")
                 .get()
-                .then((doc) => {
-                    if (doc.exists) {
+                .then((collection) => {
+                    if (collection.exists) {
                         setExistAccount(true);
                     } else {
                         setExistAccount(false);
@@ -122,14 +130,15 @@ const Login = ({ account, setAccount }) => {
             });
         } else {
             firestore
-                .collection("P_MOTZA")
-                .doc(metamaskAddress)
+                .collection(account)
+                .doc("sign-up")
                 .set({
                     name: name,
                     birth: birth,
                     num: num,
                     addr: metamaskAddress,
                 })
+
                 .then(() => {
                     console.log("Data saved successfully");
                     setExistAccount(true);

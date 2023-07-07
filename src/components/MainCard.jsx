@@ -1,10 +1,29 @@
 "use client";
 
 import Link from "next/link";
-
+import { useState, useEffect } from "react";
 import { Card, Col, Row, Button, Text } from "@nextui-org/react";
+import { firestore } from "@/app/firebase";
+import { collection, getDocs, doc } from "firebase/firestore";
 
-const MainCard = () => {
+const MainCard = ({ account, setAccount }) => {
+    // 한 컬렉션까지는 넘어온다 !
+    const [users, setUsers] = useState([]);
+    // db의 users 컬렉션을 가져옴
+    const usersCollectionRef = collection(firestore, account);
+    console.log({ users });
+    // 시작될때 한번만 실행
+    useEffect(() => {
+        // 비동기로 데이터 받을준비
+        const getUsers = async () => {
+            // getDocs로 컬렉션안에 데이터 가져오기
+            const data = await getDocs(usersCollectionRef);
+            // users에 data안의 자료 추가. 객체에 id 덮어씌우는거
+            setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        };
+        getUsers();
+    }, []);
+
     return (
         <Card css={{ w: "100%", h: "400px" }}>
             <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
