@@ -20,7 +20,6 @@ import {
     useSteps,
 } from "@chakra-ui/react";
 import M_Gift from "./M_Gift";
-import "../styles/global.css";
 
 const steps = [
     { title: "First", description: "Contact Info" },

@@ -5,6 +5,7 @@ import { Inter, Prociono } from "next/font/google";
 import { Providers } from "./providers";
 import Footer from "@/components/footer";
 import { useState, createContext } from "react";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,9 @@ export default function RootLayout({ children }) {
 
     return (
         <html lang="en">
+            <head>
+                <meta property="og:image" content="/images/back.png" />
+            </head>
             <body className={inter.className}>
                 <Providers>
                     <AppContext.Provider value={{ account, setAccount }}>

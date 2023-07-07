@@ -25,7 +25,7 @@ import Login from "./login";
 import Link from "next/link";
 import { useState } from "react";
 
-import Preimage from "./preimage";
+import Preimage from "./GiftPreImg";
 import M_AddGift from "./M_AddGift";
 ////////
 const Header = ({ account, setAccount, bgColor, showButtons }) => {

@@ -5,7 +5,6 @@ import Link from "next/link";
 import Spline from "@splinetool/react-spline";
 // export const AppContext = createContext();
 
-import Preimage from "@/components/preimage";
 import Footer from "@/components/Footer";
 
 export default function Home() {

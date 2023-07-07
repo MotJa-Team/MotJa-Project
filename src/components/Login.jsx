@@ -22,7 +22,7 @@ import Spline from "@splinetool/react-spline";
 import { useState, useEffect } from "react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
 
-import { firestore } from "../firebase";
+import { firestore } from "../app/firebase";
 
 const Login = ({ account, setAccount }) => {
     // const [account, setAccount] = useState('');

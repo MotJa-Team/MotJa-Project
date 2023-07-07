@@ -27,7 +27,7 @@ import {
     PopoverAnchor,
     useToast,
 } from "@chakra-ui/react";
-import { firestore } from "../firebase";
+import { firestore } from "../app/firebase";
 import { useState } from "react";
 import { useContext } from "react";
 import { AppContext } from "@/app/layout";

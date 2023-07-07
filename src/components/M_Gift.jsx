@@ -16,7 +16,7 @@ import {
     InputGroup,
     InputLeftAddon,
 } from "@chakra-ui/react";
-import { firestore } from "../firebase";
+import { firestore } from "../app/firebase";
 
 import { useDisclosure, Button, Text } from "@chakra-ui/react";
 import { useState } from "react";

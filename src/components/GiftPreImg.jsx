@@ -1,6 +1,7 @@
 //src/components/pre.jsx
 import React from "react";
-import Pre from "./pre";
+import Image from "next/image";
+// import Pre from "./pre";
 import og from "open-graph";
 async function Preimage() {
     const getOg = () =>
@@ -16,10 +17,23 @@ async function Preimage() {
             });
         });
 
-    const test = await getOg();
+    // const test = await getOg();
+    useEffect(() => {
+        getOg();
+    }, []);
     return (
         <div>
-            <Pre test={test} />
+            <p>{test.title}</p>
+            <p>{test.site_name}</p>
+            <p>{test.description}</p>
+            <p>{test.type}</p>
+
+            <Image
+                src={test.image.url}
+                alt="dfd"
+                width={200}
+                height={200}
+            ></Image>
         </div>
     );
 }
