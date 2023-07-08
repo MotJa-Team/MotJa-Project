@@ -27,9 +27,10 @@ export default function RootLayout({ children }) {
           <AppContext.Provider
             value={{ account, setAccount, tBalance, setTBalance, pathname }}
           >
-            {pathname !== "/" && (
+            {/* {pathname !== "/" && (
               <Flex flexWrap="wrap">
                 <Spline
+                  zIndex={0}
                   style={{
                     position: "absolute",
                     top: 0, // Change this line
@@ -40,7 +41,7 @@ export default function RootLayout({ children }) {
                   scene="https://prod.spline.design/pWHUeuuxFRItopmZ/scene.splinecode"
                 />
               </Flex>
-            )}
+            )} */}
             {pathname !== "/" && <Header />}
             {children}
             {pathname !== "/" && <Footer />}

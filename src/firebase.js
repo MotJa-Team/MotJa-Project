@@ -3,13 +3,13 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC5p_ikKjc0pExlE_9nSckCl3IPLU1dWFM",
-  authDomain: "test-9c3fc.firebaseapp.com",
-  projectId: "test-9c3fc",
-  storageBucket: "test-9c3fc.appspot.com",
-  messagingSenderId: "222112199484",
-  appId: "1:222112199484:web:b3f0bc1d5d522713ede439",
-  measurementId: "G-PX96G8Y5RM",
+  apiKey: "AIzaSyDIcPO38_zLNWwZRd3NlaEk2_a0Jt-XkmA",
+  authDomain: "celebday-e0944.firebaseapp.com",
+  projectId: "celebday-e0944",
+  storageBucket: "celebday-e0944.appspot.com",
+  messagingSenderId: "71260102527",
+  appId: "1:71260102527:web:c556689a78882491c4c44a",
+  measurementId: "G-FV2BZX7QM7",
 };
 
 // firebaseConfig 정보로 firebase 시작

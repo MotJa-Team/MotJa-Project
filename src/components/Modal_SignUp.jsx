@@ -21,8 +21,9 @@ import Spline from "@splinetool/react-spline";
 import "../styles/global.css";
 
 import { useState } from "react";
+import { firestore } from "@/firebase";
 
-export const Modal_SignUp = () => {
+export const Modal_SignUp = ({ account, setExistAccount }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [metamaskAddress, setMetamaskAddress] = useState("");
   const [name, setName] = useState("");
@@ -50,8 +51,8 @@ export const Modal_SignUp = () => {
       });
     } else {
       firestore
-        .collection("P_MOTZA")
-        .doc(metamaskAddress)
+        .collection(account)
+        .doc("sign-up")
         .set({
           name,
           birth,
@@ -79,6 +80,14 @@ export const Modal_SignUp = () => {
     }
   };
 
+  const onClickCancel = async () => {
+    setName("");
+    setBirth("");
+    setNum("");
+    setMetamaskAddress("");
+    onClose();
+  };
+
   return (
     <>
       <button class="login-button" onClick={onOpen}>
@@ -88,8 +97,9 @@ export const Modal_SignUp = () => {
         <span class="blob"></span>
         <span class="blob"></span>
       </button>
-      <Modal size="2xl" isOpen={isOpen} onClose={onClose}>
+      <Modal size="2xl" isOpen={isOpen} onClose={onClickCancel}>
         <ModalOverlay
+          onClick={onClickCancel}
           bg="blackAlpha.300"
           backdropFilter="blur(10px) hue-rotate(90deg)"
         />
@@ -154,7 +164,7 @@ export const Modal_SignUp = () => {
             <Button colorScheme="blue" mr={3} onClick={clickSave}>
               내마음속에저장
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={onClickCancel}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

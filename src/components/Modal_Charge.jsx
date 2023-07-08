@@ -19,8 +19,8 @@ import { useEffect, useState } from "react";
 import { NFT_CONTRACT, TOKEN_CONTRACT } from "@/lib/web3.config";
 
 export const Modal_Charge = ({ account, tBalance, setTBalance }) => {
-  const [tokenAmount, setTokenAmount] = useState();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [tokenAmount, setTokenAmount] = useState();
 
   const getToken = async () => {
     try {
@@ -54,6 +54,11 @@ export const Modal_Charge = ({ account, tBalance, setTBalance }) => {
     }
   };
 
+  const onClickCancel = async () => {
+    setTokenAmount("");
+    onClose();
+  };
+
   return (
     <ChakraProvider>
       <button
@@ -68,7 +73,7 @@ export const Modal_Charge = ({ account, tBalance, setTBalance }) => {
         <span class="blob"></span>
         <span class="blob"></span>
       </button>
-      <Modal isCentered isOpen={isOpen} onClose={onClose}>
+      <Modal isCentered isOpen={isOpen} onClose={onClickCancel}>
         <ModalOverlay
           bg="blackAlpha.300"
           backdropFilter="blur(10px) hue-rotate(90deg)"
@@ -77,7 +82,7 @@ export const Modal_Charge = ({ account, tBalance, setTBalance }) => {
           <ModalHeader>잔액 충전하기</ModalHeader>
           <ModalCloseButton />
           <ModalBody px="10">
-            <Text mt="5">잔액 : {tBalance} CT</Text>
+            <Text mt="5">✨잔액 : {tBalance} CT</Text>
 
             <InputGroup mt="5">
               <Input
@@ -98,7 +103,7 @@ export const Modal_Charge = ({ account, tBalance, setTBalance }) => {
             </InputGroup>
           </ModalBody>
           <ModalFooter mb="5">
-            <Button onClick={onClose}>닫기</Button>
+            <Button onClick={onClickCancel}>닫기</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

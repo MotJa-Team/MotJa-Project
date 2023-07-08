@@ -10,12 +10,18 @@ import {
 } from "@chakra-ui/react";
 import "../styles/global.css";
 
-const Intro = () => {
+export const Intro = (pathname) => {
+  const currentURL = process.env.NEXT_PUBLIC_URL + pathname.pathname;
+
+  const onClickLink = () => {
+    console.log(currentURL);
+  };
+
   return (
     <ChakraProvider>
-      <Box class="my-box" gap={4}>
+      <Box class="my-box" zIndex={999}>
         <Flex direction="column" mx="auto" m="40px">
-          <Flex>
+          <Flex gap={10}>
             <Box pos="relative" width="300px" height="300px">
               <Box
                 pos="absolute"
@@ -35,7 +41,6 @@ const Intro = () => {
             </Box>
 
             {/* 여기는 오른쪽 부분  */}
-            <Box>안녕</Box>
             <Box
               borderRadius="sm"
               ml="10"
@@ -53,10 +58,6 @@ const Intro = () => {
                 >
                   Name
                 </Heading>
-                <Text>
-                  by
-                  {/* <Box>{CONTRACT_ADDRESS}</Box> */}
-                </Text>
                 <Text mt="5" fontSize={["lg"]}>
                   여기에는 한줄 소개 할까 말까 고민중임
                 </Text>
@@ -77,6 +78,7 @@ const Intro = () => {
                     프로필 편집
                   </Button>
                   <Button
+                    onClick={onClickLink}
                     mr="10"
                     mt="5"
                     color="black"
@@ -137,5 +139,3 @@ const Intro = () => {
     </ChakraProvider>
   );
 };
-
-export default Intro;

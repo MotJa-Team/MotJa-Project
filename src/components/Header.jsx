@@ -4,14 +4,7 @@ import Image from "next/image";
 import "../styles/global.css";
 
 import { AppContext } from "@/app/layout";
-import {
-  Box,
-  ButtonGroup,
-  Flex,
-  Spacer,
-  useDisclosure,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, ButtonGroup, Flex, Spacer, useToast } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -27,7 +20,6 @@ export default function Header() {
   const toast = useToast();
   const [isInstalled, setIsInstalled] = useState(false);
   const [existAccount, setExistAccount] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onClickMetaMask = async () => {
     try {
@@ -65,11 +57,11 @@ export default function Header() {
   useEffect(() => {
     if (account) {
       firestore
-        .collection("P_MOTZA")
-        .doc(account)
+        .collection(account)
+        .doc("sign-up")
         .get()
-        .then((doc) => {
-          if (doc.exists) {
+        .then((collection) => {
+          if (collection.exists) {
             setExistAccount(true);
           } else {
             setExistAccount(false);
@@ -153,7 +145,10 @@ export default function Header() {
                 </>
               ) : (
                 <>
-                  <Modal_SignUp />
+                  <Modal_SignUp
+                    account={account}
+                    setExistAccount={setExistAccount}
+                  />
                 </>
               )
             ) : (
