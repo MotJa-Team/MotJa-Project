@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import "../styles/global.css";
 
-export const Intro = (pathname) => {
+export const Intro = ({ pathname, user }) => {
   const currentURL = process.env.NEXT_PUBLIC_URL + pathname.pathname;
 
   const onClickLink = () => {
@@ -40,7 +40,6 @@ export const Intro = (pathname) => {
                             ></Box> */}
             </Box>
 
-            {/* 여기는 오른쪽 부분  */}
             <Box
               borderRadius="sm"
               ml="10"
@@ -56,10 +55,10 @@ export const Intro = (pathname) => {
                   fontSize="2xl"
                   fontWeight="bold"
                 >
-                  Name
+                  이름
                 </Heading>
                 <Text mt="5" fontSize={["lg"]}>
-                  여기에는 한줄 소개 할까 말까 고민중임
+                  간략 소개
                 </Text>
                 <Flex mt="5" color="#00DDFF" fontSize="xl" fontWeight="bold">
                   <Box>등록한 총 선물</Box>
@@ -90,49 +89,6 @@ export const Intro = (pathname) => {
                 </Flex>
               </Box>
             </Box>
-            {/* <Box bgColor="purple.300" flex="1">
-                <Flex justify="flex-end" mb="20px">
-                  <Button mr="20px">프로필 편집</Button>
-                  <Button>프로픨 공유</Button>
-                </Flex>
-                <div className="mt-4 text-2xl font-bold flex items-center"></div>
-                <Box>사용자 명 넣어주기 </Box>
-                <Box px="20px" mb="20px">
-                  {' '}
-                  이름(firebase에 저장한 이름 불러오기 )
-                </Box>
-  
-                <Flex>
-                  <Box
-                    bgColor="pink.100"
-                    // w="200px"
-                    h="100px"
-                    mx="20px"
-                    px="10px"
-                  >
-                    등록한 선물
-                  </Box>
-                  <Box
-                    bgColor="pink.100"
-                    // w="200px"
-                    h="100px"
-                    mx="20px"
-                    px="10px"
-                  >
-                    {' '}
-                    펀딩성공한 선물
-                  </Box>
-                  <Box
-                    bgColor="pink.100"
-                    // w="200px"
-                    h="100px"
-                    mx="20px"
-                    px="10px"
-                  >
-                    진행중
-                  </Box>
-                </Flex>
-              </Box> */}
           </Flex>
         </Flex>
       </Box>

@@ -8,18 +8,30 @@ import { Box, ButtonGroup, Flex, Spacer, useToast } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 
-import { firestore } from "../firebase";
+import { firestore } from "../app/firebase";
+import { collection, getDocs, doc } from "firebase/firestore";
 import { Modal_SignUp } from "./Modal_SignUp";
 import { Modal_Charge } from "./Modal_Charge";
 import { Modal_AddGift } from "./Modal_AddGift";
+import { NFT_CONTRACT } from "@/lib/web3.config";
 
 export default function Header() {
-  const { account, setAccount, tBalance, setTBalance, pathname } =
-    useContext(AppContext);
+  const {
+    account,
+    setAccount,
+    tBalance,
+    setTBalance,
+    pathname,
+    user,
+    setUser,
+    presents,
+    setPresents,
+  } = useContext(AppContext);
 
   const toast = useToast();
   const [isInstalled, setIsInstalled] = useState(false);
   const [existAccount, setExistAccount] = useState(false);
+  const [totalSupply, setTotalSupply] = useState("");
 
   const onClickMetaMask = async () => {
     try {
@@ -58,7 +70,7 @@ export default function Header() {
     if (account) {
       firestore
         .collection(account)
-        .doc("sign-up")
+        .doc("0")
         .get()
         .then((collection) => {
           if (collection.exists) {
@@ -79,6 +91,50 @@ export default function Header() {
         });
     }
   }, [account]);
+
+  const getUsers = async () => {
+    try {
+      const response = await NFT_CONTRACT.methods.totalSupply().call();
+
+      setTotalSupply(response);
+
+      console.log(totalSupply);
+
+      const usersCollectionRef = collection(firestore, account);
+      const data = await getDocs(usersCollectionRef);
+      const tempUser = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      console.log(tempUser);
+
+      setUser({
+        name: tempUser[0].name,
+        birth: tempUser[0].birth,
+        num: tempUser[0].num,
+      });
+
+      for (let i = 0; i < totalSupply; i++) {
+        presents[i] = [
+          {
+            giftNum: tempUser[i + 1].giftNum,
+            giftName: tempUser[i + 1].giftName,
+            giftPrice: tempUser[i + 1].giftPrice,
+            giftUrl: tempUser[i + 1].giftUrl,
+          },
+        ];
+      }
+
+      console.log(user);
+      console.log(presents);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   return (
     <>

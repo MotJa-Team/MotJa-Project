@@ -1,7 +1,8 @@
 // 모달 - 상품 등록
 "use client";
 
-import { firestore } from "@/firebase";
+import { firestore } from "@/app/firebase";
+import { NFT_CONTRACT } from "@/lib/web3.config";
 import {
   Modal,
   ModalOverlay,
@@ -92,6 +93,20 @@ export const Modal_AddGift = ({ account }) => {
     }
   };
 
+  const submitPresent = async (e) => {
+    try {
+      e.preventDefault();
+
+      await NFT_CONTRACT.methods.mintNFT(giftNum, giftPrice).send({
+        from: account,
+      });
+
+      clickGiftSave();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const onClickCancel = async () => {
     setGiftPrice("");
     setGiftName("");
@@ -161,6 +176,7 @@ export const Modal_AddGift = ({ account }) => {
             <FormControl mt={4}>
               <FormLabel>✨금액</FormLabel>
               <Input
+                type="number"
                 placeholder="10000"
                 value={giftPrice}
                 onChange={(e) => setGiftPrice(e.target.value)}
@@ -172,7 +188,7 @@ export const Modal_AddGift = ({ account }) => {
             <Popover
               returnFocusOnClose={false}
               onClose={onClickCancel}
-              onClick={clickGiftSave}
+              onClick={submitPresent}
               placement="right"
               closeOnBlur={false}
             >
@@ -194,7 +210,7 @@ export const Modal_AddGift = ({ account }) => {
                     <Button variant="outline" onClick={onClickCancel}>
                       취소
                     </Button>
-                    <Button colorScheme="red" onClick={clickGiftSave}>
+                    <Button colorScheme="red" onClick={submitPresent}>
                       등록
                     </Button>
                   </ButtonGroup>

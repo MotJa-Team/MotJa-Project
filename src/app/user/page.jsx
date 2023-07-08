@@ -10,7 +10,7 @@ import { Intro } from "@/components/Intro";
 import { PresentCard } from "@/components/PresentCard";
 
 const User = () => {
-  const { account, setAccount, pathname } = useContext(AppContext);
+  const { account, pathname, user, presents } = useContext(AppContext);
 
   return (
     <>
@@ -56,15 +56,15 @@ const User = () => {
             {/* 오른쪽 컴포넌트 만들기 시작 */}
             <Flex maxW="8xl" minH="100vh" direction={"column"} gap={10}>
               {/* 프로필을 담아줄것이다*/}
-              <Intro pathname={pathname} />
+              <Intro pathname={pathname} user={user} />
 
               {/* 마지막에 ㄱㄱ */}
               <Box flex class="my-box" h="100%">
                 <Flex direction="column">
                   <Flex m="40px" gap={10}>
-                    <PresentCard />
-                    <PresentCard />
-                    <PresentCard />
+                    <PresentCard presents={presents} />
+                    <PresentCard presents={presents} />
+                    <PresentCard presents={presents} />
                   </Flex>
                   <Button
                     justifyContent="center"

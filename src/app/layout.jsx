@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import "./globals.css";
 import { Providers } from "./providers";
 import { Inter, Prociono } from "next/font/google";
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Flex } from "@chakra-ui/react";
@@ -17,6 +17,8 @@ export const AppContext = createContext();
 export default function RootLayout({ children }) {
   const [account, setAccount] = useState("");
   const [tBalance, setTBalance] = useState(0);
+  const [user, setUser] = useState();
+  const [presents, setPresents] = useState([]);
 
   const pathname = usePathname();
 
@@ -25,7 +27,17 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Providers>
           <AppContext.Provider
-            value={{ account, setAccount, tBalance, setTBalance, pathname }}
+            value={{
+              account,
+              setAccount,
+              tBalance,
+              setTBalance,
+              pathname,
+              user,
+              setUser,
+              presents,
+              setPresents,
+            }}
           >
             {/* {pathname !== "/" && (
               <Flex flexWrap="wrap">

@@ -1,13 +1,9 @@
 "use client";
 
-import { useContext, useEffect } from "react";
-import { AppContext } from "../layout";
 import { Flex, Box } from "@chakra-ui/react";
 import { Text } from "@nextui-org/react";
 
 const Main = () => {
-  const { account, setAccount, tBalance, pathname } = useContext(AppContext);
-
   return (
     <Flex minH="100vh" justifyContent="center" alignItems="center">
       <Box minH="100vh" w="100%">

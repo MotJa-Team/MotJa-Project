@@ -34,7 +34,6 @@ export const Modal_Charge = ({ account, tBalance, setTBalance }) => {
 
   useEffect(() => {
     getToken();
-    console.log(tBalance);
   }, [tBalance]);
 
   const buyToken = async (e) => {
@@ -86,7 +85,7 @@ export const Modal_Charge = ({ account, tBalance, setTBalance }) => {
 
             <InputGroup mt="5">
               <Input
-                type="tel"
+                type="number"
                 value={tokenAmount}
                 onChange={(e) => setTokenAmount(e.target.value)}
                 placeholder="구매할 양을 입력하세요."

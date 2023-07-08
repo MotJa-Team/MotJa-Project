@@ -21,7 +21,7 @@ import Spline from "@splinetool/react-spline";
 import "../styles/global.css";
 
 import { useState } from "react";
-import { firestore } from "@/firebase";
+import { firestore } from "@/app/firebase";
 
 export const Modal_SignUp = ({ account, setExistAccount }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -52,7 +52,7 @@ export const Modal_SignUp = ({ account, setExistAccount }) => {
     } else {
       firestore
         .collection(account)
-        .doc("sign-up")
+        .doc("0")
         .set({
           name,
           birth,
@@ -123,6 +123,7 @@ export const Modal_SignUp = ({ account, setExistAccount }) => {
             <FormControl mt={4}>
               <FormLabel>✨생년월일</FormLabel>
               <Input
+                type="number"
                 focusBorderColor="#00ff8c"
                 placeholder="생년월일 6자리를 적어주세요"
                 value={birth}
@@ -133,6 +134,7 @@ export const Modal_SignUp = ({ account, setExistAccount }) => {
             <FormControl mt={4}>
               <FormLabel>✨ 전화번호</FormLabel>
               <Input
+                type="number"
                 focusBorderColor="#00ff8c"
                 placeholder="문자'-'를 제외하고 전화번호를 입력해주세요 "
                 value={num}
