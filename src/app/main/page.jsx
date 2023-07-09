@@ -1,16 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { Flex, Box, Grid, GridItem } from "@chakra-ui/react";
+import { Flex, Box, Grid, GridItem, Image, Button } from "@chakra-ui/react";
 import Header from "@/components/Header";
 import SlideBox from "@/components/SlideBox";
 import { useEffect, useContext } from "react";
 import { AppContext } from "../layout";
 import Spline from "@splinetool/react-spline";
 import { Text } from "@nextui-org/react";
-import FButton from "@/components/FButton";
 
 import GiftPreImg from "@/components/GiftPreImg";
+import ProfileCard from "@/components/ProfileCard";
+import ProfileCardD from "@/components/ProfileCardD";
+import MainGrid from "@/components/MainGrid";
+import MainSlide from "@/components/MainSlide";
 
 const Main = () => {
     const { account, setAccount } = useContext(AppContext);
@@ -19,7 +22,7 @@ const Main = () => {
     }, [account]);
     return (
         <Flex
-            // bgColor={"black"}
+            // bg={"black"}
             minH="100vh"
             justifyContent="center"
             alignItems="center"
@@ -32,7 +35,7 @@ const Main = () => {
                             style={{ position: "fixed" }}
                             account={account}
                             setAccount={setAccount}
-                            // bgColor={"black"}
+                            // bg={"black"}
                             showButtons={true}
                         />
                     </Link>
@@ -51,64 +54,33 @@ const Main = () => {
                         scene="https://prod.spline.design/pWHUeuuxFRItopmZ/scene.splinecode"
                     />
                 </Flex>
+                {/* main글씨 시작 */}
+                <MainSlide />
 
+                {/* 여기는 그리드 설명+ 지갑설명+ 프로필부분 */}
                 <Box
-                    maxW="8xl"
-                    // bgColor="red.100"
+                    maxW="6xl"
+                    minH="100vh"
                     position="relative"
                     zIndex={999}
                     alignItems="center"
                     justifyContent="center"
-                    mt="20px"
+                    mt="100px"
                     mx="auto"
                 >
-                    <Text
-                        h1
-                        size={150}
-                        color="#E6FAFE"
-                        weight="700"
-                        class="tracking-in-contract"
-                    >
-                        H A P P Y
-                    </Text>
-                    <div className="max-width-wrapper">
-                        <div className="text-container">
-                            <Text h1 size={150} color="#E6FAFE" weight="700">
-                                ㅤ C E L E B D A Y
-                            </Text>
-                        </div>
-                    </div>
-                </Box>
+                    <MainGrid />
 
-                <Box
-                    maxW="8xl"
-                    bgColor="red.100"
-                    position="relative"
-                    zIndex={999}
-                    alignItems="center"
-                    justifyContent="center"
-                    mt="20px"
-                    mx="auto"
-                >
-                    안녕 오랜만이야 ~ 여기다 뭘 많이 할거 같기는 해
-                    <Box>
-                        그리드 ㄱㄱ일단 일단 써야할 내용 적어넣기 01. NFT
-                        사용하기 02. 여러명이 돈을모아 등등
-                        <Grid
-                            mx="50px"
-                            templateColumns="repeat(2, 1fr)"
-                            gap={4}
-                        >
-                            <GridItem bg="red.200">적은 수수료</GridItem>
-                            <GridItem bg="blue.200"></GridItem>
-                            <GridItem bg="green.200">Item 3</GridItem>
-                            <GridItem bg="yellow.200">Item 4</GridItem>
-                        </Grid>
+                    {/* ///여기서부터 상세 설명 파트 /// */}
+                    <Box mt="100px">
+                        <Text h1 size={80} color="#E6FAFE" weight="700">
+                            About
+                        </Text>
+                        <Box>결제방법 ?</Box>
                     </Box>
-                    <FButton />
-                </Box>
 
-                {/* 포토 카드 + 설명 등등 ~> 아무래도 서비스에 관련된 설명을 넣는게 좋지 않을까?*/}
+                    {/* ///여기서부터 프로필 파트 /// */}
+                    <ProfileCardD />
+                </Box>
             </Box>
             {/* <GiftPreImg /> */}
             {/* <ProfileImg /> */}

@@ -1,75 +1,39 @@
 "use client";
 
-import { Flex, Box, Button } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
-import Spline from "@splinetool/react-spline";
+import { Box } from "@chakra-ui/react";
 
-const SlideBox = () => {
+import { Text } from "@nextui-org/react";
+
+const MainSlide = () => {
     return (
-        <>
-            <Flex flexWrap="wrap">
-                <Spline
-                    style={{
-                        position: "fixed",
-                    }}
-                    scene="https://prod.spline.design/sl1oSdrbF4r2puz6/scene.splinecode"
-                />
-            </Flex>
-        </>
-    );
-
-    /* 슬라이드로 할 경우에 사용 예정
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = [
-    <Spline
-      height="80%"
-      scene="https://prod.spline.design/pWHUeuuxFRItopmZ/scene.splinecode"
-    />,
-    <Spline scene="https://prod.spline.design/pgiBn25262FxGaBV/scene.splinecode" />,
-    'Slide 3',
-    'Slide 4',
-    'Slide 5',
-  ];
-
-  const nextSlide = () => {
-    setCurrentSlide(prevSlide =>
-      prevSlide === slides.length - 1 ? 0 : prevSlide + 1
-    );
-  };
-
-  //////버튼 부분
-  const prevSlide = () => {
-    setCurrentSlide(prevSlide =>
-      prevSlide === 0 ? slides.length - 1 : prevSlide - 1
-    );
-  };
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 3000); // Change the interval duration (in milliseconds) to adjust the slide transition speed
-
-    //////시간초
-    return () => clearInterval(interval); // Clean up the interval when the component is unmounted
-  }, []);
-  //
-  return (
-    <ChakraProvider>
-      <Flex bgColor="orange.100">
-        <Button onClick={prevSlide}>Previous</Button>
-        <Box className="slide" w="100%">
-          {slides[currentSlide]}
-        </Box>
-        <Button
-          style={{
-            zIndex: 1,
-          }}
-          nClick={nextSlide}
+        <Box
+            maxW="6xl"
+            // bg="red.100"
+            position="relative"
+            zIndex={999}
+            alignItems="center"
+            justifyContent="center"
+            mt="50px"
+            mx="auto"
+            size={150}
         >
-          Next
-        </Button>
-      </Flex>
-    </ChakraProvider>
-  );*/
+            <Text
+                h1
+                size={150}
+                color="#E6FAFE"
+                weight="700"
+                className="tracking-in-contract"
+            >
+                H A P P Y
+            </Text>
+            <div className="max-width-wrapper">
+                <div className="text-container">
+                    <Text h1 size={150} color="#E6FAFE" weight="700">
+                        ㅤ C E L E B D A Y
+                    </Text>
+                </div>
+            </div>
+        </Box>
+    );
 };
-
-export default SlideBox;
+export default MainSlide;

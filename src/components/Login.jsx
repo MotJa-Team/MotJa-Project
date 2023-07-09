@@ -60,7 +60,7 @@ const Login = ({ account, setAccount }) => {
             //     }
             firestore
                 .collection(account)
-                .doc("sign-up")
+                .doc("0")
                 .get()
                 .then((collection) => {
                     if (collection.exists) {
@@ -131,7 +131,7 @@ const Login = ({ account, setAccount }) => {
         } else {
             firestore
                 .collection(account)
-                .doc("sign-up")
+                .doc("0")
                 .set({
                     name: name,
                     birth: birth,
