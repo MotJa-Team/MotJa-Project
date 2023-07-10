@@ -15,51 +15,51 @@ const inter = Inter({ subsets: ["latin"] });
 export const AppContext = createContext();
 
 export default function RootLayout({ children }) {
-  const [account, setAccount] = useState("");
-  const [tBalance, setTBalance] = useState(0);
-  const [user, setUser] = useState();
-  const [presents, setPresents] = useState([]);
+    const [account, setAccount] = useState("");
+    const [tBalance, setTBalance] = useState(0);
+    const [user, setUser] = useState();
+    const [presents, setPresents] = useState([]);
 
-  const pathname = usePathname();
+    const pathname = usePathname();
 
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Providers>
-          <AppContext.Provider
-            value={{
-              account,
-              setAccount,
-              tBalance,
-              setTBalance,
-              pathname,
-              user,
-              setUser,
-              presents,
-              setPresents,
-            }}
-          >
-            {/* {pathname !== "/" && (
-              <Flex flexWrap="wrap">
-                <Spline
-                  zIndex={0}
-                  style={{
-                    position: "absolute",
-                    top: 0, // Change this line
-                    left: 0, // Change this line
-                    right: 0, // Change this line
-                    bottom: 0, // Change this line
-                  }}
-                  scene="https://prod.spline.design/pWHUeuuxFRItopmZ/scene.splinecode"
-                />
-              </Flex>
-            )} */}
-            {pathname !== "/" && <Header />}
-            {children}
-            {pathname !== "/" && <Footer />}
-          </AppContext.Provider>
-        </Providers>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body className={inter.className}>
+                <Providers>
+                    <AppContext.Provider
+                        value={{
+                            account,
+                            setAccount,
+                            tBalance,
+                            setTBalance,
+                            pathname,
+                            user,
+                            setUser,
+                            presents,
+                            setPresents,
+                        }}
+                    >
+                        {pathname !== "/" && (
+                            <Flex flexWrap="wrap">
+                                <Spline
+                                    zIndex={0}
+                                    style={{
+                                        position: "absolute",
+                                        top: 0, // Change this line
+                                        left: 0, // Change this line
+                                        right: 0, // Change this line
+                                        bottom: 0, // Change this line
+                                    }}
+                                    scene="https://prod.spline.design/pWHUeuuxFRItopmZ/scene.splinecode"
+                                />
+                            </Flex>
+                        )}
+                        {pathname !== "/" && <Header />}
+                        {children}
+                        {pathname !== "/" && <Footer />}
+                    </AppContext.Provider>
+                </Providers>
+            </body>
+        </html>
+    );
 }
