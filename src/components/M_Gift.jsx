@@ -20,7 +20,7 @@ import { firestore } from "../app/firebase";
 
 import { useDisclosure, Button, Text } from "@chakra-ui/react";
 import { useState } from "react";
-
+import { BsGiftFill } from "react-icons/bs";
 const M_Gift = () => {
     const OverlayOne = () => (
         <ModalOverlay
@@ -35,19 +35,16 @@ const M_Gift = () => {
 
     return (
         <ChakraProvider>
-            <Button
-                mr="10"
-                mt="5"
-                color="black"
-                bg="#00DDFF"
-                borderRadius="none"
-                onClick={() => {
-                    setOverlay(<OverlayOne />);
-                    onOpen();
-                }}
-            >
-                선물하기
-            </Button>
+            <button class="send-button">
+                <div class="svg-wrapper-1">
+                    <div class="svg-wrapper">
+                        <div class="svg">
+                            <BsGiftFill />
+                        </div>
+                    </div>
+                </div>
+                <span>선물하기</span>
+            </button>
             <Modal isCentered isOpen={isOpen} onClose={onClose}>
                 {overlay}
                 <ModalContent>
@@ -81,9 +78,7 @@ const M_Gift = () => {
                     </ModalBody>
                     <ModalFooter mb="5">
                         <Button onClick={onClose}>닫기</Button>
-                        <Button ml="5" colorScheme="blue">
-                            선물하기
-                        </Button>
+                        <Button ml="5">선물하기</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

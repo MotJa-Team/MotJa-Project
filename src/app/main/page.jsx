@@ -1,16 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { Flex, Box, Grid, GridItem, Image, Button } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 import Header from "@/components/Header";
-import SlideBox from "@/components/SlideBox";
 import { useEffect, useContext } from "react";
 import { AppContext } from "../layout";
 import Spline from "@splinetool/react-spline";
 import { Text } from "@nextui-org/react";
 
-import GiftPreImg from "@/components/GiftPreImg";
-import ProfileCard from "@/components/ProfileCard";
 import ProfileCardD from "@/components/ProfileCardD";
 import MainGrid from "@/components/MainGrid";
 import MainSlide from "@/components/MainSlide";
@@ -70,7 +67,6 @@ const Main = () => {
                 >
                     <MainGrid />
 
-                    {/* ///여기서부터 상세 설명 파트 /// */}
                     <Box mt="100px">
                         <Text h1 size={80} color="#E6FAFE" weight="700">
                             About
@@ -78,12 +74,9 @@ const Main = () => {
                         <Box>결제방법 ?</Box>
                     </Box>
 
-                    {/* ///여기서부터 프로필 파트 /// */}
                     <ProfileCardD />
                 </Box>
             </Box>
-            {/* <GiftPreImg /> */}
-            {/* <ProfileImg /> */}
         </Flex>
     );
 };

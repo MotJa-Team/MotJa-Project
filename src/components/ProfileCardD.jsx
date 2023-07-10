@@ -19,7 +19,7 @@ const ProfileCardD = () => {
                         </Link>
                     }
                     icon2={
-                        <Link href="https://www.instagram.com/etoile_brillante_jy/">
+                        <Link href="https://www.instagram.com/buuum95/">
                             <BsInstagram />
                         </Link>
                     }
@@ -28,12 +28,12 @@ const ProfileCardD = () => {
                     name="OLLOK"
                     discription="잠깐 이면 돼 잠깐이면"
                     icon={
-                        <Link href="https://github.com/Choi-jujuyeon">
+                        <Link href="https://github.com/lhjbg0821">
                             <BsGithub />
                         </Link>
                     }
                     icon2={
-                        <Link href="https://www.instagram.com/etoile_brillante_jy/">
+                        <Link href="https://www.instagram.com/ollok_99/">
                             <BsInstagram />
                         </Link>
                     }
