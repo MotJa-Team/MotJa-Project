@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import "../styles/global.css";
 
 import { AppContext } from "@/app/layout";
 import { Box, ButtonGroup, Flex, Spacer, useToast } from "@chakra-ui/react";
@@ -28,8 +27,8 @@ export default function Header() {
     setPresents,
     presentNum,
     setPresentNum,
-    userAccount,
-    setUserAccount,
+    pageUser,
+    setPageUser,
   } = useContext(AppContext);
 
   const toast = useToast();
@@ -38,11 +37,7 @@ export default function Header() {
   const [totalSupply, setTotalSupply] = useState("");
   const [tempAccount, setTempAccount] = useState("");
 
-  // const pageUser = pathname.substring(6, pathname.legnth);
-
-  // useEffect(() => {
-  //   setUserAccount(pageUser);
-  // }, []);
+  console.log(pageUser);
 
   const onClickMetaMask = async () => {
     try {
@@ -204,18 +199,29 @@ export default function Header() {
                     <span class="blob"></span>
                   </button>
                   {pathname === "/main" && (
-                    <Link href={`/user/${account}`}>
-                      <button class="start-button">
+                    <button class="start-button">
+                      <Link href={`/user/${account}`}>
                         <span class="text">Get Started</span>
                         <span class="blob"></span>
                         <span class="blob"></span>
                         <span class="blob"></span>
                         <span class="blob"></span>
-                      </button>
-                    </Link>
+                      </Link>
+                    </button>
                   )}
                   {pathname === `/user/${account}` && (
                     <Modal_AddGift account={account} />
+                  )}
+                  {pathname === `/user/${pageUser}/present/${1}` && (
+                    <button class="start-button">
+                      <Link href={`/user/${pageUser}`}>
+                        <span class="text">Go Back To List</span>
+                        <span class="blob"></span>
+                        <span class="blob"></span>
+                        <span class="blob"></span>
+                        <span class="blob"></span>
+                      </Link>
+                    </button>
                   )}
                 </>
               ) : (

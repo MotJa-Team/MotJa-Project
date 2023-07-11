@@ -1,5 +1,8 @@
 "use client";
 
+import { MainGrid } from "@/components/MainGrid";
+import { MainSlide } from "@/components/MainSlide";
+import { TeamProfile } from "@/components/TeamProfile";
 import { Flex, Box } from "@chakra-ui/react";
 import { Text } from "@nextui-org/react";
 
@@ -7,47 +10,29 @@ const Main = () => {
   return (
     <Flex minH="100vh" justifyContent="center" alignItems="center">
       <Box minH="100vh" w="100%">
-        <Box
-          maxW="8xl"
-          position="relative"
-          zIndex={999}
-          alignItems="center"
-          justifyContent="center"
-          mt="20px"
-          mx="auto"
-        >
-          <div className="max-width-wrapper">
-            <div className="text-container">
-              <Text
-                h1
-                size={150}
-                color="#E6FAFE"
-                weight="700"
-                class="tracking-in-contract"
-              >
-                H A P P Y
-              </Text>
-              <Text h1 size={150} color="#E6FAFE" weight="700">
-                ㅤ C E L E B D A Y
-              </Text>
-            </div>
-          </div>
-        </Box>
+        <MainSlide />
 
+        {/* 여기는 그리드 설명+ 지갑설명+ 프로필부분 */}
         <Box
-          maxW="8xl"
-          bgColor="red.100"
+          maxW="6xl"
+          minH="100vh"
           position="relative"
           zIndex={999}
           alignItems="center"
           justifyContent="center"
-          mt="20px"
+          mt="100px"
           mx="auto"
         >
-          <div>
-            <h1>Title</h1>
-            <div>Description</div>
-          </div>
+          <MainGrid />
+
+          <Box mt="100px">
+            <Text h1 size={80} color="#E6FAFE" weight="700">
+              About
+            </Text>
+            <Box>결제방법 ?</Box>
+          </Box>
+
+          <TeamProfile />
         </Box>
       </Box>
     </Flex>

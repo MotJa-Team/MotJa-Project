@@ -1,16 +1,11 @@
 "use client";
 
-import {
-  ChakraProvider,
-  Flex,
-  Box,
-  Button,
-  Heading,
-  Text,
-} from "@chakra-ui/react";
-import "../styles/global.css";
+import { ChakraProvider, Flex, Box, Button } from "@chakra-ui/react";
+import { Text } from "@nextui-org/react";
+import { MdDownload } from "react-icons/md";
+import { GrEdit } from "react-icons/gr";
 
-export const Intro = ({ pathname, user, pageUser }) => {
+export const Intro = ({ pathname, user, pageUser, account }) => {
   const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
 
   const onClickLink = () => {
@@ -19,7 +14,13 @@ export const Intro = ({ pathname, user, pageUser }) => {
 
   return (
     <ChakraProvider>
-      <Box class="my-box" zIndex={999}>
+      <Box
+        zIndex={999}
+        borderRadius="25px"
+        bg="rgba(194, 207, 255, 0.5)"
+        boxShadow="5px 5px 10px #bdcdd0,
+                                -5px -5px 10px #ffffff"
+      >
         <Flex direction="column" mx="auto" m="40px">
           <Flex gap={10}>
             <Box pos="relative" width="300px" height="300px">
@@ -27,64 +28,46 @@ export const Intro = ({ pathname, user, pageUser }) => {
                 pos="absolute"
                 width="300px"
                 height="300px"
-                borderRadius="50%"
-                background="#e0e0e0"
-                boxShadow="12px 12px 27px #acacac, -12px -12px 27px #ffffff"
-              ></Box>
-              {/* <Box
-                                top={0}
-                                bgColor="purple.500"
-                                width="300px"
-                                height="300px"
-                                borderRadius="full"
-                            ></Box> */}
+                borderRadius="25px"
+                background="#e6fafe"
+                boxShadow="5px 5px 10px #bdcdd0,
+                                -5px -5px 10px #ffffff"
+              >
+                {" "}
+                프로필 넣는 부분{" "}
+              </Box>
             </Box>
 
-            <Box
-              borderRadius="sm"
-              ml="10"
-              flex="1"
-              background="#38383d"
-              boxShadow="md"
-              _hover={{ background: "#42414d" }}
-            >
+            <Box flex="1">
+              <Text h1 size={30} color="white" weight="700">
+                Account : {pageUser}
+              </Text>
+              <Text h1 size={20} color="white" weight="700">
+                🎉 Welcome 🎉
+              </Text>
+
               <Box p={5}>
-                <Heading
-                  pb={2}
-                  color="#00DDFF"
-                  fontSize="2xl"
-                  fontWeight="bold"
-                >
-                  이름
-                </Heading>
-                <Text mt="5" fontSize={["lg"]}>
-                  {pageUser}
-                </Text>
                 <Flex mt="5" color="#00DDFF" fontSize="xl" fontWeight="bold">
                   <Box>등록한 총 선물</Box>
                   <Box>펀딩 완료된 선물 수</Box>
                   <Box>진행중</Box>
                 </Flex>
 
-                <Flex justifyContent="flex-end" alignItems="flex-end">
-                  <Button
-                    mt="30"
-                    color="black"
-                    bg="#00DDFF"
-                    borderRadius="none"
-                    mr="10"
-                  >
-                    프로필 편집
+                <Flex justifyContent="flex-end" alignItems="flex-end" gap={4}>
+                  <Text h1 size={20} color="white" weight="700" pr={10}>
+                    Edit Profile
+                  </Text>
+                  <Button class="Btn" onClick={onClickLink}>
+                    <GrEdit class="svgIcon" background="white" />
+                    <span class="icon2"></span>
                   </Button>
-                  <Button
-                    onClick={onClickLink}
-                    mr="10"
-                    mt="5"
-                    color="black"
-                    bg="#00DDFF"
-                    borderRadius="none"
-                  >
-                    프로필 공유하기{" "}
+
+                  <Text h1 size={20} color="white" weight="700" pr={10}>
+                    Share Link
+                  </Text>
+                  <Button class="Btn" onClick={onClickLink}>
+                    <MdDownload class="svgIcon" />
+                    <span class="icon2"></span>
                   </Button>
                 </Flex>
               </Box>

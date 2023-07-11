@@ -21,6 +21,7 @@ export default function RootLayout({ children }) {
   const [presents, setPresents] = useState([]);
   const [pageUser, setPageUser] = useState("");
   const [presentNum, setPresentNum] = useState(0);
+  const [chargeRatio, setChargeRatio] = useState(0);
 
   const pathname = usePathname();
 
@@ -47,6 +48,8 @@ export default function RootLayout({ children }) {
               setPresentNum,
               pageUser,
               setPageUser,
+              chargeRatio,
+              setChargeRatio,
             }}
           >
             {/* {pathname !== "/" && (

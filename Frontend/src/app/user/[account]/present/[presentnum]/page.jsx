@@ -19,6 +19,8 @@ const Present = () => {
     setPresentNum,
     pageUser,
     setPageUser,
+    chargeRatio,
+    setChargeRatio,
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -31,6 +33,10 @@ const Present = () => {
         pathname={pathname}
         account={account}
         pageUser={pageUser}
+        presentNum={presentNum}
+        setPresentNum={setPresentNum}
+        chargeRatio={chargeRatio}
+        setChargeRatio={chargeRatio}
       />
     </>
   );

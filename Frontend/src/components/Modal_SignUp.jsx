@@ -18,7 +18,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import Spline from "@splinetool/react-spline";
-import "../styles/global.css";
 
 import { useState } from "react";
 import { firestore } from "@/app/firebase";

@@ -3,7 +3,12 @@
 import Link from "next/link";
 import { Card, Col, Row, Button, Text } from "@nextui-org/react";
 
-export const PresentCard = ({ presentNum, setPresentNum, account }) => {
+export const PresentCard = ({
+  presentNum,
+  setPresentNum,
+  pageUser,
+  chargeRatio,
+}) => {
   return (
     <Card css={{ w: "100%", h: "400px" }}>
       <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
@@ -38,7 +43,7 @@ export const PresentCard = ({ presentNum, setPresentNum, account }) => {
         <Row>
           <Col>
             <Text color="#000" size={12}>
-              {/* Price - {presents[1].giftPrice} */}
+              {chargeRatio} %
             </Text>
           </Col>
           <Col>
@@ -50,7 +55,7 @@ export const PresentCard = ({ presentNum, setPresentNum, account }) => {
                 color="secondary"
                 onClick={() => setPresentNum(1)}
               >
-                <Link href={`/user/${account}/present/${presentNum}`}>
+                <Link href={`/user/${pageUser}/present/${presentNum}`}>
                   <Text
                     css={{ color: "inherit" }}
                     size={12}
