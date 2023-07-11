@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 
 import { firestore } from "../app/firebase";
-import { collection, getDocs, doc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { Modal_SignUp } from "./Modal_SignUp";
 import { Modal_Charge } from "./Modal_Charge";
 import { Modal_AddGift } from "./Modal_AddGift";
@@ -34,10 +34,8 @@ export default function Header() {
   const toast = useToast();
   const [isInstalled, setIsInstalled] = useState(false);
   const [existAccount, setExistAccount] = useState(false);
-  const [totalSupply, setTotalSupply] = useState("");
+  const [presentAmount, setPresentAmount] = useState(0);
   const [tempAccount, setTempAccount] = useState("");
-
-  console.log(pageUser);
 
   const onClickMetaMask = async () => {
     try {
@@ -99,18 +97,21 @@ export default function Header() {
   }, [account]);
 
   const getUsers = async () => {
-    if (account !== pageUser) {
+    if (pageUser !== "") {
       setTempAccount(pageUser);
     } else {
       setTempAccount(account);
     }
+    console.log(tempAccount);
 
     try {
-      const response = await NFT_CONTRACT.methods.totalSupply().call();
+      const response = await NFT_CONTRACT.methods
+        .presentCount(tempAccount)
+        .call();
 
-      setTotalSupply(response);
+      console.log(response);
 
-      console.log(totalSupply);
+      setPresentAmount(response);
 
       const usersCollectionRef = collection(firestore, tempAccount);
       const data = await getDocs(usersCollectionRef);
@@ -126,7 +127,7 @@ export default function Header() {
         num: tempUser[0].num,
       });
 
-      for (let i = 0; i < totalSupply; i++) {
+      for (let i = 0; i < presentAmount; i++) {
         presents[i] = [
           {
             giftNum: tempUser[i + 1].giftNum,
@@ -146,7 +147,7 @@ export default function Header() {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [pageUser]);
 
   return (
     <>

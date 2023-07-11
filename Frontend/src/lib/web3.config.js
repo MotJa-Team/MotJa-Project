@@ -5,9 +5,9 @@ import NFT_CONTRACT_ABI from "@/lib/abi_nft.json";
 export const web3 = new Web3(window.ethereum);
 
 export const TOKEN_CONTRACT_ADDRESS =
-  "0x52Ddd0b802846D0a7E9bCEBcf4822F6B7616386a";
+  "0xAd457d03c0BE45C7AE6f9564Eab79b3F12d46cFd";
 export const NFT_CONTRACT_ADDRESS =
-  "0xCb876aE83E146590dF8f3eDAE1997B40aB223977";
+  "0xA7F6e5cDd5B9f63424c27F6C269eBF7aa59dEf67";
 
 export const TOKEN_CONTRACT = new web3.eth.Contract(
   TOKEN_CONTRACT_ABI,

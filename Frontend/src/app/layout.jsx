@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
               setChargeRatio,
             }}
           >
-            {/* {pathname !== "/" && (
+            {pathname !== "/" && (
               <Flex flexWrap="wrap">
                 <Spline
                   zIndex={0}
@@ -66,7 +66,7 @@ export default function RootLayout({ children }) {
                   scene="https://prod.spline.design/pWHUeuuxFRItopmZ/scene.splinecode"
                 />
               </Flex>
-            )} */}
+            )}
             {pathname !== "/" && <Header />}
             {children}
             {pathname !== "/" && <Footer />}
