@@ -1,8 +1,17 @@
-import Web3 from "web3";
+import { MetaMaskSDK } from "@metamask/sdk";
 import TOKEN_CONTRACT_ABI from "@/lib/abi_token.json";
 import NFT_CONTRACT_ABI from "@/lib/abi_nft.json";
 
-export const web3 = new Web3(window.ethereum);
+const MMSDK = new MetaMaskSDK({
+  dappMetadata: {
+    name: "h662",
+    url: "https://h662.com",
+  },
+});
+
+export const ethereum = MMSDK.getProvider();
+
+export const web3 = new Web3(ethereum);
 
 export const TOKEN_CONTRACT_ADDRESS =
   "0xAd457d03c0BE45C7AE6f9564Eab79b3F12d46cFd";
