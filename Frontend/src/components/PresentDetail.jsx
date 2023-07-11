@@ -1,25 +1,26 @@
 "use client";
 
 import { ChakraProvider, Flex, Box, Image } from "@chakra-ui/react";
-import { Progress, Grid } from "@nextui-org/react";
 import { Text } from "@nextui-org/react";
 import { TbSend } from "react-icons/tb";
 import { BsGiftFill } from "react-icons/bs";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NFT_CONTRACT } from "@/lib/web3.config";
+import { SlideBox } from "./SlideBox";
 
 export const PresentDetail = ({
   pathname,
   account,
   pageUser,
-  presentNum,
-  setPresentNum,
+  user,
+  presents,
   chargeRatio,
   setChargeRatio,
 }) => {
-  const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
+  const [presentNum, setPresentNum] = useState(0);
+  const [presentInfo, setPresentInfo] = useState();
 
-  console.log(presentNum);
+  const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
 
   const onClickLink = () => {
     console.log(currentURL);
@@ -27,9 +28,13 @@ export const PresentDetail = ({
 
   const getChargeRatio = async () => {
     try {
+      console.log(pageUser);
+      console.log(presentInfo.giftNum);
       const response = await NFT_CONTRACT.methods
-        .getChargeRatio(pageUser, presentNum)
+        .getChargeRatio(pageUser, presentInfo.giftNum)
         .call();
+
+      console.log(response);
 
       setChargeRatio(Number(response));
     } catch (error) {
@@ -38,9 +43,15 @@ export const PresentDetail = ({
   };
 
   useEffect(() => {
-    setPresentNum(pathname.substring(57, pathname.legnth));
+    setPresentNum(Number(pathname.substring(57, pathname.legnth)));
+    setPresentInfo(presents[presentNum - 1]);
+  }, [presents]);
+
+  useEffect(() => {
     getChargeRatio();
-  }, [presentNum]);
+  }, [presentInfo]);
+
+  console.log(presents);
 
   return (
     <ChakraProvider>
@@ -78,19 +89,22 @@ export const PresentDetail = ({
               <Box flex="1">
                 <Box mb={20}>
                   <Text h1 size={50} color="white" weight="700">
-                    GiftName
-                  </Text>
-                  <Text h1 size={30} color="white" weight="700">
-                    ㅤ: 하겐다즈 아이스크림바
+                    No. {presentInfo?.giftNum}
                   </Text>
                   <Text h1 size={50} color="white" weight="700">
-                    GiftPrice
+                    상품명
                   </Text>
                   <Text h1 size={30} color="white" weight="700">
-                    ㅤ: 3000원
+                    ㅤ: {presentInfo?.giftName}
+                  </Text>
+                  <Text h1 size={50} color="white" weight="700">
+                    가격
+                  </Text>
+                  <Text h1 size={30} color="white" weight="700">
+                    ㅤ: {presentInfo?.giftPrice}
                   </Text>
                   <Text h1 size={20} color="white" weight="700">
-                    ㅤby ADDR :
+                    ㅤ{pageUser}
                   </Text>{" "}
                 </Box>
 
@@ -142,16 +156,7 @@ export const PresentDetail = ({
             <Text h1 size={30} color="white" weight="700">
               Charged amount status
             </Text>
-            <Grid.Container xs={20} sm={12} gap={2}>
-              <Grid>
-                <Progress color="gradient" size="xl" value={chargeRatio} />
-              </Grid>
-            </Grid.Container>
-            <Flex justifyContent="flex-end" alignItems="flex-end" gap={10}>
-              <button class="button-mint" mt="50" mr="10">
-                {chargeRatio} %
-              </button>
-            </Flex>
+            <SlideBox chargeRatio={chargeRatio} />
           </Box>
         </Box>
       </Flex>

@@ -2,28 +2,32 @@
 
 import Link from "next/link";
 import { Card, Col, Row, Button, Text } from "@nextui-org/react";
+import { useEffect } from "react";
+import { NFT_CONTRACT } from "@/lib/web3.config";
 
 export const PresentCard = ({
-  presentNum,
-  setPresentNum,
+  account,
   pageUser,
-  chargeRatio,
+  giftNum,
+  giftName,
+  giftPrice,
+  giftUrl,
 }) => {
   return (
     <Card css={{ w: "100%", h: "400px" }}>
       <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
         <Col>
           <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA">
-            New
+            No. {giftNum}
           </Text>
           <Text h3 color="black">
-            {/* Gift - {presents[1].giftName} */}
+            {giftName}
           </Text>
         </Col>
       </Card.Header>
       <Card.Body css={{ p: 0 }}>
         <Card.Image
-          src="https://nextui.org/images/card-example-6.jpeg"
+          src="/images/nft.png"
           width="100%"
           height="100%"
           objectFit="cover"
@@ -42,20 +46,14 @@ export const PresentCard = ({
       >
         <Row>
           <Col>
-            <Text color="#000" size={12}>
-              {chargeRatio} %
+            <Text color="#000" size={25}>
+              Price : {giftPrice} CT
             </Text>
           </Col>
           <Col>
             <Row justify="flex-end">
-              <Button
-                flat
-                auto
-                rounded
-                color="secondary"
-                onClick={() => setPresentNum(1)}
-              >
-                <Link href={`/user/${pageUser}/present/${presentNum}`}>
+              <Button flat auto rounded color="secondary">
+                <Link href={`/user/${pageUser}/present/${giftNum}`}>
                   <Text
                     css={{ color: "inherit" }}
                     size={12}

@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import "./globals.css";
 import { Providers } from "./providers";
-import { Inter, Prociono } from "next/font/google";
+import { Inter } from "next/font/google";
 import { useState, createContext, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -17,11 +17,10 @@ export const AppContext = createContext();
 export default function RootLayout({ children }) {
   const [account, setAccount] = useState("");
   const [tBalance, setTBalance] = useState(0);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState([]);
   const [presents, setPresents] = useState([]);
   const [pageUser, setPageUser] = useState("");
-  const [presentNum, setPresentNum] = useState(0);
-  const [chargeRatio, setChargeRatio] = useState(0);
+  const [chargeRatio, setChargeRatio] = useState([]);
 
   const pathname = usePathname();
 
@@ -44,8 +43,6 @@ export default function RootLayout({ children }) {
               setUser,
               presents,
               setPresents,
-              presentNum,
-              setPresentNum,
               pageUser,
               setPageUser,
               chargeRatio,

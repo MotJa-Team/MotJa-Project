@@ -1,7 +1,7 @@
 // 모달 - 상품 등록
 "use client";
 
-import { firestore } from "@/app/firebase";
+import { firestore } from "@/firebase";
 import { NFT_CONTRACT } from "@/lib/web3.config";
 import {
   Modal,

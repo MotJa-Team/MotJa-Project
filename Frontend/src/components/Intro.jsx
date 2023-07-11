@@ -3,7 +3,7 @@
 import { ChakraProvider, Flex, Box, Button } from "@chakra-ui/react";
 import { Text } from "@nextui-org/react";
 import { MdDownload } from "react-icons/md";
-import { GrEdit } from "react-icons/gr";
+import { CgProfile } from "react-icons/cg";
 
 export const Intro = ({ pathname, user, pageUser, account }) => {
   const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
@@ -11,6 +11,8 @@ export const Intro = ({ pathname, user, pageUser, account }) => {
   const onClickLink = () => {
     console.log(currentURL);
   };
+
+  console.log(user);
 
   return (
     <ChakraProvider>
@@ -39,36 +41,47 @@ export const Intro = ({ pathname, user, pageUser, account }) => {
             </Box>
 
             <Box flex="1">
-              <Text h1 size={30} color="white" weight="700">
-                Account : {pageUser}
-              </Text>
               <Text h1 size={20} color="white" weight="700">
-                🎉 Welcome 🎉
+                Welcome 🎉
+              </Text>
+              <Text h1 size={30} color="white" weight="700">
+                {user[0]?.name}
+              </Text>
+              <Text h1 size={30} color="white" weight="700">
+                {pageUser}
               </Text>
 
               <Box p={5}>
-                <Flex mt="5" color="#00DDFF" fontSize="xl" fontWeight="bold">
+                {/* <Flex mt="5" color="#00DDFF" fontSize="xl" fontWeight="bold">
                   <Box>등록한 총 선물</Box>
                   <Box>펀딩 완료된 선물 수</Box>
                   <Box>진행중</Box>
-                </Flex>
+                </Flex> */}
 
                 <Flex justifyContent="flex-end" alignItems="flex-end" gap={4}>
-                  <Text h1 size={20} color="white" weight="700" pr={10}>
-                    Edit Profile
-                  </Text>
-                  <Button class="Btn" onClick={onClickLink}>
-                    <GrEdit class="svgIcon" background="white" />
-                    <span class="icon2"></span>
-                  </Button>
+                  {pageUser === account && (
+                    <button class="send-button">
+                      <div class="svg-wrapper-1">
+                        <div class="svg-wrapper">
+                          <div class="svg">
+                            <CgProfile />
+                          </div>
+                        </div>
+                      </div>
+                      <span>Edit Profile</span>
+                    </button>
+                  )}
 
-                  <Text h1 size={20} color="white" weight="700" pr={10}>
-                    Share Link
-                  </Text>
-                  <Button class="Btn" onClick={onClickLink}>
-                    <MdDownload class="svgIcon" />
-                    <span class="icon2"></span>
-                  </Button>
+                  <button onClick={onClickLink} class="send-button">
+                    <div class="svg-wrapper-1">
+                      <div class="svg-wrapper">
+                        <div class="svg">
+                          <MdDownload />
+                        </div>
+                      </div>
+                    </div>
+                    <span>Share Link</span>
+                  </button>
                 </Flex>
               </Box>
             </Box>

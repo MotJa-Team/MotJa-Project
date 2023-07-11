@@ -7,7 +7,7 @@ import { Box, ButtonGroup, Flex, Spacer, useToast } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 
-import { firestore } from "../app/firebase";
+import { firestore } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Modal_SignUp } from "./Modal_SignUp";
 import { Modal_Charge } from "./Modal_Charge";
@@ -96,57 +96,103 @@ export default function Header() {
     }
   }, [account]);
 
-  const getUsers = async () => {
-    if (pageUser !== "") {
-      setTempAccount(pageUser);
-    } else {
-      setTempAccount(account);
-    }
-    console.log(tempAccount);
+  // const getUsers = async () => {
+  //   if (pageUser !== "") {
+  //     setTempAccount(pageUser);
+  //   } else {
+  //     setTempAccount(account);
+  //   }
+  //   console.log(tempAccount);
 
-    try {
-      const response = await NFT_CONTRACT.methods
-        .presentCount(tempAccount)
-        .call();
+  //   try {
+  //     const response = await NFT_CONTRACT.methods
+  //       .presentCount(tempAccount)
+  //       .call();
 
-      console.log(response);
+  //     console.log(response);
 
-      setPresentAmount(response);
+  //     setPresentAmount(response);
 
-      const usersCollectionRef = collection(firestore, tempAccount);
-      const data = await getDocs(usersCollectionRef);
-      const tempUser = data.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      console.log(tempUser);
+  //     const usersCollectionRef = collection(firestore, tempAccount);
+  //     const data = await getDocs(usersCollectionRef);
+  //     const tempUser = data.docs.map((doc) => ({
+  //       ...doc.data(),
+  //       id: doc.id,
+  //     }));
+  //     console.log(tempUser);
 
-      setUser({
-        name: tempUser[0].name,
-        birth: tempUser[0].birth,
-        num: tempUser[0].num,
-      });
+  //     setUser({
+  //       name: tempUser[0].name,
+  //       birth: tempUser[0].birth,
+  //       num: tempUser[0].num,
+  //     });
 
-      for (let i = 0; i < presentAmount; i++) {
-        presents[i] = [
-          {
-            giftNum: tempUser[i + 1].giftNum,
-            giftName: tempUser[i + 1].giftName,
-            giftPrice: tempUser[i + 1].giftPrice,
-            giftUrl: tempUser[i + 1].giftUrl,
-          },
-        ];
-      }
+  //     for (let i = 0; i < presentAmount; i++) {
+  //       presents[i] = [
+  //         {
+  //           giftNum: tempUser[i + 1].giftNum,
+  //           giftName: tempUser[i + 1].giftName,
+  //           giftPrice: tempUser[i + 1].giftPrice,
+  //           giftUrl: tempUser[i + 1].giftUrl,
+  //         },
+  //       ];
+  //     }
 
-      console.log(user);
-      console.log(presents);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     console.log(user);
+  //     console.log(presents);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getUsers();
+  // }, [pageUser]);
 
   useEffect(() => {
-    getUsers();
+    const getData = async () => {
+      try {
+        const collectionRef = firestore.collection(
+          pageUser //여기에 메타마스크 주소를 받아오면 됨!!
+        );
+
+        // const collectionRef = firestore.collection({ pageUser });
+        const querySnapshot = await collectionRef.get();
+
+        const docsData = querySnapshot.docs
+          .filter((doc) => doc.id !== "0")
+          .map((doc) => {
+            doc.data();
+            const mapGift = doc.data();
+            const { giftNum, giftName, giftPrice, giftUrl } = mapGift;
+
+            return {
+              giftNum,
+              giftName,
+              giftPrice,
+              giftUrl,
+            };
+          });
+
+        const usersData = querySnapshot.docs
+          .filter((doc) => doc.id == 0)
+          .map((doc) => {
+            doc.data();
+            const mapUser = doc.data();
+            const { addr, birth, name, num } = mapUser;
+
+            return { addr, birth, name, num };
+          });
+        setPresents(docsData);
+        setUser(usersData);
+        // setIsLoading(false);
+
+        console.log(usersData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getData();
   }, [pageUser]);
 
   return (

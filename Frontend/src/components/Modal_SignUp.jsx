@@ -20,7 +20,7 @@ import {
 import Spline from "@splinetool/react-spline";
 
 import { useState } from "react";
-import { firestore } from "@/app/firebase";
+import { firestore } from "@/firebase";
 
 export const Modal_SignUp = ({ account, setExistAccount }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();

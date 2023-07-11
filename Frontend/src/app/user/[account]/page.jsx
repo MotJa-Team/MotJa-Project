@@ -2,11 +2,14 @@
 
 import { Flex, Box, Button } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { useContext, useEffect } from "react";
+import { ChevronUpIcon } from "@chakra-ui/icons";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../layout";
 import { Intro } from "@/components/Intro";
 import { PresentCard } from "@/components/PresentCard";
-import { NFT_CONTRACT } from "@/lib/web3.config";
+import { Text } from "@nextui-org/react";
+
+import { firestore } from "@/firebase";
 
 const User = () => {
   const {
@@ -27,28 +30,38 @@ const User = () => {
     setChargeRatio,
   } = useContext(AppContext);
 
-  const getChargeRatio = async () => {
-    try {
-      const response = await NFT_CONTRACT.methods
-        .getChargeRatio(pageUser, presentNum)
-        .call();
+  const [isloading, setIsLoading] = useState(true);
 
-      setChargeRatio(Number(response));
-    } catch (error) {
-      console.error(error);
-    }
+  const [isExpanded, setIsExpanded] = useState(false);
+  const handleToggle = () => {
+    setIsExpanded(!isExpanded);
   };
-
-  useEffect(() => {
-    getChargeRatio();
-  }, [presentNum]);
 
   useEffect(() => {
     setPageUser(pathname.substring(6, pathname.legnth));
   }, []);
 
+  console.log(pageUser);
+
   return (
     <>
+      {/* {isloading ? (
+      <Flex zIndex={1} minH="100vh" justifyContent="center" alignItems="center">
+        <Box zIndex={1}>
+          <div className="wrapper" mx="auto">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+          </div>
+          <Text h1 size={43} color="#E6FAFE" weight="700">
+            Loading User
+          </Text>
+        </Box>
+      </Flex>
+      ) : ( */}
       <Box
         justifyContent="center"
         alignItems="center"
@@ -75,39 +88,75 @@ const User = () => {
 
           <Box flex class="my-box" h="100%">
             <Flex direction="column">
-              <Flex m="40px" gap={10}>
-                <PresentCard
-                  presents={presents}
-                  pageUser={pageUser}
-                  presentNum={presentNum}
-                  setPresentNum={setPresentNum}
-                  chargeRatio={chargeRatio}
-                />
-                <PresentCard
-                  presents={presents}
-                  pageUser={pageUser}
-                  presentNum={presentNum}
-                  setPresentNum={setPresentNum}
-                  chargeRatio={chargeRatio}
-                />
-                <PresentCard
-                  presents={presents}
-                  pageUser={pageUser}
-                  presentNum={presentNum}
-                  setPresentNum={setPresentNum}
-                  chargeRatio={chargeRatio}
-                />
-              </Flex>
-              <Button
-                justifyContent="center"
-                mx="auto"
-                mb="10"
-                leftIcon={<ChevronDownIcon />}
-              ></Button>
+              <Box>
+                {isExpanded ? (
+                  <Box
+                    display="grid"
+                    gridTemplateColumns="repeat(3, 1fr)"
+                    gridGap={4}
+                  >
+                    {presents.length > 0 &&
+                      presents.map((docData) => (
+                        <PresentCard
+                          pageUser={pageUser}
+                          account={account}
+                          chargeRatio={chargeRatio}
+                          setChargeRatio={setChargeRatio}
+                          key={docData.id}
+                          giftName={docData.giftName}
+                          giftNum={docData.giftNum}
+                          giftPrice={docData.giftPrice}
+                          giftUrl={docData.giftUrl}
+                        />
+                      ))}
+                  </Box>
+                ) : (
+                  <Box
+                    display="grid"
+                    gridTemplateColumns="repeat(3, 1fr)"
+                    gridGap={4}
+                  >
+                    {presents.slice(0, 3).map((docData) => (
+                      <PresentCard
+                        pageUser={pageUser}
+                        account={account}
+                        chargeRatio={chargeRatio}
+                        setChargeRatio={setChargeRatio}
+                        key={docData.id}
+                        giftName={docData.giftName}
+                        giftNum={docData.giftNum}
+                        giftPrice={docData.giftPrice}
+                        giftUrl={docData.giftUrl}
+                      />
+                    ))}
+                  </Box>
+                )}
+              </Box>
+              {presents.length > 3 &&
+                (isExpanded ? (
+                  <Button
+                    justifyContent="center"
+                    mx="auto"
+                    mb="10"
+                    mt="10"
+                    leftIcon={<ChevronUpIcon />}
+                    onClick={handleToggle}
+                  ></Button>
+                ) : (
+                  <Button
+                    justifyContent="center"
+                    mx="auto"
+                    mb="10"
+                    mt="10"
+                    leftIcon={<ChevronDownIcon />}
+                    onClick={handleToggle}
+                  ></Button>
+                ))}
             </Flex>
           </Box>
         </Flex>
       </Box>
+      {/* )} */}
     </>
   );
 };

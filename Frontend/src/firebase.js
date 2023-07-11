@@ -1,6 +1,10 @@
-//firebase.js
+// firebase.js;
+
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDIcPO38_zLNWwZRd3NlaEk2_a0Jt-XkmA",
@@ -12,11 +16,10 @@ const firebaseConfig = {
   measurementId: "G-FV2BZX7QM7",
 };
 
-// firebaseConfig 정보로 firebase 시작
 firebase.initializeApp(firebaseConfig);
+// const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
 
-// firebase의 firestore 인스턴스를 변수에 저장
 const firestore = firebase.firestore();
-
-// 필요한 곳에서 사용할 수 있도록 내보내기
+// const db = getFirestore(app);
 export { firestore };

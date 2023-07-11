@@ -33,10 +33,11 @@ const Present = () => {
         pathname={pathname}
         account={account}
         pageUser={pageUser}
-        presentNum={presentNum}
+        user={user}
+        presents={presents}
         setPresentNum={setPresentNum}
         chargeRatio={chargeRatio}
-        setChargeRatio={chargeRatio}
+        setChargeRatio={setChargeRatio}
       />
     </>
   );
