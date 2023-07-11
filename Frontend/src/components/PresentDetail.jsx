@@ -91,7 +91,7 @@ export const PresentDetail = ({
                   boxShadow="5px 5px 10px #bdcdd0,
                                 -5px -5px 10px #ffffff"
                 >
-                  <Image src="/images/nft.png" alt="nft" />
+                  <Image src="/images/unopennft.png" alt="nft" />
                 </Box>
               </Box>
 

@@ -45,7 +45,7 @@ export const PresentCard = ({
       </Card.Header>
       <Card.Body css={{ p: 0 }}>
         <Card.Image
-          src="/images/nft.png"
+          src="/images/unopennft.png"
           width="100%"
           height="100%"
           objectFit="cover"
