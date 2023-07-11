@@ -8,11 +8,19 @@ import { CgProfile } from "react-icons/cg";
 export const Intro = ({ pathname, user, pageUser, account }) => {
   const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
 
-  const onClickLink = () => {
-    console.log(currentURL);
-  };
+  // const onClickLink = () => {
+  //   console.log(currentURL);
+  // };
 
-  console.log(user);
+  const handleCopyClipBoard = async () => {
+    try {
+      console.log(currentURL);
+      await navigator.clipboard.writeText(currentURL);
+      alert("클립보드에 링크가 복사되었어요.");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <ChakraProvider>
@@ -72,7 +80,7 @@ export const Intro = ({ pathname, user, pageUser, account }) => {
                     </button>
                   )}
 
-                  <button onClick={onClickLink} class="send-button">
+                  <button onClick={handleCopyClipBoard} class="send-button">
                     <div class="svg-wrapper-1">
                       <div class="svg-wrapper">
                         <div class="svg">

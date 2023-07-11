@@ -1,57 +1,66 @@
 "use client";
 
-import { ChakraProvider, Flex, Box, Image } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  Flex,
+  Box,
+  Image,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { Text } from "@nextui-org/react";
 import { TbSend } from "react-icons/tb";
 import { BsGiftFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { NFT_CONTRACT } from "@/lib/web3.config";
 import { SlideBox } from "./SlideBox";
+import { Modal_Present } from "./Modal_Present";
 
 export const PresentDetail = ({
   pathname,
   account,
+  tBalance,
+  setTBalance,
   pageUser,
   user,
   presents,
   chargeRatio,
   setChargeRatio,
+  presentNum,
+  setPresentNum,
+  presentInfo,
 }) => {
-  const [presentNum, setPresentNum] = useState(0);
-  const [presentInfo, setPresentInfo] = useState();
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
 
-  const onClickLink = () => {
-    console.log(currentURL);
+  const handleCopyClipBoard = async () => {
+    try {
+      console.log(currentURL);
+      await navigator.clipboard.writeText(currentURL);
+      alert("클립보드에 링크가 복사되었어요.");
+    } catch (err) {
+      console.log(err);
+    }
   };
+
+  console.log(pageUser);
+  console.log(presents);
+  console.log(presentInfo);
 
   const getChargeRatio = async () => {
     try {
-      console.log(pageUser);
-      console.log(presentInfo.giftNum);
       const response = await NFT_CONTRACT.methods
-        .getChargeRatio(pageUser, presentInfo.giftNum)
+        .getChargeRatio(pageUser, presentNum)
         .call();
 
-      console.log(response);
-
-      setChargeRatio(Number(response));
+      setChargeRatio(response);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    setPresentNum(Number(pathname.substring(57, pathname.legnth)));
-    setPresentInfo(presents[presentNum - 1]);
-  }, [presents]);
-
-  useEffect(() => {
     getChargeRatio();
-  }, [presentInfo]);
-
-  console.log(presents);
+  }, [presentNum]);
 
   return (
     <ChakraProvider>
@@ -88,23 +97,23 @@ export const PresentDetail = ({
 
               <Box flex="1">
                 <Box mb={20}>
-                  <Text h1 size={50} color="white" weight="700">
+                  <Text h1 size={40} color="white" weight="700">
                     No. {presentInfo?.giftNum}
                   </Text>
                   <Text h1 size={50} color="white" weight="700">
                     상품명
                   </Text>
                   <Text h1 size={30} color="white" weight="700">
-                    ㅤ: {presentInfo?.giftName}
+                    {presentInfo?.giftName}
                   </Text>
                   <Text h1 size={50} color="white" weight="700">
                     가격
                   </Text>
                   <Text h1 size={30} color="white" weight="700">
-                    ㅤ: {presentInfo?.giftPrice}
+                    {presentInfo?.giftPrice}
                   </Text>
-                  <Text h1 size={20} color="white" weight="700">
-                    ㅤ{pageUser}
+                  <Text h1 size={15} color="white" weight="700">
+                    by {pageUser}
                   </Text>{" "}
                 </Box>
 
@@ -114,7 +123,7 @@ export const PresentDetail = ({
                   gap={4}
                   mb={10}
                 >
-                  <button onClick={onClickLink} class="send-button">
+                  <button onClick={handleCopyClipBoard} class="send-button">
                     <div class="svg-wrapper-1">
                       <div class="svg-wrapper">
                         <div class="svg">
@@ -126,7 +135,21 @@ export const PresentDetail = ({
                   </button>
 
                   {account !== pageUser && (
-                    <button class="send-button">
+                    <button
+                      class="send-button"
+                      onClick={() => {
+                        onOpen();
+                      }}
+                    >
+                      <Modal_Present
+                        pageUser={pageUser}
+                        account={account}
+                        tBalance={tBalance}
+                        setTBalance={setTBalance}
+                        presentNum={presentNum}
+                        isOpen={isOpen}
+                        onClose={onClose}
+                      />
                       <div class="svg-wrapper-1">
                         <div class="svg-wrapper">
                           <div class="svg">

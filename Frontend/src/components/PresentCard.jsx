@@ -2,17 +2,35 @@
 
 import Link from "next/link";
 import { Card, Col, Row, Button, Text } from "@nextui-org/react";
-import { useEffect } from "react";
+import { Box } from "@chakra-ui/react";
 import { NFT_CONTRACT } from "@/lib/web3.config";
-
+import { useEffect } from "react";
 export const PresentCard = ({
   account,
   pageUser,
+  setPresentNum,
   giftNum,
   giftName,
   giftPrice,
   giftUrl,
+  setChargeRatio,
 }) => {
+  const getChargeRatio = async () => {
+    try {
+      const response = await NFT_CONTRACT.methods
+        .getChargeRatio(pageUser, Number(giftNum))
+        .call();
+
+      setChargeRatio(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getChargeRatio();
+  }, [giftNum]);
+
   return (
     <Card css={{ w: "100%", h: "400px" }}>
       <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
@@ -52,7 +70,13 @@ export const PresentCard = ({
           </Col>
           <Col>
             <Row justify="flex-end">
-              <Button flat auto rounded color="secondary">
+              <Button
+                flat
+                auto
+                rounded
+                color="secondary"
+                onPress={() => setPresentNum(giftNum)}
+              >
                 <Link href={`/user/${pageUser}/present/${giftNum}`}>
                   <Text
                     css={{ color: "inherit" }}

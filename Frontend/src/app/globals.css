@@ -316,17 +316,17 @@
   animation: slide-animation 8s linear infinite;
 }
 
-/* @keyframes slide-animation {
-    0% {
-        transform: translateX(100%);
-    }
-    50% {
-        transform: translateX(-50%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-} */
+@keyframes slide-animation {
+  0% {
+    transform: translateX(100%);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 
 .tracking-in-contract {
   font-size: 150px;
@@ -334,23 +334,24 @@
   font-weight: 700;
   animation: tracking-in-contract 1s linear both;
 }
-/* @keyframes tracking-in-contract {
-    0% {
-        letter-spacing: 0.6em;
-        opacity: 0;
-    }
-    40% {
-        opacity: 0.6;
-    }
-    100% {
-        letter-spacing: normal;
-        opacity: 1;
-    }
-}  */
+
+@keyframes tracking-in-contract {
+  0% {
+    letter-spacing: 0.6em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    letter-spacing: normal;
+    opacity: 1;
+  }
+}
 
 .profile {
   /* width: 1000px; */
-  height: 400px;
+  height: 500px;
   border-radius: 4px;
 
   justify-content: center;
@@ -373,10 +374,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* // */
+  backdrop-filter: blur(8px);
+  /* Additional styles */
+  transition: all 0.5s;
 }
 
 .profile .p:hover {
   flex: 10;
+  /*  */
+  backdrop-filter: none;
 }
 
 .profile .p .span {
@@ -388,10 +396,18 @@
   text-transform: uppercase;
   color: #000000;
   letter-spacing: 0.1em;
+
+  /* Existing styles */
+  opacity: 0;
+  /* Additional styles */
+  transition: all 0.5s;
 }
 
 .profile .p:hover .span {
   transform: rotate(0);
+
+  /*  */
+  opacity: 1;
 }
 /* ////////////////////////////////////////// */
 

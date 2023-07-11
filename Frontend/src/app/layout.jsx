@@ -19,6 +19,7 @@ export default function RootLayout({ children }) {
   const [tBalance, setTBalance] = useState(0);
   const [user, setUser] = useState([]);
   const [presents, setPresents] = useState([]);
+  const [presentNum, setPresentNum] = useState(0);
   const [pageUser, setPageUser] = useState("");
   const [chargeRatio, setChargeRatio] = useState([]);
 
@@ -27,6 +28,52 @@ export default function RootLayout({ children }) {
   useEffect(() => {
     console.log(pathname);
   }, [pathname]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const collectionRef = firestore.collection(
+          pageUser //여기에 메타마스크 주소를 받아오면 됨!!
+        );
+
+        // const collectionRef = firestore.collection({ pageUser });
+        const querySnapshot = await collectionRef.get();
+
+        const docsData = querySnapshot.docs
+          .filter((doc) => doc.id !== "0")
+          .map((doc) => {
+            doc.data();
+            const mapGift = doc.data();
+            const { giftNum, giftName, giftPrice, giftUrl } = mapGift;
+
+            return {
+              giftNum,
+              giftName,
+              giftPrice,
+              giftUrl,
+            };
+          });
+
+        const usersData = querySnapshot.docs
+          .filter((doc) => doc.id == 0)
+          .map((doc) => {
+            doc.data();
+            const mapUser = doc.data();
+            const { addr, birth, name, num } = mapUser;
+
+            return { addr, birth, name, num };
+          });
+        setPresents(docsData);
+        setUser(usersData);
+        // setIsLoading(false);
+
+        console.log(usersData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getData();
+  }, [pageUser]);
 
   return (
     <html lang="en">
@@ -47,6 +94,8 @@ export default function RootLayout({ children }) {
               setPageUser,
               chargeRatio,
               setChargeRatio,
+              presentNum,
+              setPresentNum,
             }}
           >
             {pathname !== "/" && (

@@ -1,8 +1,9 @@
 "use client";
 
 import { PresentDetail } from "@/components/PresentDetail";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../../layout";
+import { NFT_CONTRACT } from "@/lib/web3.config";
 
 const Present = () => {
   const {
@@ -22,10 +23,16 @@ const Present = () => {
     chargeRatio,
     setChargeRatio,
   } = useContext(AppContext);
+  const [presentInfo, setPresentInfo] = useState();
 
   useEffect(() => {
     setPageUser(pathname.substring(6, 48));
   }, []);
+
+  useEffect(() => {
+    // setPresentNum(Number(pathname.substring(57, pathname.legnth)));
+    setPresentInfo(presents[presentNum - 1]);
+  }, [presents]);
 
   return (
     <>
@@ -35,9 +42,13 @@ const Present = () => {
         pageUser={pageUser}
         user={user}
         presents={presents}
+        presentNum={presentNum}
         setPresentNum={setPresentNum}
+        presentInfo={presentInfo}
         chargeRatio={chargeRatio}
         setChargeRatio={setChargeRatio}
+        tBalance={tBalance}
+        setTBalance={setTBalance}
       />
     </>
   );

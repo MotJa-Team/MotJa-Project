@@ -136,16 +136,7 @@ export const Modal_AddGift = ({ account }) => {
         />
         <ModalContent>
           <ModalHeader>👀선물을 등록👀</ModalHeader>
-          <Box
-            mx="auto"
-            w="300px"
-            h="300px"
-            sx={{
-              borderRadius: "50px",
-              background: "linear-gradient(145deg, #f0f0f0, #cacaca)",
-              boxShadow: "30px 30px 60px #bebebe, -30px -30px 60px #ffffff",
-            }}
-          ></Box>
+
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl mt={4}>

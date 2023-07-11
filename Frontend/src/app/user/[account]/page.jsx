@@ -41,7 +41,52 @@ const User = () => {
     setPageUser(pathname.substring(6, pathname.legnth));
   }, []);
 
-  console.log(pageUser);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const collectionRef = firestore.collection(
+          pageUser //여기에 메타마스크 주소를 받아오면 됨!!
+        );
+
+        // const collectionRef = firestore.collection({ pageUser });
+        const querySnapshot = await collectionRef.get();
+
+        const docsData = querySnapshot.docs
+          .filter((doc) => doc.id !== "0")
+          .map((doc) => {
+            doc.data();
+            const mapGift = doc.data();
+            const { giftNum, giftName, giftPrice, giftUrl } = mapGift;
+
+            return {
+              giftNum,
+              giftName,
+              giftPrice,
+              giftUrl,
+            };
+          });
+
+        const usersData = querySnapshot.docs
+          .filter((doc) => doc.id == 0)
+          .map((doc) => {
+            doc.data();
+            const mapUser = doc.data();
+            const { addr, birth, name, num } = mapUser;
+
+            return { addr, birth, name, num };
+          });
+        setPresents(docsData);
+        setUser(usersData);
+        // setIsLoading(false);
+
+        console.log(docsData);
+        console.log(usersData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getData();
+  }, [pageUser]);
 
   return (
     <>
@@ -100,6 +145,7 @@ const User = () => {
                         <PresentCard
                           pageUser={pageUser}
                           account={account}
+                          setPresentNum={setPresentNum}
                           chargeRatio={chargeRatio}
                           setChargeRatio={setChargeRatio}
                           key={docData.id}
@@ -120,6 +166,7 @@ const User = () => {
                       <PresentCard
                         pageUser={pageUser}
                         account={account}
+                        setPresentNum={setPresentNum}
                         chargeRatio={chargeRatio}
                         setChargeRatio={setChargeRatio}
                         key={docData.id}
