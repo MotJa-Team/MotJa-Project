@@ -1,4 +1,5 @@
 import { MetaMaskSDK } from "@metamask/sdk";
+import Web3 from "web3";
 import TOKEN_CONTRACT_ABI from "@/lib/abi_token.json";
 import NFT_CONTRACT_ABI from "@/lib/abi_nft.json";
 
