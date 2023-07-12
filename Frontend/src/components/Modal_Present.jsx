@@ -14,7 +14,7 @@ import {
   Text,
   ChakraProvider,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NFT_CONTRACT, TOKEN_CONTRACT } from "@/lib/web3.config";
 
 export const Modal_Present = ({
@@ -25,6 +25,7 @@ export const Modal_Present = ({
   presentNum,
   isOpen,
   onClose,
+  remainAmount,
 }) => {
   const [chargePrice, setChargePrice] = useState();
 
@@ -38,9 +39,9 @@ export const Modal_Present = ({
     }
   };
 
-  useEffect(() => {
-    getToken();
-  }, [tBalance]);
+  // useEffect(() => {
+  //   getToken();
+  // }, [tBalance]);
 
   const chargePresent = async (e) => {
     try {
@@ -51,12 +52,14 @@ export const Modal_Present = ({
         .send({
           from: account,
         });
+      getToken();
+      onClickCancel();
     } catch (error) {
       console.error(error);
     }
   };
 
-  const onClickCancel = async () => {
+  const onClickCancel = () => {
     setChargePrice("");
     onClose();
   };
@@ -79,7 +82,7 @@ export const Modal_Present = ({
                 type="number"
                 value={chargePrice}
                 onChange={(e) => setChargePrice(e.target.value)}
-                placeholder="선물할 양을 입력하세요."
+                placeholder={`${remainAmount}`}
               />
               <Button
                 colorScheme="teal"

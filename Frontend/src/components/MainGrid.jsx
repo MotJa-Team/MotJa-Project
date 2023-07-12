@@ -37,15 +37,19 @@ export const MainGrid = () => {
         borderRadius="md"
         justifyItems="center"
         alignContent="center"
+        mx="auto"
+        p={4}
       >
         <Text h1 size={40} color="white" weight="700">
-          Unforgettable Birthdays
+          나만의 생일 NFT까지 GET!
         </Text>
         <Text h1 size={20} color="white" weight="500">
-          1년의 단 하루를 특별한 놀라움으로 만들어 보세요. 받고 싶은 선물을
-          등록만 하면, 서로 모르는 친구들이더라도 함께 당신의 하루를
-          빛내줄거에요. 선물금액이 모두 모이면 잊을 수 없는 순간을 NFT로 발행해
-          줍니다.
+          매 해 찾아오는 생일이지만, 그 순간을 축하해주는 사람은 해 마다
+          다릅니다.
+          <br /> 선물을 등록하고 선물 금액이 모두 충전 되면, 각 선물마다
+          충전해준 친구들의 이름을 적은 NFT를 발행해 드립니다.
+          <br />
+          원하는 선물만 받고 NFT까지 받는 특별한 생일을 경험해 보세요 !
         </Text>
       </GridItem>
       <GridItem
@@ -73,15 +77,19 @@ export const MainGrid = () => {
         borderRadius="md"
         justifyItems="center"
         alignContent="center"
+        mx="auto"
+        p={4}
       >
         <Text h1 size={40} color="white" weight="700">
-          Unforgettable Birthdays
+          원하는 선물만 GET! 하자!
         </Text>
         <Text h1 size={20} color="white" weight="500">
-          1년의 단 하루를 특별한 놀라움으로 만들어 보세요. 받고 싶은 선물을
-          등록만 하면, 서로 모르는 친구들이더라도 함께 당신의 하루를
-          빛내줄거에요. 선물금액이 모두 모이면 잊을 수 없는 순간을 NFT로 발행해
-          줍니다.
+          아직도 취향에 맞지 않는 기프티콘이 쌓여 가고 있으신가요 ?
+          <br />
+          받고 싶은 선물들을 담아두고 링크 공유만 해주세요.
+          <br />
+          저희 플랫폼은 서로 모르는 친구들이더라도 함께 당신의 생일을 빛날 수
+          있도록 도와드려요.
         </Text>
       </GridItem>
     </Grid>

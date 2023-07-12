@@ -39,12 +39,12 @@ export const SlideBox = ({ chargeRatio }) => {
           // bg="blue.500"
           color="white"
           // fontWeight={100}
-          fontSize="20px"
+          fontSize="18px"
           mt="-50"
           ml="-5"
           w="12"
         >
-          {chargeRatio} %
+          {chargeRatio}%
         </SliderMark>
         <SliderTrack sx={{ borderRadius: "30px", height: "20px" }}>
           <SliderFilledTrack

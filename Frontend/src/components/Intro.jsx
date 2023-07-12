@@ -1,16 +1,13 @@
 "use client";
 
-import { ChakraProvider, Flex, Box, Button } from "@chakra-ui/react";
+import { ChakraProvider, Flex, Box, Image } from "@chakra-ui/react";
 import { Text } from "@nextui-org/react";
 import { MdDownload } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 
 export const Intro = ({ pathname, user, pageUser, account }) => {
+  const ranNum = Math.floor(Math.random() * 50) + 1;
   const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
-
-  // const onClickLink = () => {
-  //   console.log(currentURL);
-  // };
 
   const handleCopyClipBoard = async () => {
     try {
@@ -43,8 +40,9 @@ export const Intro = ({ pathname, user, pageUser, account }) => {
                 boxShadow="5px 5px 10px #bdcdd0,
                                 -5px -5px 10px #ffffff"
               >
-                {" "}
-                프로필 넣는 부분{" "}
+                <Image
+                  src={`https://olbm.mypinata.cloud/ipfs/QmaHqh8ERAekGsZENes6weNQSaRA6Y4mPiowHBAuMEiCo1/${ranNum}.png`}
+                />
               </Box>
             </Box>
 

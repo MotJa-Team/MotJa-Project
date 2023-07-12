@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { Card, Col, Row, Button, Text } from "@nextui-org/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { NFT_CONTRACT } from "@/lib/web3.config";
 
 export const PresentCard = ({
   account,
@@ -12,8 +13,26 @@ export const PresentCard = ({
   giftName,
   giftPrice,
   giftUrl,
-  setChargeRatio,
 }) => {
+  const [ratio, setRatio] = useState();
+
+  const getChargeRatio = async () => {
+    try {
+      const response = await NFT_CONTRACT.methods
+        .getChargeRatio(pageUser, giftNum)
+        .call();
+
+      setRatio(Number(response));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getChargeRatio();
+    console.log(ratio);
+  }, [giftNum]);
+
   return (
     <Card css={{ w: "100%", h: "400px" }}>
       <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
@@ -27,13 +46,23 @@ export const PresentCard = ({
         </Col>
       </Card.Header>
       <Card.Body css={{ p: 0 }}>
-        <Card.Image
-          src="/images/unopennft.png"
-          width="100%"
-          height="100%"
-          objectFit="cover"
-          alt="Card example background"
-        />
+        {ratio >= 100 ? (
+          <Card.Image
+            src="/images/opennft.png"
+            width="100%"
+            height="100%"
+            objectFit="cover"
+            alt="Card example background"
+          />
+        ) : (
+          <Card.Image
+            src="/images/unopennft.png"
+            width="100%"
+            height="100%"
+            objectFit="cover"
+            alt="Card example background"
+          />
+        )}
       </Card.Body>
       <Card.Footer
         isBlurred

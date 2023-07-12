@@ -30,8 +30,6 @@ const User = () => {
     setChargeRatio,
   } = useContext(AppContext);
 
-  const [isloading, setIsLoading] = useState(true);
-
   const [isExpanded, setIsExpanded] = useState(false);
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
@@ -77,13 +75,17 @@ const User = () => {
           });
         setPresents(docsData);
         setUser(usersData);
-        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
     };
     getData();
   }, [pageUser]);
+
+  // useEffect(() => {
+  //   console.log(user);
+  //   console.log(presents);
+  // }, []);
 
   return (
     <>

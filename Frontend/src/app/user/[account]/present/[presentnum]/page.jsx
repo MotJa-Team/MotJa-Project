@@ -28,15 +28,10 @@ const Present = () => {
 
   useEffect(() => {
     setPageUser(pathname.substring(6, 48));
-    // console.log(pageUser);
-    // console.log(typeof pageUser);
     setPresentNum(pathname.substring(57, pathname.length));
-    // console.log(presentNum);
-    // console.log(typeof presentNum);
   }, []);
 
   useEffect(() => {
-    // setPresentNum(Number(pathname.substring(57, pathname.legnth)));
     setPresentInfo(presents[presentNum - 1]);
   }, [presents]);
 

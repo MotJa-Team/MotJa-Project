@@ -35,7 +35,6 @@ export default function Header() {
   const toast = useToast();
   const [isInstalled, setIsInstalled] = useState(false);
   const [existAccount, setExistAccount] = useState(false);
-  const [tempAccount, setTempAccount] = useState("");
 
   const onClickMetaMask = async () => {
     try {
@@ -132,7 +131,6 @@ export default function Header() {
           });
         setPresents(docsData);
         setUser(usersData);
-        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }

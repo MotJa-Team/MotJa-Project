@@ -11,9 +11,11 @@ import { Text } from "@nextui-org/react";
 import { TbSend } from "react-icons/tb";
 import { BsGiftFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { NFT_CONTRACT } from "@/lib/web3.config";
+import { NFT_CONTRACT, NFT_CONTRACT_ADDRESS } from "@/lib/web3.config";
 import { SlideBox } from "./SlideBox";
 import { Modal_Present } from "./Modal_Present";
+import Link from "next/link";
+import axios from "axios";
 
 export const PresentDetail = ({
   pathname,
@@ -29,7 +31,12 @@ export const PresentDetail = ({
   setPresentNum,
   presentInfo,
 }) => {
+  const [tokenId, setTokenId] = useState(0);
+  const [metadata, setMetadata] = useState();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [remainAmount, setRemainAmount] = useState("");
+  const [currentB, setCurrentB] = useState("");
+
   const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
 
   const handleCopyClipBoard = async () => {
@@ -44,27 +51,65 @@ export const PresentDetail = ({
 
   const getChargeRatio = async () => {
     try {
-      console.log(pageUser);
-      console.log(presentNum);
-
       const response = await NFT_CONTRACT.methods
         .getChargeRatio(pageUser, presentNum)
         .call();
 
-      console.log(response);
       setChargeRatio(Number(response));
     } catch (error) {
       console.error(error);
     }
   };
 
-  useEffect(() => {
-    console.log(NFT_CONTRACT);
-  }, []);
+  const getCurrentBalance = async () => {
+    try {
+      const response = await NFT_CONTRACT.methods
+        .PRESENT(pageUser, presentNum)
+        .call();
+
+      setCurrentB(Number(response.currentB));
+      setRemainAmount(Number(response.finalB) - Number(response.currentB));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getTokenId = async () => {
+    try {
+      const totalSupply = await NFT_CONTRACT.methods.totalSupply().call();
+
+      for (var i = 1; i <= totalSupply; i++) {
+        const response = await NFT_CONTRACT.methods.presentNum(i).call();
+
+        if (Number(response) == presentNum) {
+          setTokenId(Number(response));
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getTokenUri = async () => {
+    try {
+      const tokenUri = await NFT_CONTRACT.methods.tokenURI(tokenId).call();
+      const response = await axios.get(tokenUri);
+
+      setMetadata(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
+    getTokenId();
+    getCurrentBalance();
     getChargeRatio();
   }, [presentNum]);
+
+  useEffect(() => {
+    getTokenUri();
+  }, [tokenId]);
 
   return (
     <ChakraProvider>
@@ -95,7 +140,7 @@ export const PresentDetail = ({
                   boxShadow="5px 5px 10px #bdcdd0,
                                 -5px -5px 10px #ffffff"
                 >
-                  <Image src="/images/unopennft.png" alt="nft" />
+                  <Image src={metadata?.image} alt={metadata?.name} />
                 </Box>
               </Box>
 
@@ -104,19 +149,19 @@ export const PresentDetail = ({
                   <Text h1 size={40} color="white" weight="700">
                     No. {presentInfo?.giftNum}
                   </Text>
-                  <Text h1 size={50} color="white" weight="700">
+                  <Text h1 size={40} color="white" weight="700">
                     상품명
                   </Text>
                   <Text h1 size={30} color="white" weight="700">
                     {presentInfo?.giftName}
                   </Text>
-                  <Text h1 size={50} color="white" weight="700">
-                    가격
+                  <Text h1 size={40} color="white" weight="700">
+                    선물한금액 / 최종금액
                   </Text>
                   <Text h1 size={30} color="white" weight="700">
-                    {presentInfo?.giftPrice}
+                    {currentB} / {presentInfo?.giftPrice}
                   </Text>
-                  <Text h1 size={15} color="white" weight="700">
+                  <Text h1 size={16} color="white" weight="700">
                     by {pageUser}
                   </Text>{" "}
                 </Box>
@@ -127,18 +172,20 @@ export const PresentDetail = ({
                   gap={4}
                   mb={10}
                 >
-                  <button onClick={handleCopyClipBoard} class="send-button">
-                    <div class="svg-wrapper-1">
-                      <div class="svg-wrapper">
-                        <div class="svg">
-                          <TbSend />
+                  {chargeRatio != 100 && (
+                    <button onClick={handleCopyClipBoard} class="send-button">
+                      <div class="svg-wrapper-1">
+                        <div class="svg-wrapper">
+                          <div class="svg">
+                            <TbSend />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <span>선물링크공유</span>
-                  </button>
+                      <span>선물링크공유</span>
+                    </button>
+                  )}
 
-                  {account !== pageUser && (
+                  {account && account !== pageUser && chargeRatio !== 100 && (
                     <button
                       class="send-button"
                       onClick={() => {
@@ -153,6 +200,7 @@ export const PresentDetail = ({
                         presentNum={presentNum}
                         isOpen={isOpen}
                         onClose={onClose}
+                        remainAmount={remainAmount}
                       />
                       <div class="svg-wrapper-1">
                         <div class="svg-wrapper">
@@ -164,13 +212,22 @@ export const PresentDetail = ({
                       <span>선물하기</span>
                     </button>
                   )}
+                  {chargeRatio === 100 && account === pageUser && (
+                    <Link
+                      href={`https://testnets.opensea.io/assets/goerli/${NFT_CONTRACT_ADDRESS}/${tokenId}`}
+                      target="_blank"
+                    >
+                      <button class="button-mint">
+                        <div>민팅 확인하기</div>
+                      </button>
+                    </Link>
+                  )}
                 </Flex>
               </Box>
             </Flex>
           </Flex>
         </Box>
 
-        {/* ////////////////////////// */}
         <Box
           zIndex={999}
           borderRadius="25px"
@@ -184,6 +241,29 @@ export const PresentDetail = ({
               Charged amount status
             </Text>
             <SlideBox chargeRatio={chargeRatio} />
+          </Box>
+        </Box>
+
+        <Box
+          zIndex={999}
+          borderRadius="25px"
+          bg="rgba(194, 207, 255, 0.5)"
+          boxShadow="5px 5px 10px #bdcdd0,
+                                -5px -5px 10px #ffffff"
+          mt={15}
+          mb={100}
+        >
+          <Box m="40px">
+            <Text h1 size={30} color="white" weight="700">
+              선물해준사람들
+            </Text>
+            <Text h1 size={20} color="white" weight="700">
+              <Flex gap={10} mt={30}>
+                {metadata?.attributes?.map((v, i) => {
+                  return <div key={i}>{v.value}</div>;
+                })}
+              </Flex>
+            </Text>
           </Box>
         </Box>
       </Flex>

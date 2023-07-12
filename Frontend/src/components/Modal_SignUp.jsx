@@ -61,6 +61,7 @@ export const Modal_SignUp = ({ account, setExistAccount }) => {
         .then(() => {
           console.log("Data saved successfully");
           setExistAccount(true);
+          onClickCancel();
         })
         .catch((error) => {
           console.error("Error saving data:", error);
@@ -79,7 +80,7 @@ export const Modal_SignUp = ({ account, setExistAccount }) => {
     }
   };
 
-  const onClickCancel = async () => {
+  const onClickCancel = () => {
     setName("");
     setBirth("");
     setNum("");

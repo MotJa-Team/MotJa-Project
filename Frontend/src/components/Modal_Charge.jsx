@@ -48,12 +48,13 @@ export const Modal_Charge = ({ account, tBalance, setTBalance }) => {
       });
 
       setTBalance(tBalance + Number(tokenAmount));
+      onClickCancel();
     } catch (error) {
       console.error(error);
     }
   };
 
-  const onClickCancel = async () => {
+  const onClickCancel = () => {
     setTokenAmount("");
     onClose();
   };
