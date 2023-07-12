@@ -42,21 +42,25 @@ export const PresentDetail = ({
     }
   };
 
-  console.log(pageUser);
-  console.log(presents);
-  console.log(presentInfo);
-
   const getChargeRatio = async () => {
     try {
+      console.log(pageUser);
+      console.log(presentNum);
+
       const response = await NFT_CONTRACT.methods
         .getChargeRatio(pageUser, presentNum)
         .call();
 
-      setChargeRatio(response);
+      console.log(response);
+      setChargeRatio(Number(response));
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    console.log(NFT_CONTRACT);
+  }, []);
 
   useEffect(() => {
     getChargeRatio();

@@ -29,12 +29,12 @@ export default function Header() {
     setPresentNum,
     pageUser,
     setPageUser,
+    setChargeRatio,
   } = useContext(AppContext);
 
   const toast = useToast();
   const [isInstalled, setIsInstalled] = useState(false);
   const [existAccount, setExistAccount] = useState(false);
-  const [presentAmount, setPresentAmount] = useState(0);
   const [tempAccount, setTempAccount] = useState("");
 
   const onClickMetaMask = async () => {
@@ -96,58 +96,49 @@ export default function Header() {
     }
   }, [account]);
 
-  // const getUsers = async () => {
-  //   if (pageUser !== "") {
-  //     setTempAccount(pageUser);
-  //   } else {
-  //     setTempAccount(account);
-  //   }
-  //   console.log(tempAccount);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const collectionRef = firestore.collection(
+          pageUser //여기에 메타마스크 주소를 받아오면 됨!!
+        );
 
-  //   try {
-  //     const response = await NFT_CONTRACT.methods
-  //       .presentCount(tempAccount)
-  //       .call();
+        // const collectionRef = firestore.collection({ pageUser });
+        const querySnapshot = await collectionRef.get();
 
-  //     console.log(response);
+        const docsData = querySnapshot.docs
+          .filter((doc) => doc.id !== "0")
+          .map((doc) => {
+            doc.data();
+            const mapGift = doc.data();
+            const { giftNum, giftName, giftPrice, giftUrl } = mapGift;
 
-  //     setPresentAmount(response);
+            return {
+              giftNum,
+              giftName,
+              giftPrice,
+              giftUrl,
+            };
+          });
 
-  //     const usersCollectionRef = collection(firestore, tempAccount);
-  //     const data = await getDocs(usersCollectionRef);
-  //     const tempUser = data.docs.map((doc) => ({
-  //       ...doc.data(),
-  //       id: doc.id,
-  //     }));
-  //     console.log(tempUser);
+        const usersData = querySnapshot.docs
+          .filter((doc) => doc.id == 0)
+          .map((doc) => {
+            doc.data();
+            const mapUser = doc.data();
+            const { addr, birth, name, num } = mapUser;
 
-  //     setUser({
-  //       name: tempUser[0].name,
-  //       birth: tempUser[0].birth,
-  //       num: tempUser[0].num,
-  //     });
-
-  //     for (let i = 0; i < presentAmount; i++) {
-  //       presents[i] = [
-  //         {
-  //           giftNum: tempUser[i + 1].giftNum,
-  //           giftName: tempUser[i + 1].giftName,
-  //           giftPrice: tempUser[i + 1].giftPrice,
-  //           giftUrl: tempUser[i + 1].giftUrl,
-  //         },
-  //       ];
-  //     }
-
-  //     console.log(user);
-  //     console.log(presents);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getUsers();
-  // }, [pageUser]);
+            return { addr, birth, name, num };
+          });
+        setPresents(docsData);
+        setUser(usersData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getData();
+  }, [pageUser]);
 
   return (
     <>
@@ -214,7 +205,10 @@ export default function Header() {
                     <Modal_AddGift account={account} />
                   )}
                   {pathname.length > 50 && (
-                    <button class="start-button">
+                    <button
+                      class="start-button"
+                      onClick={() => setChargeRatio(0)}
+                    >
                       <Link href={`/user/${pageUser}`}>
                         <span class="text">Go Back To List</span>
                         <span class="blob"></span>

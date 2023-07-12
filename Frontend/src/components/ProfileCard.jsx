@@ -6,6 +6,7 @@ export const ProfileCard = ({
   name,
   icon,
   icon2,
+  icon3,
   discription,
   profilImageSrc,
 }) => {
@@ -26,6 +27,7 @@ export const ProfileCard = ({
             <Box mb={0}>{name}</Box>
             <Button class="card-socials-btn github">{icon}</Button>
             <Button class="card-socials-btn github">{icon2}</Button>
+            <Button class="card-socials-btn github">{icon3}</Button>
           </Flex>
           <Box mt={4}>{discription}</Box>
         </Box>

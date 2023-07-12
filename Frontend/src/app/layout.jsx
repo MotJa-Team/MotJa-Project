@@ -115,7 +115,7 @@ export default function RootLayout({ children }) {
             )}
             {pathname !== "/" && <Header />}
             {children}
-            {pathname !== "/" && <Footer />}
+            {/* {pathname !== "/" && <Footer />} */}
           </AppContext.Provider>
         </Providers>
       </body>

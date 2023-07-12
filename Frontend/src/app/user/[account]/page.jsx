@@ -77,10 +77,7 @@ const User = () => {
           });
         setPresents(docsData);
         setUser(usersData);
-        // setIsLoading(false);
-
-        console.log(docsData);
-        console.log(usersData);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -90,58 +87,63 @@ const User = () => {
 
   return (
     <>
-      {/* {isloading ? (
-      <Flex zIndex={1} minH="100vh" justifyContent="center" alignItems="center">
-        <Box zIndex={1}>
-          <div className="wrapper" mx="auto">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="shadow"></div>
-            <div class="shadow"></div>
-            <div class="shadow"></div>
-          </div>
-          <Text h1 size={43} color="#E6FAFE" weight="700">
-            Loading User
-          </Text>
-        </Box>
-      </Flex>
-      ) : ( */}
-      <Box
-        justifyContent="center"
-        alignItems="center"
-        display="flex"
-        flexDirection="row"
-        gap={10}
-        maxW="6xl"
-        mt="30px"
-        mx="auto"
-        zIndex={999}
-      >
-        <Flex
-          // bg="red.200"
-          minH="100vh"
-          direction={"column"}
+      {pageUser ? (
+        <Box
+          justifyContent="center"
+          alignItems="center"
+          display="flex"
+          flexDirection="row"
           gap={10}
+          maxW="6xl"
+          mt="30px"
+          mx="auto"
+          zIndex={999}
         >
-          <Intro
-            pathname={pathname}
-            user={user}
-            pageUser={pageUser}
-            account={account}
-          />
+          <Flex
+            // bg="red.200"
+            minH="100vh"
+            direction={"column"}
+            gap={10}
+          >
+            <Intro
+              pathname={pathname}
+              user={user}
+              pageUser={pageUser}
+              account={account}
+            />
 
-          <Box flex class="my-box" h="100%">
-            <Flex direction="column">
-              <Box>
-                {isExpanded ? (
-                  <Box
-                    display="grid"
-                    gridTemplateColumns="repeat(3, 1fr)"
-                    gridGap={4}
-                  >
-                    {presents.length > 0 &&
-                      presents.map((docData) => (
+            <Box flex class="my-box" h="100%">
+              <Flex direction="column">
+                <Box>
+                  {isExpanded ? (
+                    <Box
+                      display="grid"
+                      gridTemplateColumns="repeat(3, 1fr)"
+                      gridGap={4}
+                    >
+                      {presents.length > 0 &&
+                        presents.map((docData) => (
+                          <PresentCard
+                            pageUser={pageUser}
+                            account={account}
+                            setPresentNum={setPresentNum}
+                            chargeRatio={chargeRatio}
+                            setChargeRatio={setChargeRatio}
+                            key={docData.id}
+                            giftName={docData.giftName}
+                            giftNum={docData.giftNum}
+                            giftPrice={docData.giftPrice}
+                            giftUrl={docData.giftUrl}
+                          />
+                        ))}
+                    </Box>
+                  ) : (
+                    <Box
+                      display="grid"
+                      gridTemplateColumns="repeat(3, 1fr)"
+                      gridGap={4}
+                    >
+                      {presents.slice(0, 3).map((docData) => (
                         <PresentCard
                           pageUser={pageUser}
                           account={account}
@@ -155,55 +157,55 @@ const User = () => {
                           giftUrl={docData.giftUrl}
                         />
                       ))}
-                  </Box>
-                ) : (
-                  <Box
-                    display="grid"
-                    gridTemplateColumns="repeat(3, 1fr)"
-                    gridGap={4}
-                  >
-                    {presents.slice(0, 3).map((docData) => (
-                      <PresentCard
-                        pageUser={pageUser}
-                        account={account}
-                        setPresentNum={setPresentNum}
-                        chargeRatio={chargeRatio}
-                        setChargeRatio={setChargeRatio}
-                        key={docData.id}
-                        giftName={docData.giftName}
-                        giftNum={docData.giftNum}
-                        giftPrice={docData.giftPrice}
-                        giftUrl={docData.giftUrl}
-                      />
-                    ))}
-                  </Box>
-                )}
-              </Box>
-              {presents.length > 3 &&
-                (isExpanded ? (
-                  <Button
-                    justifyContent="center"
-                    mx="auto"
-                    mb="10"
-                    mt="10"
-                    leftIcon={<ChevronUpIcon />}
-                    onClick={handleToggle}
-                  ></Button>
-                ) : (
-                  <Button
-                    justifyContent="center"
-                    mx="auto"
-                    mb="10"
-                    mt="10"
-                    leftIcon={<ChevronDownIcon />}
-                    onClick={handleToggle}
-                  ></Button>
-                ))}
-            </Flex>
+                    </Box>
+                  )}
+                </Box>
+                {presents.length > 3 &&
+                  (isExpanded ? (
+                    <Button
+                      justifyContent="center"
+                      mx="auto"
+                      mb="10"
+                      mt="10"
+                      leftIcon={<ChevronUpIcon />}
+                      onClick={handleToggle}
+                    ></Button>
+                  ) : (
+                    <Button
+                      justifyContent="center"
+                      mx="auto"
+                      mb="10"
+                      mt="10"
+                      leftIcon={<ChevronDownIcon />}
+                      onClick={handleToggle}
+                    ></Button>
+                  ))}
+              </Flex>
+            </Box>
+          </Flex>
+        </Box>
+      ) : (
+        <Flex
+          zIndex={1}
+          minH="100vh"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Box zIndex={1}>
+            <div className="wrapper" mx="auto">
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="circle"></div>
+              <div class="shadow"></div>
+              <div class="shadow"></div>
+              <div class="shadow"></div>
+            </div>
+            <Text h1 size={43} color="#E6FAFE" weight="700">
+              Loading
+            </Text>
           </Box>
         </Flex>
-      </Box>
-      {/* )} */}
+      )}
     </>
   );
 };

@@ -2,6 +2,7 @@
 
 import { Box, Link } from "@chakra-ui/react";
 import { BsGithub, BsInstagram } from "react-icons/bs";
+import { SiVelog } from "react-icons/si";
 import { Text } from "@nextui-org/react";
 import { ProfileCard } from "./ProfileCard";
 
@@ -9,7 +10,7 @@ export const TeamProfile = () => {
   return (
     <Box mt="100px">
       <Text h1 size={80} color="#E6FAFE" weight="700">
-        Profile
+        Team Profile
       </Text>
       <Box className="profile" minh="100vh">
         <ProfileCard
@@ -26,6 +27,11 @@ export const TeamProfile = () => {
               <BsInstagram />
             </Link>
           }
+          icon3={
+            <Link href="https://velog.io/@bpark14" target="_blank">
+              <SiVelog />
+            </Link>
+          }
         />
         <ProfileCard
           profilImageSrc="/images/lee.png"
@@ -39,6 +45,11 @@ export const TeamProfile = () => {
           icon2={
             <Link href="https://www.instagram.com/ollok_99/" target="_blank">
               <BsInstagram />
+            </Link>
+          }
+          icon3={
+            <Link href="https://velog.io/@lhjbg0821" target="_blank">
+              <SiVelog />
             </Link>
           }
         />
@@ -57,6 +68,11 @@ export const TeamProfile = () => {
               target="_blank"
             >
               <BsInstagram />
+            </Link>
+          }
+          icon3={
+            <Link href="https://velog.io/@chlwndus1216" target="_blank">
+              <SiVelog />
             </Link>
           }
         />
