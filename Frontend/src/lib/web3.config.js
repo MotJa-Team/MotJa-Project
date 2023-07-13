@@ -16,9 +16,9 @@ export const ethereum = MMSDK.getProvider();
 export const web3 = new Web3(ethereum);
 
 export const TOKEN_CONTRACT_ADDRESS =
-  "0x9cF160d79b12aa6899881D4B0948090b8c59eA68";
+  "0xC666d754079752B38A54BB2606617d5f14c83778";
 export const NFT_CONTRACT_ADDRESS =
-  "0x7571a495EA49E0533eb21B33AB065CfA9bb27Da9";
+  "0x40218aC40F70c7B6811e45bF5F6c263F6515Be98";
 
 export const TOKEN_CONTRACT = new web3.eth.Contract(
   TOKEN_CONTRACT_ABI,
