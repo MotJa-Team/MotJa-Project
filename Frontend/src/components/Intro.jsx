@@ -7,12 +7,14 @@ import { CgProfile } from "react-icons/cg";
 
 export const Intro = ({ pathname, user, pageUser, account }) => {
   const ranNum = Math.floor(Math.random() * 50) + 1;
-  const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
+  // const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
 
   const handleCopyClipBoard = async () => {
     try {
       console.log(currentURL);
-      await navigator.clipboard.writeText(currentURL);
+      await navigator.clipboard.writeText(
+        process.env.NEXT_PUBLIC_URL + pathname
+      );
       alert("클립보드에 링크가 복사되었어요.");
     } catch (err) {
       console.log(err);
@@ -41,6 +43,7 @@ export const Intro = ({ pathname, user, pageUser, account }) => {
                                 -5px -5px 10px #ffffff"
               >
                 <Image
+                  borderRadius={25}
                   src={`https://olbm.mypinata.cloud/ipfs/QmaHqh8ERAekGsZENes6weNQSaRA6Y4mPiowHBAuMEiCo1/${ranNum}.png`}
                 />
               </Box>

@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    console.log(pathname);
+    console.log(process.env.NEXT_PUBLIC_URL + pathname);
   }, [pathname]);
 
   useEffect(() => {

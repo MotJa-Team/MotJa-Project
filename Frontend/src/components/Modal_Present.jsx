@@ -52,6 +52,7 @@ export const Modal_Present = ({
         .send({
           from: account,
         });
+
       getToken();
       onClickCancel();
     } catch (error) {

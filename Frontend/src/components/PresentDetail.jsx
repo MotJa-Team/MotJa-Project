@@ -37,12 +37,14 @@ export const PresentDetail = ({
   const [remainAmount, setRemainAmount] = useState("");
   const [currentB, setCurrentB] = useState("");
 
-  const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
+  // const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
 
   const handleCopyClipBoard = async () => {
     try {
       console.log(currentURL);
-      await navigator.clipboard.writeText(currentURL);
+      await navigator.clipboard.writeText(
+        process.env.NEXT_PUBLIC_URL + pathname
+      );
       alert("클립보드에 링크가 복사되었어요.");
     } catch (err) {
       console.log(err);
@@ -81,8 +83,10 @@ export const PresentDetail = ({
       for (var i = 1; i <= totalSupply; i++) {
         const response = await NFT_CONTRACT.methods.presentNum(i).call();
 
-        if (Number(response) == presentNum) {
-          setTokenId(Number(response));
+        if (response.presentOwner.toLowerCase() == pageUser.toLowerCase()) {
+          if (Number(response.Number) == presentNum) {
+            setTokenId(i);
+          }
         }
       }
     } catch (error) {
@@ -110,6 +114,10 @@ export const PresentDetail = ({
   useEffect(() => {
     getTokenUri();
   }, [tokenId]);
+
+  useEffect(() => {
+    console.log(metadata);
+  }, [metadata]);
 
   return (
     <ChakraProvider>
@@ -140,23 +148,27 @@ export const PresentDetail = ({
                   boxShadow="5px 5px 10px #bdcdd0,
                                 -5px -5px 10px #ffffff"
                 >
-                  <Image src={metadata?.image} alt={metadata?.name} />
+                  <Image
+                    borderRadius={25}
+                    src={metadata?.image}
+                    alt={metadata?.name}
+                  />
                 </Box>
               </Box>
 
               <Box flex="1">
                 <Box mb={20}>
-                  <Text h1 size={40} color="white" weight="700">
+                  <Text h1 size={40} color="#86fef6" weight="700">
                     No. {presentInfo?.giftNum}
                   </Text>
-                  <Text h1 size={40} color="white" weight="700">
+                  <Text h1 size={40} color="#86fef6" weight="700">
                     상품명
                   </Text>
                   <Text h1 size={30} color="white" weight="700">
                     {presentInfo?.giftName}
                   </Text>
-                  <Text h1 size={40} color="white" weight="700">
-                    선물한금액 / 최종금액
+                  <Text h1 size={40} color="#86fef6" weight="700">
+                    모인금액 / 최종금액
                   </Text>
                   <Text h1 size={30} color="white" weight="700">
                     {currentB} / {presentInfo?.giftPrice}

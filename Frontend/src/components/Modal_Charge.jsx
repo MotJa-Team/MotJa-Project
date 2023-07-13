@@ -16,11 +16,13 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { NFT_CONTRACT, TOKEN_CONTRACT } from "@/lib/web3.config";
+import { NFT_CONTRACT, TOKEN_CONTRACT, web3 } from "@/lib/web3.config";
+import axios from "axios";
 
 export const Modal_Charge = ({ account, tBalance, setTBalance }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [tokenAmount, setTokenAmount] = useState();
+  const [coinPrice, setCoinPrice] = useState();
 
   const getToken = async () => {
     try {
@@ -40,11 +42,12 @@ export const Modal_Charge = ({ account, tBalance, setTBalance }) => {
     try {
       e.preventDefault();
 
-      //   const input = Number((1 / coinPrice) * data.get("amount"));
-      //   console.log(input);
+      const input = Number((1 / coinPrice) * tokenAmount);
+      const value = web3.utils.toWei(input, "ether");
 
       await NFT_CONTRACT.methods.buyCoin(tokenAmount).send({
         from: account,
+        value,
       });
 
       setTBalance(tBalance + Number(tokenAmount));
@@ -58,6 +61,28 @@ export const Modal_Charge = ({ account, tBalance, setTBalance }) => {
     setTokenAmount("");
     onClose();
   };
+
+  const getCoinPrice = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.upbit.com/v1/ticker?markets=KRW-BTC,%20KRW-ETH,%20KRW-MATIC"
+      );
+
+      // setCoinPrice([
+      //   { symbol: "MATIC", price: response.data[2].trade_price }
+      // ]);
+
+      // console.log(response.data);
+      // console.log(response.data[0].trade_price);
+      setCoinPrice(response.data[0].trade_price);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getCoinPrice();
+  }, []);
 
   return (
     <ChakraProvider>
@@ -83,7 +108,7 @@ export const Modal_Charge = ({ account, tBalance, setTBalance }) => {
           <ModalCloseButton />
           <ModalBody px="10">
             <Text mt="5">✨보유 잔액 : {tBalance} CT</Text>
-
+            <Text mt="5">✨1 토큰당 가격 : {(1 / coinPrice).toFixed(10)}</Text>
             <InputGroup mt="5">
               <Input
                 type="number"

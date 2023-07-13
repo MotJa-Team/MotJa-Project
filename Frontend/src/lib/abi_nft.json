@@ -421,8 +421,13 @@
     "name": "presentNum",
     "outputs": [
       {
+        "internalType": "address",
+        "name": "presentOwner",
+        "type": "address"
+      },
+      {
         "internalType": "uint256",
-        "name": "",
+        "name": "Number",
         "type": "uint256"
       }
     ],

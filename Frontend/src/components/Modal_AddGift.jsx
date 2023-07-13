@@ -97,12 +97,11 @@ export const Modal_AddGift = ({ account }) => {
     try {
       e.preventDefault();
 
-      clickGiftSave();
-
       await NFT_CONTRACT.methods.mintNFT(giftNum, giftPrice).send({
         from: account,
       });
 
+      clickGiftSave();
       onClickCancel();
     } catch (error) {
       console.error(error);

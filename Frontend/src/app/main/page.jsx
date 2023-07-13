@@ -1,10 +1,10 @@
 "use client";
 
+import { About } from "@/components/About";
 import { MainGrid } from "@/components/MainGrid";
 import { MainSlide } from "@/components/MainSlide";
 import { TeamProfile } from "@/components/TeamProfile";
 import { Flex, Box } from "@chakra-ui/react";
-import { Text } from "@nextui-org/react";
 
 const Main = () => {
   return (
@@ -24,14 +24,7 @@ const Main = () => {
           mx="auto"
         >
           <MainGrid />
-
-          <Box mt="100px">
-            <Text h1 size={80} color="#E6FAFE" weight="700">
-              About
-            </Text>
-            <Box>결제방법 ?</Box>
-          </Box>
-
+          <About />
           <TeamProfile />
         </Box>
       </Box>
