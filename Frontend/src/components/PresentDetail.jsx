@@ -37,14 +37,12 @@ export const PresentDetail = ({
   const [remainAmount, setRemainAmount] = useState("");
   const [currentB, setCurrentB] = useState("");
 
-  // const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
+  const currentURL = process.env.NEXT_PUBLIC_URL + pathname;
 
   const handleCopyClipBoard = async () => {
     try {
       console.log(currentURL);
-      await navigator.clipboard.writeText(
-        process.env.NEXT_PUBLIC_URL + pathname
-      );
+      await navigator.clipboard.writeText(currentURL);
       alert("클립보드에 링크가 복사되었어요.");
     } catch (err) {
       console.log(err);
