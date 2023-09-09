@@ -1,17 +1,17 @@
 # Celebday
 
 ## PPT
-![캡처_2023_09_09_22_52_21_961](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/0e9b0ff7-06ad-43bc-8a31-66ae76b3fe52)
-![캡처_2023_09_09_22_52_25_710](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/fbba375c-1b9a-4c14-a222-7fbe83cd3df7)
-![캡처_2023_09_09_22_52_29_46](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/bc790cd2-203d-4978-962b-127fd9496dbe)
-![캡처_2023_09_09_22_53_03_130](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/8b20b3f7-6b6e-481e-8f9c-c7d4bdd1ce66)
-![캡처_2023_09_09_22_52_36_237](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/528b5ba6-1810-4bca-846d-6a5964c694a0)
-![캡처_2023_09_09_22_52_38_940](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/4ef467d9-5408-4cde-b43d-a4b65ac88a2b)
-![캡처_2023_09_09_22_52_44_136](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/e77eccb8-7b76-4e6d-b359-1ed68263d184)
-![캡처_2023_09_09_22_52_56_50](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/6f604964-40c1-4901-88b1-257450da8e32)
-![캡처_2023_09_09_22_52_59_2](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/8bad6ce6-3fdd-40c4-a590-cf4782659f6a)
-
-![캡처_2023_09_09_22_52_31_544](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/bbb4b108-b8f5-4aee-b804-b7aa66ee60f5)
+![캡처_2023_09_09_22_52_21_961](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/bd772948-87ae-4892-8f67-be823e79d03d)
+![캡처_2023_09_09_22_52_25_710](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/61820dce-c903-490c-b56b-9a70982e38ea)
+![캡처_2023_09_09_22_52_29_46](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/e2e92c07-b782-4c00-933e-f9bf410e18f7)
+![캡처_2023_09_09_22_52_31_544](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/89817046-9599-481b-adae-c7c88ca45d2e)
+![캡처_2023_09_09_22_52_36_237](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/0bbe139c-2afa-4a70-9fdc-505c993425d0)
+![캡처_2023_09_09_22_52_38_940](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/4b328e40-f7a7-4d65-bf4e-765b5bf067e7)
+![캡처_2023_09_09_22_52_44_136](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/79a59853-7d59-4008-adc4-9cde4cc5ac3d)
+![캡처_2023_09_09_22_52_56_50](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/ca214e73-43b5-4bb0-b413-0b84b55c4b45)
+![캡처_2023_09_09_22_52_59_2](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/571acd37-38c5-4f1e-b5e9-1540ced60ae7)
+![캡처_2023_09_09_22_53_03_130](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/07ee6f1a-c48d-4a7a-b5a4-aadaf525f51b)
+![캡처_2023_09_09_22_53_06_682](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/dc4c878d-b0dd-430f-90e4-1d93d5713c66)
 
 ## Project Image
 ![캡처_2023_08_08_00_09_08_881](https://github.com/MotJa-Team/MotJa-Project/assets/107535534/86a1d0a6-d7a4-42ee-a57e-b01dd04c6e80)
